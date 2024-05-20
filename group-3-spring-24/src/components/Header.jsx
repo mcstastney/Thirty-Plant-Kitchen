@@ -1,7 +1,7 @@
-// Header.js
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css'; // Assuming you have a CSS file for styling
+import './Header.css'; 
 
 const Header = () => {
   return (
@@ -22,11 +22,11 @@ const Header = () => {
           <li>
             <Link to="/contact">Contact</Link>
           </li>
-          {/* Add more links as needed */}
+          
         </ul>
       </nav>
       <div className="header__actions">
-        {/* Optional: Search bar, user profile icon, etc. */}
+        
         <input type="text" placeholder="Search..." className="header__search" />
         <Link to="/profile" className="header__profile">
           <img src="/path/to/profile-icon.png" alt="Profile" />

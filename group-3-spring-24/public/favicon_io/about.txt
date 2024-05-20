@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Arvo
+- Font Author: Copyright 2010 Anton Koovit, Yassin Baggar.
+- Font Source: https://fonts.gstatic.com/s/arvo/v22/tDbM2oWUg0MKoZw1yLTA8vL7lAE.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))
