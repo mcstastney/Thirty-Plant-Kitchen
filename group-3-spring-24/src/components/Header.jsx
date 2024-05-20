@@ -6,31 +6,27 @@ import './Header.css';
 const Header = () => {
   return (
     <header className="header">
-      <div className="header__logo">
+      <div className="header-logo">
         <Link to="/">
-          <img src="/path/to/logo.png" alt="Logo" />
+          <img src="/path/to/logo.png" alt="Logo" /> // add proper logo path
         </Link>
       </div>
-      <nav className="header__nav">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
+      <nav className="header-nav">
+        <ul className="nav-list">
+          <li className="nav-list-item">
+            <Link to="/">Home</Link> // might want to delete this option if clicking logo takes you to home
           </li>
-          <li>
+          <li className="nav-list-item">
             <Link to="/about">About</Link>
           </li>
-          <li>
+          <li className="nav-list-item">
             <Link to="/contact">Contact</Link>
           </li>
           
         </ul>
       </nav>
-      <div className="header__actions">
+      <div className="header__actions"> // put login/sign up here
         
-        <input type="text" placeholder="Search..." className="header__search" />
-        <Link to="/profile" className="header__profile">
-          <img src="/path/to/profile-icon.png" alt="Profile" />
-        </Link>
       </div>
     </header>
   );
