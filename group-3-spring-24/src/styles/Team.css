@@ -1,0 +1,41 @@
+.page-background{
+  background-color: rgb(246, 246, 226);
+  margin: 0;
+  text-align: center;
+}
+
+.profile-card {
+    background-color: rgb(206, 253, 39);
+    border-radius: 20px;
+    box-shadow: 3px 3px 5px hsl(104, 11%, 39%);
+    padding: 15px;
+    margin: 10px;
+    max-width: 250px;
+    height: auto;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .profile-card .pic-style{
+    max-width: 60%;
+    border-radius: 50%;
+    box-shadow: 3px 3px 13px hsl(0, 0%, 51%);
+  }
+
+.profile-card .profile-heading {
+    font-size: large;
+    padding: 5px 15px 5px 15px;
+    border-radius: 10px;
+    background-color: white;
+}  
+  
+  .profile-card .profile-text {
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    color:hsl(0, 1%, 29%);
+    font-size: small;
+    max-width: 90%;
+    padding: 5px 15px 15px 15px;
+    border-radius: 15px;
+    background-color: white;
+  }
