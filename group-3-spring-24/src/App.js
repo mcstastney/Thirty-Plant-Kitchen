@@ -1,8 +1,11 @@
-import Header from './Header.jsx'
+import Header from './components/Header.jsx'
 import './App.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 
 function App() {
-  return (
+  root.render (
     <div className="App">
       <Header/>
     </div>
@@ -10,3 +13,9 @@ function App() {
 }
 
 export default App;
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <App />
+);
