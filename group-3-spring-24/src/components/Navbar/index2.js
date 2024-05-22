@@ -9,6 +9,12 @@ const Navbar = () => {
                     <NavLink to="/Home" activeStyle>
                         Homepage
                     </NavLink>
+                    <NavLink to="/SignUp" activeStyle>
+                        Sign up
+                    </NavLink>
+                    <NavLink to="/Ingredients" activeStyle>
+                        Search plants
+                    </NavLink>
                     <NavLink to="/Recipes" activeStyle>
                         Search recipes
                     </NavLink>
