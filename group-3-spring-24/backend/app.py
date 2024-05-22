@@ -9,9 +9,9 @@ CORS(app)
 def get_recipes():
     type = "public"
     q = request.args.get('q', 'carrot')  # Default to 'carrot' if no query parameter is provided
-    app_id = "" 
+    app_id = "de86b12f" 
     # Get your app ID from Edamam API account
-    app_key = "" 
+    app_key = "102cc4a389aae2a2a2a6b136d4a7a0cc" 
     # Get your app key from Edamam API account
     mealType = request.args.get('mealType', 'Dinner')
     dishType = request.args.get('dishType', 'Main course')
