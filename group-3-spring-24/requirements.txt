@@ -1,1 +1,23 @@
+Python file set up 
+•	CD into backend folder: cd {type location of your file}
+•	Run: pip install flask-cors
+•	Run: pip install requests
+•	Run (to start the Flask server): python app.py
+Flask or FastAPI are web frameworks used to create an API endpoint that a React app can call. 
+Need to import into the .py file i.e. from flask import Flask, jsonify
+Might need to handle CORS (Cross-Origin Resource Sharing) if you encounter issues with the browser blocking requests. 
+Install and configure the flask-cors package in your Flask app, i.e. in the terminal, run: pip install flask-cors. 
+In the .py file, type this in top of .py file: 
+from flask_cors import CORS
+app = Flask(__name__)
+CORS(app)
 
+Input your SQL password into db_utils.py
+Input API keys into app.py
+
+
+React file set up
+•	CD into frontend / main folder: cd {type location of your file}
+•	Run: npm install
+•	Run: npm i react-router-dom --save styled-components
+•	Run: npm start
