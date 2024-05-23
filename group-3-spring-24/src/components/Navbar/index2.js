@@ -1,66 +1,77 @@
-// import React from "react";
-// import { Nav, NavLink, NavMenu } from "./NavbarElements";
- 
-// const Navbar = () => {
-//     return (
-//         <>
-//             <Nav>
-//                 <NavMenu>
-//                     <NavLink to="/Home" activeStyle>
-//                         Homepage
-//                     </NavLink>
-//                     <NavLink to="/SignUp" activeStyle>
-//                         Sign up
-//                     </NavLink>
-//                     <NavLink to="/Ingredients" activeStyle>
-//                         Search plants
-//                     </NavLink>
-//                     <NavLink to="/Recipes" activeStyle>
-//                         Search recipes
-//                     </NavLink>
-//                     <NavLink to="/aboutPage" activeStyle>
-//                         About
-//                     </NavLink>
-
-//                 </NavMenu>
-//             </Nav>
-//         </>
-//     );
-// };
- 
-// export default Navbar;
-
-// src/components/Navbar/index2.js
 import React from 'react';
-import { AppBar, Box, Toolbar, Typography, Button } from '@mui/material';
+import { AppBar, Box, Toolbar, Typography, Button, TextField } from '@mui/material';
 import { NavLink } from 'react-router-dom';
+import { styled } from '@mui/system';
+
+// custom style for elements
+const CustomAppBar = styled(AppBar)({ //AppBar is MUI's version of navbar seemingly- mobile first approach?
+    height: '80px',
+    backgroundColor: '#283618', 
+});
+
+
+const CustomNavLink = styled(NavLink)(({ theme }) => ({
+    color: 'white',
+    textDecoration: 'none',
+    marginLeft: theme.spacing(2),
+    '&.active': {
+        fontWeight: 'bold',
+        borderBottom: '2px solid white',
+    },
+}));
+
+const CustomButton = styled(Button)({
+    color: 'inherit', // inherit colour from AppBar (white)
+    margin: '0 10px', // adjust horizontal spacing between links
+});
 
 const Navbar = () => {
     return (
-        <AppBar position="static">
-            <Toolbar>
-                <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                    LOGO
-                </Typography>
-                <Box sx={{ display: 'flex' }}>
-                    <Button color="inherit" component={NavLink} to="/Home" activeClassName="active">
+        <CustomAppBar position="static">
+            <Toolbar sx={{ height: '100%', display: 'flex', justifyContent: 'space-between', padding: '0 20px' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Typography variant="h6" sx={{ marginRight: '20px' }}>
+                        LOGO
+                    </Typography>
+                    <CustomButton component={CustomNavLink} to="/Home">
                         Homepage
-                    </Button>
-                    <Button color="inherit" component={NavLink} to="/SignUp" activeClassName="active">
+                    </CustomButton>
+                    <CustomButton component={CustomNavLink} to="/SignUp">
                         Sign up
-                    </Button>
-                    <Button color="inherit" component={NavLink} to="/Ingredients" activeClassName="active">
+                    </CustomButton>
+                    <CustomButton component={CustomNavLink} to="/Ingredients">
                         Search plants
-                    </Button>
-                    <Button color="inherit" component={NavLink} to="/Recipes" activeClassName="active">
+                    </CustomButton>
+                    <CustomButton component={CustomNavLink} to="/Recipes">
                         Search recipes
-                    </Button>
-                    <Button color="inherit" component={NavLink} to="/aboutPage" activeClassName="active">
+                    </CustomButton>
+                    <CustomButton component={CustomNavLink} to="/aboutPage">
                         About
+                    </CustomButton>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <TextField
+                        variant="outlined"
+                        size="small"
+                        placeholder="Username"
+                        sx={{ marginRight: '10px', backgroundColor: 'white', borderRadius: '4px' }}
+                    />
+                    <TextField
+                        variant="outlined"
+                        size="small"
+                        type="password"
+                        placeholder="Password"
+                        sx={{ marginRight: '10px', backgroundColor: 'white', borderRadius: '4px' }}
+                    />
+                    <Button variant="contained" color="secondary">
+                        Login
+                    </Button>
+                    <Button variant="outlined" color="inherit" sx={{ marginLeft: '10px' }}>
+                        Sign Up
                     </Button>
                 </Box>
             </Toolbar>
-        </AppBar>
+        </CustomAppBar>
     );
 };
 
