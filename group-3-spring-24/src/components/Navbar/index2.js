@@ -1,31 +1,67 @@
-import React from "react";
-import { Nav, NavLink, NavMenu } from "./NavbarElements";
+// import React from "react";
+// import { Nav, NavLink, NavMenu } from "./NavbarElements";
  
+// const Navbar = () => {
+//     return (
+//         <>
+//             <Nav>
+//                 <NavMenu>
+//                     <NavLink to="/Home" activeStyle>
+//                         Homepage
+//                     </NavLink>
+//                     <NavLink to="/SignUp" activeStyle>
+//                         Sign up
+//                     </NavLink>
+//                     <NavLink to="/Ingredients" activeStyle>
+//                         Search plants
+//                     </NavLink>
+//                     <NavLink to="/Recipes" activeStyle>
+//                         Search recipes
+//                     </NavLink>
+//                     <NavLink to="/aboutPage" activeStyle>
+//                         About
+//                     </NavLink>
+
+//                 </NavMenu>
+//             </Nav>
+//         </>
+//     );
+// };
+ 
+// export default Navbar;
+
+// src/components/Navbar/index2.js
+import React from 'react';
+import { AppBar, Box, Toolbar, Typography, Button } from '@mui/material';
+import { NavLink } from 'react-router-dom';
+
 const Navbar = () => {
     return (
-        <>
-            <Nav>
-                <NavMenu>
-                    <NavLink to="/Home" activeStyle>
+        <AppBar position="static">
+            <Toolbar>
+                <Typography variant="h6" sx={{ flexGrow: 1 }}>
+                    LOGO
+                </Typography>
+                <Box sx={{ display: 'flex' }}>
+                    <Button color="inherit" component={NavLink} to="/Home" activeClassName="active">
                         Homepage
-                    </NavLink>
-                    <NavLink to="/SignUp" activeStyle>
+                    </Button>
+                    <Button color="inherit" component={NavLink} to="/SignUp" activeClassName="active">
                         Sign up
-                    </NavLink>
-                    <NavLink to="/Ingredients" activeStyle>
+                    </Button>
+                    <Button color="inherit" component={NavLink} to="/Ingredients" activeClassName="active">
                         Search plants
-                    </NavLink>
-                    <NavLink to="/Recipes" activeStyle>
+                    </Button>
+                    <Button color="inherit" component={NavLink} to="/Recipes" activeClassName="active">
                         Search recipes
-                    </NavLink>
-                    <NavLink to="/aboutPage" activeStyle>
+                    </Button>
+                    <Button color="inherit" component={NavLink} to="/aboutPage" activeClassName="active">
                         About
-                    </NavLink>
-
-                </NavMenu>
-            </Nav>
-        </>
+                    </Button>
+                </Box>
+            </Toolbar>
+        </AppBar>
     );
 };
- 
+
 export default Navbar;

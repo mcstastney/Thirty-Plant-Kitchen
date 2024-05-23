@@ -21,3 +21,4 @@ React file set up
 •	Run: npm install
 •	Run: npm i react-router-dom --save styled-components
 •	Run: npm start
+

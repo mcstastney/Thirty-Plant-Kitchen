@@ -9,6 +9,8 @@
 
 }
 
+
+
 /* Reset CSS */
 *,
 *::before,
@@ -22,7 +24,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 body {

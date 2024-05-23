@@ -1,4 +1,6 @@
 import '../styles/Team.css'
+import Button from '@mui/material/Button';
+
 
 function Team (props) {
     return (
@@ -8,6 +10,7 @@ function Team (props) {
             <div className="profile-text">
             <p><b>About:</b> {props.bio}</p>
             <a href={props.contact}><b>Contact me</b></a>
+            <Button variant="text">Test Button MUI</Button>
             </div>
             
         </div>
