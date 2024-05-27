@@ -32,7 +32,7 @@ const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => (
       })
     // Display a message indicating no recipes were found
     ) : showNoRecipesMessage && (
-      <p>No recipes found. Try selecting different ingredient.</p>
+      <p>No recipes found for selected ingredients. Try selecting a different ingredient!</p>
     )}
   </div>
 );

@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../styles/Recipe.css';
 // Import components used within the recipe page
 import MonthSelector from '../components/MonthSelector';
@@ -17,13 +17,16 @@ const Recipes = () => {
   const [loading, setLoading] = useState(false); // State for loading status
   const [recipes, setRecipes] = useState([]);
   const [month, setMonth] = useState(''); // State for selected month
-  const [showNoRecipesMessage, setShowNoRecipesMessage] = useState(false);
   const [searchClicked, setSearchClicked] = useState(false);
+  const [firstTimeSelect, setFirstTimeSelect] = useState(false);
+  const [showNoRecipesMessage, setShowNoRecipesMessage] = useState(false);
+
 
 // Function for fetching in-season ingredients (veg/fuit) from DB based on selected month
 const fetchInSeasonItems = () => {
   setLoading(true);
 
+  
   // Fetch recipes for veg/fruits/legumes simultaneously
   Promise.all([
     fetch(`http://localhost:5000/api/seasonal-produce?month=${month}`),
@@ -45,7 +48,6 @@ const fetchInSeasonItems = () => {
       setLoading(false);
     });
 };
-
 
 // Function to track the selection of veg/fruit/legumes
 // Allows user to select/deselct veg/fruit/legumes as desired
@@ -131,6 +133,22 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
     fetchInSeasonItems();
   };
 
+  // Function to reload the page when the "Reset Form" button is clicked
+  const handleResetForm = () => {
+    window.location.reload();
+  };
+
+  // Changes in selected month (afer initial selection) will trigger reload of page 
+  useEffect(() => {
+    if (firstTimeSelect) {
+      setFirstTimeSelect(false);
+    } else if (searchClicked && month !== '') {
+      handleResetForm();
+      setSearchClicked(false); // Reset searchClicked to false after reload
+    }
+  }, [month]);
+
+
   return (
     <div className="recipe-body">
       <h1>Seasonal Produce Selector</h1>
@@ -139,6 +157,16 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
         setMonth={setMonth}
         handleSubmit={handleSubmit}
       />
+            {/* Check if search button is clicked and month is selected */}
+      {searchClicked && month && (
+        <button
+          className="reset-button"
+          type="button"
+          onClick={handleResetForm}
+        >
+          Reset Form
+        </button>
+      )}
       {/* If data is loading, display loading message */}
       {loading ? (
         <p>Loading in-season items...</p>
@@ -147,29 +175,35 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
           {/* Check if search button is clicked and month is selected */}
           {searchClicked && month && (
             <>
+            <h3>{`These ingredients will be in season in ${month.charAt(0).toUpperCase() + month.slice(1)}.`}<br /> Select ingredients to include in your recipe search</h3>
             {/* Render InSeasonItems component for veg */}
+            <div className='ingredient-category'>
               <InSeasonItems
-                title={`These ingredients will be in season in ${month.charAt(0).toUpperCase() + month.slice(1)}. Select ingredients to include in your recipe search`}
+                title={'Vegetables'}
                 items={inSeasonIngredients}
                 selectedItems={selectedIngredients}
                 toggleItem={toggleIngredient}
               />
+            </div>
               {/* Render InSeasonItems component for fruit */}
+            <div className='ingredient-category'>
               <InSeasonItems
-                title={`These fruits will be in season in ${month.charAt(0).toUpperCase() + month.slice(1)}. Select fruits to include in your recipe search`}
+                title={'Fruits'}
                 items={inSeasonFruits}
                 selectedItems={selectedFruits}
                 toggleItem={toggleFruit}
               />
+            </div>
+            <div className='ingredient-category'>
               <InSeasonItems
-                title={`These legumes will be in season in ${month.charAt(0).toUpperCase() + month.slice(1)}. Select legumes to include in your recipe search`}
+                title={'Legumes'}
                 items={inSeasonLegumes}
                 selectedItems={selectedLegumes}
                 toggleItem={toggleLegumes}
               />
+            </div>
               {/* Button for generating recipes */}
               <button
-                className="generate-button"
                 type="button"
                 onClick={fetchRecipes}
                 disabled={[...selectedIngredients, ...selectedFruits, ...selectedLegumes].length === 0} // Button is disabled when there are no ingredients from any category selected

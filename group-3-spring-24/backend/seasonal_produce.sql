@@ -68,7 +68,8 @@ VALUES
 ('Blueberry', 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1),
 ('Redcurrant', 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1),
 ('Blackcurrant', 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1),
-('Rhubarb', 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0);
+('Rhubarb', 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0),
+('testcase', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 
 CREATE TABLE IF NOT EXISTS Legumes (
     legume_id INT PRIMARY KEY AUTO_INCREMENT,
