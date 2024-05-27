@@ -1,29 +1,10 @@
-body{
-    background-color: rgb(246, 246, 226);
-    text-align: center;
-
-}
-
-h1 {
-    font-size: 3em;
-}
-
-h2 {
-    font-size: 2em;
-}
-
 /* Container for the entire recipe section */
 .recipe-body {
     font-family: Arial, sans-serif;
     padding: 20px;
     max-width: 800px;
     margin: 0 auto;
-  }
-  
-  /* Heading style */
-  .recipe-body h1 {
     text-align: center;
-    margin-bottom: 20px;
   }
   
   /* Form containing the ingredients box and search button */
@@ -57,7 +38,7 @@ h2 {
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
-      background-color: #f9f9f9;
+      background-color: #0205035d;
       cursor: pointer;
       transition: background-color 0.3s, border-color 0.3s;
   }
@@ -67,27 +48,17 @@ h2 {
     background-color: #d1e7dd;
     border-color: #badbcc;
   }
-  
-  /* Loading and error message styling */
-  .recipe-body p {
-    text-align: center;
-  }
-  
   /* Individual recipe container styling */
   .recipe-body > div {
     border: 1px solid #ddd;
+    justify-content: center;
     border-radius: 10px;
     padding: 15px;
     margin-bottom: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
-  /* Recipe heading */
-  .recipe-body h2 {
-    margin: 0;
-    font-size: 1.5em;
-  }
-  
+
   /* Recipe image styling */
   .recipe-body img {
     max-width: 100%;
@@ -95,6 +66,7 @@ h2 {
     border-radius: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
+    margin: auto;
   }
   
   /* Ingredients list styling */

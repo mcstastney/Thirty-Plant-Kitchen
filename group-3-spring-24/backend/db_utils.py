@@ -56,6 +56,24 @@ def get_fruits_for_month(month):
             print("Get plants DB connection is closed")
 
 
+def get_legumes_for_month(month):
+    try:
+        connection = connect_to_db('seasonal_produce')
+        cursor = connection.cursor()
+        query = f"SELECT legume_name FROM Legumes WHERE {month} = 1"
+        cursor.execute(query)
+        legume = [row[0] for row in cursor.fetchall()]
+        cursor.close()
+        connection.close()
+        return legume
+    except Exception as e:
+        raise DbConnectionError(f"Error fetching produce: {str(e)}")
+    finally:
+        if connection:
+            connection.close()
+            print("Get plants DB connection is closed")
+
+
 
 # # Elisa's code to Search plants by season - duplicate of above, using different DB and %s search term
 # def get_plants_by_season(month_name):

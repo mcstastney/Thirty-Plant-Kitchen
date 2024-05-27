@@ -3,7 +3,7 @@ from flask_cors import CORS
 import requests
 import json
 # from db_utils import get_plants_by_season, insert_new_customer
-from db_utils import get_produce_for_month, insert_new_customer, get_fruits_for_month
+from db_utils import get_produce_for_month, insert_new_customer, get_fruits_for_month, get_legumes_for_month
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
@@ -26,6 +26,14 @@ def seasonal_fruits():
         return jsonify({"error": "Invalid month"}), 400
     fruits = get_fruits_for_month(month)
     return jsonify({"fruits": fruits})
+
+@app.route('/api/seasonal-legumes', methods=['GET'])
+def seasonal_legumes():
+    month = request.args.get('month', '').lower()
+    if month not in ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']:
+        return jsonify({"error": "Invalid month"}), 400
+    legumes = get_legumes_for_month(month)
+    return jsonify({"legumes": legumes})
 
 
 # POST request to add new customer on sign-up
