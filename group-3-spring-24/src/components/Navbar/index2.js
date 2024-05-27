@@ -33,14 +33,20 @@ const Navbar = () => {
                     <Typography variant="h6" sx={{ marginRight: '20px' }}>
                         LOGO
                     </Typography>
-                    <CustomButton component={CustomNavLink} to="/Home">
+                    <CustomButton component={CustomNavLink} to="/">
                         Homepage
                     </CustomButton>
                     <CustomButton component={CustomNavLink} to="/SignUp">
                         Sign up
                     </CustomButton>
+                    <CustomButton component={CustomNavLink} to="/MyAccount">
+                        My account
+                    </CustomButton>
                     <CustomButton component={CustomNavLink} to="/Ingredients">
                         Search plants
+                    </CustomButton>
+                    <CustomButton component={CustomNavLink} to="/RecipesElisa">
+                        Elisa recipes
                     </CustomButton>
                     <CustomButton component={CustomNavLink} to="/Recipes">
                         Search recipes

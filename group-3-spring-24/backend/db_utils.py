@@ -1,5 +1,6 @@
-import mysql.connector
-from config import USER, PASSWORD, HOST
+import mysql.connector;
+from config import USER, PASSWORD, HOST;
+import json;
 
 class DbConnectionError(Exception):
     pass
@@ -64,11 +65,11 @@ def get_plants_by_season(month_name):
             connection.close()
             print("Get plants DB connection is closed")
 
-get_plants_by_season("August")
+get_plants_by_season("May")
 
 
 # Insert new customer on sign_up
-def insert_new_customer(record):
+def create_user(record):
     try:
         #  connect to db
         db_name = "thirty_kitchen_database"
@@ -76,19 +77,23 @@ def insert_new_customer(record):
         my_cursor = connection.cursor()
 
         #  Query to insert customer (ID auto increments, so no need to add)
-        query = """INSERT INTO customers (first_name, last_name, email_address, saved_recipe) 
-                   VALUES (%s, %s, %s, %s)"""
+        query = """INSERT INTO customers (first_name, last_name, email_address) 
+                   VALUES (%s, %s, %s)"""
         values = (
             record['first_name'],
             record['last_name'],
             record['email_address'],
-            record['saved_recipe']
         )
 
         my_cursor.execute(query, values)
-        connection.commit()  # VERY IMPORTANT, otherwise, rows would not be added or reflected in the DB!
+        connection.commit()
+
+        customer_id = my_cursor.lastrowid
+
         my_cursor.close()
-        print(f"{record['email_address']} added to database")
+        print(f"{record['email_address']} added to database with customer_id {customer_id}")
+
+        return customer_id
 
     except Exception:
         raise DbConnectionError()
@@ -103,6 +108,69 @@ def insert_new_customer(record):
 #     'first_name': 'Tony',
 #     'last_name': 'Tiger',
 #     'email_address': 'bigtony@mail.com',
-#     'saved_recipe': 'Ratatouille'
 #         }
 # insert_new_customer(testrecord)
+
+
+# Save recipe to customer account
+def save_recipe(recipe):
+    try:
+        db_name = "thirty_kitchen_database"
+        connection = connect_to_db(db_name)
+        my_cursor = connection.cursor()
+
+        # Query to insert a saved recipe
+        query = """INSERT INTO saved_recipes (customer_id, label, url, ingredients, servings) 
+                   VALUES (%s, %s, %s, %s, %s)"""
+        values = (
+            recipe['customer_id'],
+            recipe['label'],
+            recipe['url'],
+            json.dumps(recipe['ingredients']),  # Save ingredients as a JSON string
+            recipe['servings']
+        )
+
+        my_cursor.execute(query, values)
+        connection.commit()  # VERY IMPORTANT, otherwise, rows would not be added or reflected in the DB!
+
+        my_cursor.close()
+        print("Recipe saved successfully")
+
+        return {'status': 'success'}
+
+    except Exception as e:
+        print(f"Error saving recipe: {str(e)}")
+        raise DbConnectionError()
+
+    finally:
+        if connection:
+            connection.close()
+            print("Save recipe DB connection is closed")
+
+
+# Display saved recipes to customer's account
+def get_saved_recipes(customer_id):
+    db_name = "thirty_kitchen_database"
+    connection = connect_to_db(db_name)
+    my_cursor = connection.cursor()
+
+    query = """SELECT label, url, ingredients, servings
+                FROM saved_recipes
+                WHERE customer_id = %s"""
+    my_cursor.execute(query, (customer_id,))
+    recipes = my_cursor.fetchall()
+
+    my_cursor.close()
+    connection.close()
+
+    # Format the recipes to a list of dictionaries
+    recipes_list = []
+    for (label, url, ingredients, servings) in recipes:
+        recipes_list.append({
+            'label': label,
+            'url': url,
+            'ingredients': ingredients.split(', '),
+            'servings': servings
+        })
+
+    return recipes_list

@@ -57,6 +57,23 @@ h2 {
     background-color: #d1e7dd;
     border-color: #badbcc;
   }
+
+  .result-buttons {
+    background-color: #BC6C25;
+    color: #FEFAE0;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+  }
+  
+  .save-button {
+    background-color: #606C38;
+    color: #FEFAE0;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+  }
+  
   
   /* Loading and error message styling */
   .recipe-body p {

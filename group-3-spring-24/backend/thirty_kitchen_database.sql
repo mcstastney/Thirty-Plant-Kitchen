@@ -44,17 +44,30 @@ CREATE TABLE customers (
 		first_name VARCHAR(30) NOT NULL,
 		last_name VARCHAR(30) NOT NULL,
 		email_address VARCHAR(60) NOT NULL UNIQUE,
-        saved_recipe VARCHAR(200),
 		CONSTRAINT pk_customer_id  PRIMARY KEY (customer_id)
 );
 
 INSERT INTO customers
-(first_name, last_name, email_address, saved_recipe)
+(first_name, last_name, email_address)
 VALUES 
-("Sadie", "Lock", "sadie@hotmail.com", "Spinach and mushroom omlette"),
-("Jimmy", "Brown", "jimmyboy@gmail.com", "Chicken and sweet potato tagine"),
-("Charlotte", "Green", "cgreen@hotmail.com", "Tuna and avacado salad"),
-("Alfie", "Ryan", "alfralf@gmail.com", NULL),
-("Roisin", "Johns", "rosie@hotmail.com", "Beef potato and tomato hotpot"),
-("Daisy", "Duke", "daisy@hotmail.com", "Tofu and peasnap stirfy"),
-("India", "Frost",  "frosty@hotmail.com", NULL);
+("Sadie", "Lock", "sadie@hotmail.com"),
+("Jimmy", "Brown", "jimmyboy@gmail.com"),
+("Charlotte", "Green", "cgreen@hotmail.com"),
+("Alfie", "Ryan", "alfralf@gmail.com");
+
+CREATE TABLE saved_recipes (
+    customer_id INT NOT NULL,
+    label VARCHAR(255) NOT NULL,
+    url VARCHAR(1000) NOT NULL,
+    ingredients TEXT NOT NULL,
+    servings INT NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+
+select * from saved_recipes;
+select * from customers;
+
+SELECT * FROM customers c
+LEFT JOIN saved_recipes sr ON c.customer_id = sr.customer_id
+ORDER BY c.customer_id;
