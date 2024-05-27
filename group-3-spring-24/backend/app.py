@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import requests
 import json
-from db_utils import get_plants_by_season, insert_new_customer
+from db_utils import get_plants_by_season, create_user, save_recipe, get_saved_recipes
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
@@ -12,10 +12,33 @@ CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 @app.route ('/signup', methods=['POST'])
 def add_new_customer():
     record = request.get_json()
-    insert_new_customer(record)
+    customer_id = create_user(record)
+    record['customer_id'] = customer_id  # Add customer_id to the record
     print(record)
     return jsonify(record)
 
+
+# PUT request to save recipes to customer account
+@app.route('/save-recipe', methods=['PUT'])
+def save_recipe_endpoint():
+    recipe = request.get_json()
+    try:
+        save_recipe(recipe)
+        return jsonify({'status': 'success'}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+# GET request to return saved recipes from customer account
+@app.route('/view-saved-recipes')
+def return_recipes_endpoint():
+    customer_id = request.args.get('customer_id')
+    try:
+        recipes = get_saved_recipes(customer_id)
+        return jsonify(recipes), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
 
 # GET request returns plants by season
 @app.route('/search')
