@@ -14,7 +14,9 @@ const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => (
         // Display details of each recipe inside a container
           <div>
             <h2>{recipe.label}</h2>
-            <img src={recipe.image} alt={recipe.label} />
+            <div class="recipe-image-container">
+              <img src={recipe.image}  alt={recipe.label} />
+            </div>
             <p>Ingredients:</p>
             <ul>
               {recipe.ingredientLines.map((ingredient, i) => (
@@ -30,7 +32,7 @@ const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => (
       })
     // Display a message indicating no recipes were found
     ) : showNoRecipesMessage && (
-      <p>No recipes found. Try selecting different ingredient.</p>
+      <p>No recipes found for selected ingredients. Try selecting a different ingredient!</p>
     )}
   </div>
 );
