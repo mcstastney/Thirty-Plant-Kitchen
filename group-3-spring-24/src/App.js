@@ -7,7 +7,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import themeOptions from './theme';
 import Home from './pages/Home';
-import SignUpForm from './pages/SignUp'
+import SignUpForm from './pages/SignUp';
+import LoginForm from './components/LoginForm';
 import MyAccount from './pages/MyAccount';
 import RecipesElisa from './pages/RecipesElisa';
 import Recipes from './pages/Recipes';
@@ -27,6 +28,7 @@ function App() {
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/SignUp" element={<SignUpForm />} />
+            <Route path="/LoginForm" element={<LoginForm />} />
             <Route path="/myaccount" element={<MyAccount />} />
             <Route path="/RecipesElisa" element={<RecipesElisa />} />
             <Route path="/Recipes" element={<Recipes />} />

@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import requests
 import json
-from db_utils import get_plants_by_season, create_user, save_recipe, get_saved_recipes
+from db_utils import get_plants_by_season, create_user, save_recipe, get_saved_recipes, login_user
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
@@ -16,6 +16,31 @@ def add_new_customer():
     record['customer_id'] = customer_id  # Add customer_id to the record
     print(record)
     return jsonify(record)
+
+
+# POST request to login customer
+@app.route('/login', methods=['POST'])
+def login_customer():
+    record = request.get_json()
+    email_address = record['email_address']
+    password = record['password']
+
+    try:
+        result = login_user(email_address, password)
+        if result:
+            response = {
+                'success': True,
+                'customer_id': result['customer_id'],
+                'first_name': result['first_name']
+            }
+        else:
+            response = {'success': False, 'message': 'Invalid email or password'}
+
+        return jsonify(response)
+
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)})
+
 
 
 # PUT request to save recipes to customer account

@@ -36,10 +36,7 @@ const Navbar = () => {
                     </Typography>
                     <CustomButton component={CustomNavLink} to="/">
                         Homepage
-                    </CustomButton>
-                    <CustomButton component={CustomNavLink} to="/SignUp">
-                        Sign up
-                    </CustomButton>
+                    </CustomButton>              
                     <CustomButton component={CustomNavLink} to="/MyAccount">
                         My account
                     </CustomButton>
@@ -68,7 +65,7 @@ const Navbar = () => {
                         sx={{ marginRight: '10px', backgroundColor: 'white', borderRadius: '4px' }}
                     />
                     <Button variant="contained" color="secondary">
-                        Login
+                    <Link to="/LoginForm">Login</Link>
                     </Button>
                     <Button variant="outlined" color="inherit" sx={{ marginLeft: '10px' }}>
                     <Link to="/SignUp">Sign up</Link>

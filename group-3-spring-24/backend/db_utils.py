@@ -1,6 +1,8 @@
 import mysql.connector;
 from config import USER, PASSWORD, HOST;
 import json;
+import bcrypt;
+from mysql.connector import Error;
 
 class DbConnectionError(Exception):
     pass
@@ -76,13 +78,17 @@ def create_user(record):
         connection = connect_to_db(db_name)
         my_cursor = connection.cursor()
 
+        # Hash the password
+        hashed_password = bcrypt.hashpw(record['password'].encode('utf-8'), bcrypt.gensalt())
+
         #  Query to insert customer (ID auto increments, so no need to add)
-        query = """INSERT INTO customers (first_name, last_name, email_address) 
-                   VALUES (%s, %s, %s)"""
+        query = """INSERT INTO customers (first_name, last_name, email_address, password) 
+                   VALUES (%s, %s, %s, %s)"""
         values = (
             record['first_name'],
             record['last_name'],
             record['email_address'],
+            hashed_password,
         )
 
         my_cursor.execute(query, values)
@@ -110,6 +116,38 @@ def create_user(record):
 #     'email_address': 'bigtony@mail.com',
 #         }
 # insert_new_customer(testrecord)
+
+
+def login_user(email_address, password):
+    try:
+        # Connect to db
+        db_name = "thirty_kitchen_database"
+        connection = connect_to_db(db_name)
+        my_cursor = connection.cursor()
+
+        # Query to fetch user by email
+        query = """SELECT customer_id, first_name, password FROM customers WHERE email_address = %s"""
+        my_cursor.execute(query, (email_address,))
+        result = my_cursor.fetchone()
+
+        if result and bcrypt.checkpw(password.encode('utf-8'), result[2].encode('utf-8')):
+            # If password matches, return user details
+            return {
+                'customer_id': result[0],
+                'first_name': result[1]
+            }
+        else:
+            # If password doesn't match or user not found
+            return None
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
+
+    finally:
+        if connection:
+            connection.close()
+            print("Login DB connection is closed")
 
 
 # Save recipe to customer account

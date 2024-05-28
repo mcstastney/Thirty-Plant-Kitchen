@@ -44,16 +44,10 @@ CREATE TABLE customers (
 		first_name VARCHAR(30) NOT NULL,
 		last_name VARCHAR(30) NOT NULL,
 		email_address VARCHAR(60) NOT NULL UNIQUE,
+        password VARCHAR(60),
 		CONSTRAINT pk_customer_id  PRIMARY KEY (customer_id)
 );
 
-INSERT INTO customers
-(first_name, last_name, email_address)
-VALUES 
-("Sadie", "Lock", "sadie@hotmail.com"),
-("Jimmy", "Brown", "jimmyboy@gmail.com"),
-("Charlotte", "Green", "cgreen@hotmail.com"),
-("Alfie", "Ryan", "alfralf@gmail.com");
 
 CREATE TABLE saved_recipes (
     customer_id INT NOT NULL,

@@ -6,6 +6,7 @@ function SignUpForm() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
 
@@ -15,6 +16,7 @@ function SignUpForm() {
       first_name: firstName,
       last_name: lastName,
       email_address: emailAddress,
+      password: password,
     };
 
     try {
@@ -70,6 +72,14 @@ function SignUpForm() {
         onChange={(e) => setEmailAddress(e.target.value)}
       />
       <br></br>
+      <label>Password:</label> {/* New Password field */}
+        <input
+          type="password"
+          placeholder="Enter your password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <br></br>
       <button type="submit">Submit</button>
     </form>
     </>
