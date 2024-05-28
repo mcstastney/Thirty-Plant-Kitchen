@@ -66,14 +66,6 @@ def return_recipes_endpoint():
         return jsonify(recipes), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-    
-
-# # GET request returns plants by season
-# @app.route('/search')
-# def search_plants():
-#     month = request.args.get('month')
-#     res = get_plants_by_season(month)  # Function to search records by season
-#     return jsonify(res)
 
 
 # # Test the seasonal search function 
