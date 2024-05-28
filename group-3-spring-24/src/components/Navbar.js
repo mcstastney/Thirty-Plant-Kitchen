@@ -43,9 +43,6 @@ const Navbar = () => {
                     <CustomButton component={CustomNavLink} to="/MyAccount">
                         My account
                     </CustomButton>
-                    <CustomButton component={CustomNavLink} to="/Ingredients">
-                        Search plants
-                    </CustomButton>
                     <CustomButton component={CustomNavLink} to="/RecipesElisa">
                         Elisa recipes
                     </CustomButton>

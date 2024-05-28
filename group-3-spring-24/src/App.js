@@ -9,7 +9,6 @@ import themeOptions from './theme';
 import Home from './pages/Home';
 import SignUpForm from './pages/SignUp'
 import MyAccount from './pages/MyAccount';
-import PlantSearch from './pages/Ingredients';
 import RecipesElisa from './pages/RecipesElisa';
 import Recipes from './pages/Recipes';
 import About from './pages/aboutPage';
@@ -29,7 +28,6 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/SignUp" element={<SignUpForm />} />
             <Route path="/myaccount" element={<MyAccount />} />
-            <Route path="/Ingredients" element={<PlantSearch />} />
             <Route path="/RecipesElisa" element={<RecipesElisa />} />
             <Route path="/Recipes" element={<Recipes />} />
             <Route path="/aboutPage" element={<About />} />
