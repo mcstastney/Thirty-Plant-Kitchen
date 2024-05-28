@@ -95,6 +95,7 @@ function RecipesElisa() {
             return (
               <div key={index}>
                 <h2>{recipe.label}</h2>
+                <img src={recipe.image}></img>
                 <p>Ingredients:</p>
                 <ul className="recipe-items">
                   {recipe.ingredientLines.map((ingredient, i) => (
