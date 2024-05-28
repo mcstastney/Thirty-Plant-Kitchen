@@ -3,7 +3,7 @@ from flask_cors import CORS
 import requests
 import json
 # from db_utils import get_plants_by_season, insert_new_customer
-from db_utils import get_produce_for_month, insert_new_customer, get_fruits_for_month, get_legumes_for_month, get_saved_recipes, save_recipe, create_user, get_plants_by_season
+from db_utils import get_produce_for_month, get_fruits_for_month, get_legumes_for_month, get_saved_recipes, save_recipe, create_user
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
@@ -68,12 +68,12 @@ def return_recipes_endpoint():
         return jsonify({'error': str(e)}), 500
     
 
-# GET request returns plants by season
-@app.route('/search')
-def search_plants():
-    month = request.args.get('month')
-    res = get_plants_by_season(month)  # Function to search records by season
-    return jsonify(res)
+# # GET request returns plants by season
+# @app.route('/search')
+# def search_plants():
+#     month = request.args.get('month')
+#     res = get_plants_by_season(month)  # Function to search records by season
+#     return jsonify(res)
 
 
 # # Test the seasonal search function 
