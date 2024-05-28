@@ -1,15 +1,18 @@
 import React from 'react';
-import Navbar from "./components/Navbar/index2";
+import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
-import Home from './pages/Home';
-import SignUpForm from './pages/SignUp'
-import PlantSearch from './pages/Ingredients';
-import Recipes from './pages/Recipes';
-import About from './pages/aboutPage';
+import { UserProvider } from './components/UserContext';
 import './App.css';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import themeOptions from './theme';
+import Home from './pages/Home';
+import SignUpForm from './pages/SignUp'
+import MyAccount from './pages/MyAccount';
+import RecipesElisa from './pages/RecipesElisa';
+import Recipes from './pages/Recipes';
+import About from './pages/aboutPage';
+
 
 
 function App() {
@@ -17,17 +20,20 @@ function App() {
     
     <ThemeProvider theme={themeOptions}>
       <CssBaseline />
-    
+    <UserProvider>
+
     <Router>
         <Navbar />
         <Routes>
-            <Route path="/Home" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/SignUp" element={<SignUpForm />} />
-            <Route path="/Ingredients" element={<PlantSearch />} />
+            <Route path="/myaccount" element={<MyAccount />} />
+            <Route path="/RecipesElisa" element={<RecipesElisa />} />
             <Route path="/Recipes" element={<Recipes />} />
             <Route path="/aboutPage" element={<About />} />
         </Routes>
     </Router>
+    </UserProvider>
     </ThemeProvider>
   
 );

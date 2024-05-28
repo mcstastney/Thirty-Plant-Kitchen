@@ -3,7 +3,7 @@ from flask_cors import CORS
 import requests
 import json
 # from db_utils import get_plants_by_season, insert_new_customer
-from db_utils import get_produce_for_month, insert_new_customer, get_fruits_for_month, get_legumes_for_month
+from db_utils import get_produce_for_month, insert_new_customer, get_fruits_for_month, get_legumes_for_month, get_saved_recipes, save_recipe, create_user, get_plants_by_season
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
@@ -40,17 +40,40 @@ def seasonal_legumes():
 @app.route ('/signup', methods=['POST'])
 def add_new_customer():
     record = request.get_json()
-    insert_new_customer(record)
+    customer_id = create_user(record)
+    record['customer_id'] = customer_id  # Add customer_id to the record
     print(record)
     return jsonify(record)
 
 
-# # GET request returns plants by season
-# @app.route('/search')
-# def search_plants():
-#     month = request.args.get('month')
-#     res = get_plants_by_season(month)  # Function to search records by season
-#     return jsonify(res)
+# PUT request to save recipes to customer account
+@app.route('/save-recipe', methods=['PUT'])
+def save_recipe_endpoint():
+    recipe = request.get_json()
+    try:
+        save_recipe(recipe)
+        return jsonify({'status': 'success'}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+# GET request to return saved recipes from customer account
+@app.route('/view-saved-recipes')
+def return_recipes_endpoint():
+    customer_id = request.args.get('customer_id')
+    try:
+        recipes = get_saved_recipes(customer_id)
+        return jsonify(recipes), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+
+# GET request returns plants by season
+@app.route('/search')
+def search_plants():
+    month = request.args.get('month')
+    res = get_plants_by_season(month)  # Function to search records by season
+    return jsonify(res)
 
 
 # # Test the seasonal search function 

@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Arvo", serif;
+  --orange-color: #dda15e;
+  --white-shade: #fefae0;
+  --green-color: #606c38;
+  box-sizing: border-box;
+}
+
+.container {
+  margin-top: 20px;
+  min-width: 100%;
+  padding: 20px 20px 30px;
+  background-color: var(--orange-color);
+}
+
+.first-line {
+  font-weight: 500;
+  font-size: 19px;
+}
+
+.three-icons {
+  align-self: flex-end;
+  margin-top: auto;
+  display: flex;
+  gap: 5px;
+}
+
+.three-icons svg {
+  height: 20px;
+  width: 30px;
+  fill: black;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-top: 10px;
+  gap: 20px;
+}
+
+.card {
+  background-color: var(--white-shade);
+  width: 220px;
+  height: 180px;
+  border-radius: 10px;
+  border-left: 8px solid var(--green-color);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+  font-size: 13px;
+  padding-bottom: 20px;
+}

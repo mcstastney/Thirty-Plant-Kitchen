@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from './UserContext';
 
 function SignUpForm() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
-  const [savedRecipe, setSavedRecipe] = useState('');
+  const navigate = useNavigate();
+  const { setUser } = useContext(UserContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -12,7 +15,6 @@ function SignUpForm() {
       first_name: firstName,
       last_name: lastName,
       email_address: emailAddress,
-      saved_recipe: savedRecipe
     };
 
     try {
@@ -25,11 +27,16 @@ function SignUpForm() {
       });
       const result = await response.json();
       console.log('New customer added:', result);
-       // Reset the form fields after successful submission
-       setFirstName('');
-       setLastName('');
-       setEmailAddress('');
-       setSavedRecipe('');
+
+      // Store user information in context
+      setUser({ firstName, customerId: result.customer_id });
+
+      // Log the user to verify successful save to context
+      console.log('User set in context:', { firstName, customerId: result.customer_id });
+
+      // Redirect to MyAccount page
+      navigate('/myaccount', { state: { firstName, customerId: result.customer_id } });      
+
     } catch (error) {
       console.error('Error adding new customer:', error);
     }
@@ -61,14 +68,6 @@ function SignUpForm() {
         placeholder="Email Address"
         value={emailAddress}
         onChange={(e) => setEmailAddress(e.target.value)}
-      />
-      <br></br>
-      <label>Your saved recipe (REMOVE FIELD ONCE 'SAVE RECIPE' FUNCTIONALITY FIXED):</label>
-      <input
-        type="text"
-        placeholder="Enter your favourite dish"
-        value={savedRecipe}
-        onChange={(e) => setSavedRecipe(e.target.value)}
       />
       <br></br>
       <button type="submit">Submit</button>
