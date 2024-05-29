@@ -58,6 +58,22 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
+  .results-button {
+    background-color: #BC6C25;
+    color: #FEFAE0;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+  }
+  
+  .save-button {
+    background-color: #606C38;
+    color: #FEFAE0;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+  }
+
 
   /* Recipe image styling */
   .recipe-body img {

@@ -1,10 +1,11 @@
-import Form from "../components/Form";
+import SignUpForm from "../components/SignUpForm";
 
 function Home() {
     return (
       <>
       <h1>Join the club</h1>
-      <Form/>
+      
+      <SignUpForm/>
       </>
     );
   }
