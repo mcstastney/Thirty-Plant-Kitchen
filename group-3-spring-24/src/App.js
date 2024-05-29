@@ -12,23 +12,8 @@ import MyAccount from './pages/MyAccount';
 import RecipesElisa from './pages/RecipesElisa';
 import Recipes from './pages/Recipes';
 import About from './pages/aboutPage';
-import Aboutus from './aboutus'; 
 
-const App = () => {
-  return (
-    <div>
-      <header>
-        <h1>Thirty Plant Kitchen</h1>
-      </header>
-      <main>
-        <AboutUs />
-      </main>
-      <footer>
-        <p>&copy; {new Date().getFullYear()} Thirty Plant Kitchen. All rights reserved.</p>
-      </footer>
-    </div>
-  );
-};
+
 
 
 

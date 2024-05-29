@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../components/UserContext';
 import '../styles/Recipe.css';
+import VegCounter from '../components/VegCounter';
 
 function MyAccount() {
   const { user } = useContext(UserContext);
@@ -43,7 +44,9 @@ function MyAccount() {
         ))
       ) : (
         <p>You have no saved recipes.</p>
+      
       )}
+      <VegCounter/>  
     </div>
   );
 }
