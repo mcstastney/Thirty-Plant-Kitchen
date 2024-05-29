@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import image from './assets/buttonImage.jpg';
+import buttonImage from '../assets/buttonImage.jpg';
 
 
 
@@ -9,7 +9,7 @@ function VegCounter() {
   backgroundSize: 'cover',
   marginLeft: 'auto',
   marginRight: 'auto',
-  backgroundImage: 'url('+ image + ')'
+  backgroundImage: 'url('+ buttonImage + ')'
  }
   const [count, setCount] = useState(0);
   const getMessage = () => {
@@ -96,7 +96,7 @@ function VegCounter() {
           <h1>Plant tracker </h1>
     
           <div className="image-container my-5">
-            <div style={overLayStyle} src={image} alt="happy tummy" className="tummy" >
+            <div style={overLayStyle} src={buttonImage} alt="happy tummy" className="tummy" >
             <div className="counter-overlay">
               <h2 id="CountNumber">{count}</h2>
             </div>

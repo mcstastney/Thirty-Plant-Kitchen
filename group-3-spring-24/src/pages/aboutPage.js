@@ -1,24 +1,58 @@
-import Team from '../components/TeamCards'
-import elisaProfile from '../assets/elisa-square-profile.jpg'
-import profilePic from '../assets/happy-tummy-square.png'
-import '../styles/Team.css'
+import React from 'react';
+import '../aboutus.css';
 
-
-function About() {
+const AboutUs = () => {
   return (
-    <>
-    <body className="page-background">
-    <h1>Meet the team</h1>
-    <h3>We're a team of 6 software engineers, passionate about making healthy eating fun!</h3>
-    <Team profilepic={elisaProfile} name="Elisa McGarry" bio="Creative problem-solver with an analytical mind. Software engineer with a passion for creating digital services to empower people." contact="https://www.linkedin.com/in/elisa-mcgarry/"/>
-    <Team profilepic={profilePic} name="Team member" bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." contact="https://www.linkedin.com"/>
-    <Team profilepic={profilePic} name="Team member" bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." contact="https://www.linkedin.com"/>
-    <Team profilepic={profilePic} name="Team member" bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." contact="https://www.linkedin.com"/>
-    <Team profilepic={profilePic} name="Team member" bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." contact="https://www.linkedin.com"/>
-    <Team profilepic={profilePic} name="Team member" bio="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." contact="https://www.linkedin.com"/>
-    </body>
-    </>
+    <div className="container">
+      <h1>About Us</h1>
+      <p>Welcome to Thirty Plant Kitchen!</p>
+      <section className="section">
+        <h2>Our Mission</h2>
+        <p>
+          Our mission is to make cooking easy and enjoyable for everyone. We believe that cooking should be a fun and rewarding experience, and our goal is to provide you with the best recipes, tips, and tools to make that happen.
+        </p>
+      </section>
+      <section className="section">
+        <h2>Our Team</h2>
+        <div className="team">
+          <div className="member">
+            <img src="https://via.placeholder.com/150" alt="Team Member" />
+            <h3>Sahra</h3>
+            <p>Recipe Developer</p>
+          </div>
+          <div className="member">
+            <img src="https://via.placeholder.com/150" alt="Team Member" />
+            <h3>Victoria</h3>
+            <p>Recipe Developer</p>
+          </div>
+          <div className="member">
+            <img src="https://via.placeholder.com/150" alt="Team Member" />
+            <h3>Shafia</h3>
+            <p>Recipe Developer</p>
+          </div>
+          <div className="member">
+            <img src="https://via.placeholder.com/150" alt="Team Member" />
+            <h3>Elisa</h3>
+            <p>Recipe Developer</p>
+          </div>
+          <div className="member">
+            <img src="https://via.placeholder.com/150" alt="Team Member" />
+            <h3>Abbie</h3>
+            <p>Recipe Developer</p>
+          </div>
+          <div className="member">
+            <img src="https://via.placeholder.com/150" alt="Team Member" />
+            <h3>Emma</h3>
+            <p>Recipe Developer</p>
+          </div>
+        </div>
+      </section>
+      <section className="section">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or suggestions, feel free to reach out to us at <a href="mailto:thirtyplantkitchen@gmail.com">thirtyplantkitchen@gmail.com</a>.</p>
+      </section>
+    </div>
   );
-}
+};
 
-export default About;
+export default AboutUs;
