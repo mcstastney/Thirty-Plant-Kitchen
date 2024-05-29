@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import '../styles/Recipe.css';
+import {handleSaveRecipe} from './saveRecipe';
 
-// Function to either return list of ingredients or a message that there are no recipes using selected ingredients
-const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => (
-  <div>
+// 'UserContext' used to share data (customerId) with other components
+import { UserContext } from './UserContext';
+
+// Function to return list of recipes or no recipes message
+const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => {
+  const { user } = useContext(UserContext);
+  
+  return (
+  <div className="recipe-body">
     {loading ? (
-     // Display a message indicating that recipes are still loading
+     
+     // Display message that recipes are still loading
       <p>Loading recipes...</p>
     ) : recipes.length > 0 ? (
-     // If there are recipes available, display each recipe
+     
+      // If recipes available, display each recipe
       recipes.map((hit, index) => {
         const recipe = hit.recipe;
         return (
-        // Display details of each recipe inside a container
+        
+          // Display details of each recipe inside a container
           <div>
             <h2>{recipe.label}</h2>
             <div class="recipe-image-container">
@@ -24,17 +35,21 @@ const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => (
               ))}
             </ul>
             <p>Servings: {recipe.yield}</p>
-            <a href={recipe.url} target="_blank" rel="noopener noreferrer">
-              Full Recipe
-            </a>
+            <button className="results-button"><a href={recipe.url} target="_blank" rel="noopener noreferrer">
+                  Full Recipe
+                </a></button>
+                <button className="save-button" onClick={() => handleSaveRecipe(user, recipe)}>
+                  Save this recipe
+                  </button>
           </div>
         );
       })
-    // Display a message indicating no recipes were found
+    // Display no recipes found message
     ) : showNoRecipesMessage && (
       <p>No recipes found for selected ingredients. Try selecting a different ingredient!</p>
     )}
   </div>
 );
+};
 
 export default RecipeList;

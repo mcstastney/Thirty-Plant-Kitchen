@@ -2,7 +2,6 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import requests
 import json
-# from db_utils import get_plants_by_season, insert_new_customer
 from db_utils import get_produce_for_month, get_fruits_for_month, get_legumes_for_month, get_saved_recipes, save_recipe, create_user
 
 app = Flask(__name__)
@@ -84,15 +83,6 @@ def return_recipes_endpoint():
 #     except Exception as e:
 #         print("Error:", e)
 # test_get_plants_by_season()
-
-# Test the seasonal search function 
-def test_get_produce_for_month():
-    try:
-        month = 'May'
-        result = get_produce_for_month(month)    
-    except Exception as e:
-        print("Error:", e)
-test_get_produce_for_month()
 
 
 # GET request returns recipes from Edamam API
