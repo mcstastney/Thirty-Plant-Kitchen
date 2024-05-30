@@ -1,11 +1,11 @@
 import React from 'react';
-import { AppBar, Box, Toolbar, Typography, Button, TextField } from '@mui/material';
+import { AppBar, Box, Toolbar, Button, TextField } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { styled } from '@mui/system';
 
 // custom style for elements
 const CustomAppBar = styled(AppBar)({ //AppBar is MUI's version of navbar seemingly- mobile first approach?
-    height: '80px',
+    height: '7rem',
     backgroundColor: '#283618', 
 });
 
@@ -30,9 +30,10 @@ const Navbar = () => {
         <CustomAppBar position="static">
             <Toolbar sx={{ height: '100%', display: 'flex', justifyContent: 'space-between', padding: '0 20px' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Typography variant="h6" sx={{ marginRight: '20px' }}>
-                        LOGO
-                    </Typography>
+                <img src="./30plant-kitchen-logo-trans-bg.png" alt="30 Plant Kitchen logo" style={{ height: '9rem', marginRight: '20px' }}/>
+
+                    
+                 
                     <CustomButton component={CustomNavLink} to="/Home">
                         Homepage
                     </CustomButton>
