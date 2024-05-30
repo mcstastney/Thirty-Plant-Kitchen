@@ -5,7 +5,7 @@ import { styled } from '@mui/system';
 
 
 // custom style for elements
-const CustomAppBar = styled(AppBar)({ //AppBar is MUI's version of navbar seemingly- mobile first approach?
+const CustomAppBar = styled(AppBar)({ //AppBar is MUI's version of navbar- mobile first approach?
     height: '7rem',
     backgroundColor: '#283618', 
 });
@@ -23,7 +23,7 @@ const CustomNavLink = styled(NavLink)(({ theme }) => ({
 
 const CustomButton = styled(Button)({
     color: 'inherit', // inherit colour from AppBar (white)
-    margin: '0 10px', // adjust horizontal spacing between links
+    margin: '0 20px', // adjust horizontal spacing between links
 });
 
 const Navbar = () => {
@@ -32,6 +32,10 @@ const Navbar = () => {
             <Toolbar sx={{ height: '100%', display: 'flex', justifyContent: 'space-between', padding: '0 20px' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <img src="./30plant-kitchen-logo-trans-bg.png" alt="30 Plant Kitchen logo" style={{ height: '9rem', marginRight: '20px' }}/>
+<<<<<<< HEAD
+                    <CustomButton component={CustomNavLink} to="/Home">
+                        Home
+=======
 
                     
                  
@@ -40,12 +44,16 @@ const Navbar = () => {
                     </CustomButton>
                     <CustomButton component={CustomNavLink} to="/MyAccount">
                         My account
+>>>>>>> 3f184d042fba42deee33020af1b4a1c1ad90a533
                     </CustomButton>
                     <CustomButton component={CustomNavLink} to="/Recipes">
-                        Search recipes
+                        Find Seasonal Recipes
                     </CustomButton>
                     <CustomButton component={CustomNavLink} to="/aboutPage">
                         About
+                    </CustomButton>
+                    <CustomButton component={CustomNavLink} to="/MyAccount">
+                        My Account
                     </CustomButton>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>

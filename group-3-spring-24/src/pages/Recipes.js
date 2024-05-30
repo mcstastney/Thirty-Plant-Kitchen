@@ -1,10 +1,12 @@
 
 import React, { useState, useEffect} from 'react';
 import '../styles/Recipe.css';
+import FarmersMarket from '../assets/stock-imgs/farmers-market.jpg';
 // Import components used within the recipe page
 import MonthSelector from '../components/MonthSelector';
 import InSeasonItems from '../components/InSeasonItems'; // Updated import
 import RecipeList from '../components/RecipeList';
+import { Typography } from '@mui/material';
 
 
 const Recipes = () => {
@@ -175,7 +177,25 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
   }, [month]);
 
 
+
+
+
+
+  // jsx return
   return (
+    <>
+    <div className='recipe-intro-container'>
+      <div className='recipe-intro-txt'>
+      <Typography variant='h2'>What's in season?</Typography>
+      <Typography variant='body1'>Discover the freshest flavours of the season with our curated collection of recipes. Whether it's vibrant salads bursting with summer produce, cosy soups perfect for chilly autumn evenings, hearty stews to warm up winter nights, or light and refreshing dishes to welcome spring, we have something for every palate and occasion.</Typography>
+      </div>
+      <img 
+        src={FarmersMarket} 
+        alt='Farmers market full of fresh produce'
+        className='recipe-intro-img'
+        />
+    </div>
+      <Typography variant='h4'>Begin by selecting the month of your choosing to bring forward a selection of ingredients that will be perfectly in season during your given month. From there, you can select your favourite ingredients and let our search do the rest. With a few small clicks you'll be presented with a selection of beautiful recipes to try. We'll even let you track how many plants you're going to eat in each recipe in order for you to track your goal of eating thirty plants per week!</Typography>
     <div className="recipe-body">
       <h1>Seasonal Produce Selector</h1>
       <MonthSelector
@@ -252,6 +272,7 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
         </div>
       )}
     </div>
+    </>
   );
 };
 
