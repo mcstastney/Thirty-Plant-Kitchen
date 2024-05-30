@@ -4,12 +4,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-
 // Define your custom styles as JavaScript objects
 const styles = {
   card: {
-    Height: 1200,
-    maxWidth: 500,
+    maxWidth: 600,
     margin: 'auto',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
     borderRadius: '15px',
@@ -35,10 +33,10 @@ export default function RecipeInfoCard({image, alt, title, text}) {
         title={alt}
       />
       <CardContent sx={styles.content}>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h4" component="div">
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant='subtitle1' color="text.secondary">
           {text}
         </Typography>
       </CardContent>

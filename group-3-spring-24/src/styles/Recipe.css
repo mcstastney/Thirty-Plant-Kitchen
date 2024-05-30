@@ -33,7 +33,13 @@
 }
 
 
+/* info card section */
 
+.info-card-container {
+  display: flex;
+  align-items: center;
+  margin: 10rem auto ;
+}
 
 /* Container for the entire recipe section */
 .recipe-body {
