@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppBar, Box, Toolbar, Button, TextField } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { styled } from '@mui/system';
 
 
@@ -35,7 +35,7 @@ const Navbar = () => {
 
                     
                  
-                    <CustomButton component={CustomNavLink} to="/Home">
+                    <CustomButton component={CustomNavLink} to="/">
                         Homepage
                     </CustomButton>
                     <CustomButton component={CustomNavLink} to="/MyAccount">
