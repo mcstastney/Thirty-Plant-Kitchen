@@ -3,6 +3,7 @@ import { AppBar, Box, Toolbar, Button, TextField } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { styled } from '@mui/system';
 
+
 // custom style for elements
 const CustomAppBar = styled(AppBar)({ //AppBar is MUI's version of navbar seemingly- mobile first approach?
     height: '7rem',
@@ -37,11 +38,8 @@ const Navbar = () => {
                     <CustomButton component={CustomNavLink} to="/Home">
                         Homepage
                     </CustomButton>
-                    <CustomButton component={CustomNavLink} to="/SignUp">
-                        Sign up
-                    </CustomButton>
-                    <CustomButton component={CustomNavLink} to="/Ingredients">
-                        Search plants
+                    <CustomButton component={CustomNavLink} to="/MyAccount">
+                        My account
                     </CustomButton>
                     <CustomButton component={CustomNavLink} to="/Recipes">
                         Search recipes
@@ -68,7 +66,7 @@ const Navbar = () => {
                         Login
                     </Button>
                     <Button variant="outlined" color="inherit" sx={{ marginLeft: '10px' }}>
-                        Sign Up
+                    <Link to="/SignUp">Sign up</Link>
                     </Button>
                 </Box>
             </Toolbar>

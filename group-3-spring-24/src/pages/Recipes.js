@@ -1,125 +1,254 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect} from 'react';
 import '../styles/Recipe.css';
+// Import components used within the recipe page
 import MonthSelector from '../components/MonthSelector';
-import InSeasonIngredients from '../components/InSeasonIngredients';
+import InSeasonItems from '../components/InSeasonItems'; // Updated import
 import RecipeList from '../components/RecipeList';
 
 
 const Recipes = () => {
-  // State to store in-season ingredients
+  // Create state variable constants for in-season veg (ingredients)/fruit/selected veg/selected fruit
   const [inSeasonIngredients, setInSeasonIngredients] = useState([]);
-  // State to store selected ingredients
+  const [inSeasonFruits, setInSeasonFruits] = useState([]);
+  const [inSeasonLegumes, setInSeasonLegumes] = useState([]);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
-  // State to store loading status
-  const [loading, setLoading] = useState(false);
-  // State to store returned recipes
+  const [selectedFruits, setSelectedFruits] = useState([]);
+  const [selectedLegumes, setSelectedLegumes] = useState([])
+  const [loading, setLoading] = useState(false); // State for loading status
   const [recipes, setRecipes] = useState([]);
-  // State to store the selected month
-  const [month, setMonth] = useState('');
-  // State to manage whether to show "No recipes found" message
-  const [showNoRecipesMessage, setShowNoRecipesMessage] = useState(false);
-  // State to manage if search button is clicked
+  const [month, setMonth] = useState(''); // State for selected month
   const [searchClicked, setSearchClicked] = useState(false);
+  const [firstTimeSelect, setFirstTimeSelect] = useState(false);
+  const [showNoRecipesMessage, setShowNoRecipesMessage] = useState(false);
 
-  // Function to fetch the seasonal produce from local API based on the selected month
-  const fetchInSeasonIngredients = () => {
-    setLoading(true);
-    fetch(`http://localhost:5000/api/seasonal-produce?month=${month}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        // Update in-season state with fetched ingredients
-        setInSeasonIngredients(data.produce);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching in-season ingredients:', error);
-        setLoading(false);
-      });
-  };
 
-  // Function for managing the selection/deselection of ingredients
-  const toggleIngredient = (ingredient) => {
-    setSelectedIngredients(prevSelected => {
-      if (prevSelected.includes(ingredient)) {
-        return prevSelected.filter(item => item !== ingredient);
-      } else {
-        return [...prevSelected, ingredient];
-      }
+
+// Function to fetch in-season ingredients (veg/fuit) from DB by selected month
+const fetchInSeasonItems = () => {
+  setLoading(true);
+
+  
+  // Fetch recipes for veg/fruits/legumes simultaneously
+  Promise.all([
+    fetch(`http://localhost:5000/api/seasonal-produce?month=${month}`),
+    fetch(`http://localhost:5000/api/seasonal-fruits?month=${month}`),
+    fetch(`http://localhost:5000/api/seasonal-legumes?month=${month}`)
+  ])
+    .then(responses => Promise.all(responses.map(response => response.json()))) // Parse response as json
+    .then(data => {
+      const [ingredientsData, fruitsData, legumesData] = data;
+
+      // Update states with in-season veg/fruit/legumes
+      setInSeasonIngredients(ingredientsData.produce);
+      setInSeasonFruits(fruitsData.fruits);
+      setInSeasonLegumes(legumesData.legumes);
+      setLoading(false); // Set loading state to false when fetch complete
+    })
+
+    // Log to console if errors occur during data fetch
+    .catch(error => {
+      console.error('Error fetching in-season items:', error);
+      setLoading(false);
     });
-  };
+};
 
-  // Function to return recipes based on the selected ingredients
+// Function to track the selection of veg/fruit/legumes
+// Allows user to select/deselect veg/fruit/legumes
+const toggleSelection = (setSelectedItems) => (item) => {
+  setSelectedItems(prevSelected =>
+
+    // Check if ingredient already selected
+    prevSelected.includes(item) 
+
+      // If ingredient selected, remove from list
+      ? prevSelected.filter(selectedItem => selectedItem !== item) 
+
+      // If ingredient not selected, add to list
+      : [...prevSelected, item] 
+  );
+};
+
+const toggleIngredient = toggleSelection(setSelectedIngredients);
+const toggleFruit = toggleSelection(setSelectedFruits);
+const toggleLegumes = toggleSelection(setSelectedLegumes);
+  
+  // Function to fetch recipes based on selected ingredients
   const fetchRecipes = () => {
     setLoading(true);
-    const query = selectedIngredients.join(',');
-    fetch(`http://127.0.0.1:5000/recipes?q=${query}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        setRecipes(data.hits);
-        // Set state to show message if no recipes found
-        if (data.hits.length === 0) {
-          setShowNoRecipesMessage(true);
-        }
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-        setLoading(false);
-      });
-  };
 
-  // Function to prevent page reloading upon submit
+    // Fetch recipes for each selected veg/fruit/legume
+    const queries = [...selectedIngredients, ...selectedFruits,...selectedLegumes].map(item => {
+        return fetch(`http://127.0.0.1:5000/recipes?q=${item}`)
+            
+            // Handle response
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // Parse response as JSON
+            });
+    });
+
+    // Wait until all promises in queries array have resolved (all recipes for each ingredient returned)
+    Promise.all(queries)
+
+        // Handle results 
+        .then(results => { 
+
+            // Compile multiple lists (i.e. veg list/fruit list) into a singular list
+            // Create new array to store all recipes
+            const combinedRecipes = [];
+
+            // Create new set to keep track of unique recipes to avoid duplicated
+            const recipeIds = new Set();
+
+            let index = 0;
+            // Create flag to tracks if all recipes have been considered
+            let allEmpty = false;
+
+            // Create loop which will continue while allEmpty is false (i.e. there are still recipes to consider)
+            while (!allEmpty) {
+
+                // Start by assuming all lists of recipes are empty
+                allEmpty = true;
+
+                // Loop through each list of recipes that were fetched
+                for (const result of results) {
+
+                    // If index is less than length of list of recipes, there are still recipes in the list to consider
+                    if (index < result.hits.length) {
+
+                        // Take recipe at index position and store it in 'hit' variable
+                        const hit = result.hits[index];
+
+                        // Check if recipe is already in combinedRecipes - if it is new, add URI to recipeIDs set (to help track which have been added)
+                        if (!recipeIds.has(hit.recipe.uri)) {
+                            recipeIds.add(hit.recipe.uri);
+
+                            // Finally add recipe to list of combined recipes
+                            combinedRecipes.push(hit); 
+                        }
+                        // Set flag to false since at least one result array is not empty
+                        allEmpty = false; 
+                    }
+                }
+                index++;
+            }
+            
+            // Update state with combined recipes
+            setRecipes(combinedRecipes);
+
+            // If no recipes were found, set state to show message indicating this
+            if (combinedRecipes.length === 0) {
+                setShowNoRecipesMessage(true);}
+            setLoading(false);
+        })
+        // Display message to console if error occurs 
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            setLoading(false);
+        });
+};
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Set state to indicate search button clicked
-    setSearchClicked(true); 
-    fetchInSeasonIngredients();
+    setSearchClicked(true);
+    fetchInSeasonItems();
   };
 
+  // Function to reload the page when the "Reset Form" button is clicked
+  const handleResetForm = () => {
+    window.location.reload();
+  };
+
+  // Changes in selected month (afer initial selection) will trigger reload of page 
+  useEffect(() => {
+    if (firstTimeSelect) {
+      setFirstTimeSelect(false);
+    } else if (searchClicked && month !== '') {
+      handleResetForm();
+
+      // Reset searchClicked to false after reload
+      setSearchClicked(false); 
+    }
+  }, [month]);
+
+
   return (
-    // Main container for the recipes component
     <div className="recipe-body">
-      <h1>Ingredients in Season</h1>
+      <h1>Seasonal Produce Selector</h1>
       <MonthSelector
         month={month}
         setMonth={setMonth}
         handleSubmit={handleSubmit}
       />
+
+      {/* Check if search button is clicked and month is selected */}
+      {searchClicked && month && (
+        <button
+          className="reset-button"
+          type="button"
+          onClick={handleResetForm}
+        >
+          Reset Form
+        </button>
+      )}
+
+      {/* If data is loading, display loading message */}
       {loading ? (
-        <p>Loading in-season ingredients...</p>
+        <p>Loading in-season items...</p>
       ) : (
         <div>
+          
+          {/* Check if search button is clicked and month is selected */}
           {searchClicked && month && (
-            <h2>These ingredients will be in season in {month.charAt(0).toUpperCase() + month.slice(1)}. Select ingredients to include in your recipe search</h2>
+            <>
+            <h3>{`These ingredients will be in season in ${month.charAt(0).toUpperCase() + month.slice(1)}.`}<br /> Select ingredients to include in your recipe search</h3>
+            
+            {/* Render InSeasonItems component for veg */}
+            <div className='ingredient-category'>
+              <InSeasonItems
+                title={'Vegetables'}
+                items={inSeasonIngredients}
+                selectedItems={selectedIngredients}
+                toggleItem={toggleIngredient}
+              />
+            </div>
+              
+            {/* Render InSeasonItems component for fruit */}
+            <div className='ingredient-category'>
+              <InSeasonItems
+                title={'Fruits'}
+                items={inSeasonFruits}
+                selectedItems={selectedFruits}
+                toggleItem={toggleFruit}
+              />
+            </div>
+            <div className='ingredient-category'>
+              <InSeasonItems
+                title={'Legumes'}
+                items={inSeasonLegumes}
+                selectedItems={selectedLegumes}
+                toggleItem={toggleLegumes}
+              />
+            </div>
+              
+              {/* Button for generating recipes */}
+              <button
+                type="button"
+                onClick={fetchRecipes}
+                disabled={[...selectedIngredients, ...selectedFruits, ...selectedLegumes].length === 0} // Button is disabled when there are no ingredients from any category selected
+              >
+                Generate Recipes
+              </button>
+              <RecipeList
+                loading={loading}
+                recipes={recipes}
+                showNoRecipesMessage={showNoRecipesMessage}
+              />
+            </>
           )}
-          <InSeasonIngredients
-            ingredients={inSeasonIngredients}
-            selectedIngredients={selectedIngredients}
-            toggleIngredient={toggleIngredient}
-          />
-          <button
-            className="ingredient-button"
-            type="button"
-            onClick={fetchRecipes}
-            disabled={selectedIngredients.length === 0}
-          >
-            Generate Recipes
-          </button>
-          <RecipeList
-            loading={loading}
-            recipes={recipes}
-            showNoRecipesMessage={showNoRecipesMessage}
-          />
         </div>
       )}
     </div>
