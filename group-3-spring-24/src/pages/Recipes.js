@@ -7,6 +7,11 @@ import MonthSelector from '../components/MonthSelector';
 import InSeasonItems from '../components/InSeasonItems'; // Updated import
 import RecipeList from '../components/RecipeList';
 import { Typography } from '@mui/material';
+import RecipeInfoCard from '../components/RecipeInfoCard';
+import Seasonal from '../assets/stock-imgs/seasonal.jpg';
+import Ingredients from '../assets/stock-imgs/ingredients.jpg';
+import Cooking from '../assets/stock-imgs/cooking.jpg';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 
 const Recipes = () => {
@@ -178,7 +183,9 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
 
 
 
-
+  // spare copy
+  // Whether it's vibrant salads bursting with summer produce, cosy soups perfect for chilly autumn evenings, hearty stews to warm up winter nights, or light and refreshing dishes to welcome spring, we have something for every palate and occasion./*
+  // Discover the freshest flavours of the season with our curated collection of recipes.
 
 
   // jsx return
@@ -187,13 +194,37 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
     <div className='recipe-intro-container'>
       <div className='recipe-intro-txt'>
       <Typography variant='h2'>What's in season?</Typography>
-      <Typography variant='body1'>Discover the freshest flavours of the season with our curated collection of recipes. Whether it's vibrant salads bursting with summer produce, cosy soups perfect for chilly autumn evenings, hearty stews to warm up winter nights, or light and refreshing dishes to welcome spring, we have something for every palate and occasion.</Typography>
+      <Typography variant='body1'>Whether it's vibrant salads bursting with summer produce, cosy soups perfect for chilly autumn evenings, hearty stews to warm up winter nights, or light and refreshing dishes to welcome spring, we have something for every palate and occasion.</Typography>
       </div>
       <img 
         src={FarmersMarket} 
         alt='Farmers market full of fresh produce'
         className='recipe-intro-img'
         />
+    </div>
+
+    <div className='info-card-container'>
+    <RecipeInfoCard 
+    image= {Seasonal}
+    alt="Produce in focus"
+    title="Choose Your Season"
+    text="Select the month of your choosing to see a pick of delicious, fresh ingredients that will be at their best during that time."
+    />
+
+    {/* <KeyboardArrowRightIcon/> */}
+    <RecipeInfoCard 
+    image= {Ingredients}
+    alt="A selection of fresh produce on a surface"
+    title="Pick your favourite ingredients"
+    text="You'll get the chance to select some of your favourite ingredients that you'd love to cook with."
+    />
+    <RecipeInfoCard 
+    image= {Cooking}
+    alt="A couple cooking together"
+    title="Scroll through delicious recipes!"
+    text="With the click of a button you'll be presented with a curated selection of recipes containing your chosen seasonal ingredients."
+    />
+
     </div>
       <Typography variant='h4'>Begin by selecting the month of your choosing to bring forward a selection of ingredients that will be perfectly in season during your given month. From there, you can select your favourite ingredients and let our search do the rest. With a few small clicks you'll be presented with a selection of beautiful recipes to try. We'll even let you track how many plants you're going to eat in each recipe in order for you to track your goal of eating thirty plants per week!</Typography>
     <div className="recipe-body">
