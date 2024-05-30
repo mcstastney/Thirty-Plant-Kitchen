@@ -32,19 +32,11 @@ const Navbar = () => {
             <Toolbar sx={{ height: '100%', display: 'flex', justifyContent: 'space-between', padding: '0 20px' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <img src="./30plant-kitchen-logo-trans-bg.png" alt="30 Plant Kitchen logo" style={{ height: '9rem', marginRight: '20px' }}/>
-<<<<<<< HEAD
-                    <CustomButton component={CustomNavLink} to="/Home">
-                        Home
-=======
 
                     
                  
                     <CustomButton component={CustomNavLink} to="/">
                         Homepage
-                    </CustomButton>
-                    <CustomButton component={CustomNavLink} to="/MyAccount">
-                        My account
->>>>>>> 3f184d042fba42deee33020af1b4a1c1ad90a533
                     </CustomButton>
                     <CustomButton component={CustomNavLink} to="/Recipes">
                         Find Seasonal Recipes
