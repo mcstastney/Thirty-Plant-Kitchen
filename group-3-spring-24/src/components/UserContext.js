@@ -17,7 +17,7 @@ export const UserProvider = ({ children }) => {
   // Return a UserContext.Provider component
   return (
     <UserContext.Provider value={{ user, setUser }}>
-      // 'children' ensures any child components passed to UserProvider are rendered inside UserContext.Provider
+      {/* 'children' ensures any child components passed to UserProvider are rendered inside UserContext.Provider */}
       {children}
     </UserContext.Provider>
   );

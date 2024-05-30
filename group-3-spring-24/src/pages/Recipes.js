@@ -186,7 +186,7 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
     <>
     <div className='recipe-intro-container'>
       <div className='recipe-intro-txt'>
-      <Typography variant='h2' className='recipe-intro-title'>What's in season?</Typography>
+      <Typography variant='h2'>What's in season?</Typography>
       <Typography variant='body1'>Discover the freshest flavours of the season with our curated collection of recipes. Whether it's vibrant salads bursting with summer produce, cosy soups perfect for chilly autumn evenings, hearty stews to warm up winter nights, or light and refreshing dishes to welcome spring, we have something for every palate and occasion.</Typography>
       </div>
       <img 
