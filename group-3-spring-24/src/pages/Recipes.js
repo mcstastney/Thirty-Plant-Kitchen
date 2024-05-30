@@ -210,14 +210,19 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
     title="Choose Your Season"
     text="Select the month of your choosing to see a pick of delicious, fresh ingredients that will be at their best during that time."
     />
+    
+    {/* arrow icons to create a visual flow */}
+    <KeyboardArrowRightIcon color="secondary" sx={{ fontSize: 80 }}/>
 
-    {/* <KeyboardArrowRightIcon/> */}
     <RecipeInfoCard 
     image= {Ingredients}
     alt="A selection of fresh produce on a surface"
     title="Pick your favourite ingredients"
     text="You'll get the chance to select some of your favourite ingredients that you'd love to cook with."
     />
+
+    <KeyboardArrowRightIcon color="secondary" sx={{ fontSize: 80 }}/>
+
     <RecipeInfoCard 
     image= {Cooking}
     alt="A couple cooking together"
@@ -226,8 +231,11 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
     />
 
     </div>
-      <Typography variant='h4'>Begin by selecting the month of your choosing to bring forward a selection of ingredients that will be perfectly in season during your given month. From there, you can select your favourite ingredients and let our search do the rest. With a few small clicks you'll be presented with a selection of beautiful recipes to try. We'll even let you track how many plants you're going to eat in each recipe in order for you to track your goal of eating thirty plants per week!</Typography>
-    <div className="recipe-body">
+     
+     
+     
+     
+         <div className="recipe-body">
       <h1>Seasonal Produce Selector</h1>
       <MonthSelector
         month={month}
