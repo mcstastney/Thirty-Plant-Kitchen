@@ -8,10 +8,13 @@ import InSeasonItems from '../components/InSeasonItems'; // Updated import
 import RecipeList from '../components/RecipeList';
 import { Typography } from '@mui/material';
 import RecipeInfoCard from '../components/RecipeInfoCard';
+// Import images
 import Seasonal from '../assets/stock-imgs/seasonal.jpg';
 import Ingredients from '../assets/stock-imgs/ingredients.jpg';
 import Cooking from '../assets/stock-imgs/cooking.jpg';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+// Import icons
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
 
 
 const Recipes = () => {
@@ -193,8 +196,9 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
     <>
     <div className='recipe-intro-container'>
       <div className='recipe-intro-txt'>
-      <Typography variant='h2'>What's in season?</Typography>
+      <Typography variant='h2' color={'secondary'}>What's in season?</Typography>
       <Typography variant='body1'>Whether it's vibrant salads bursting with summer produce, cosy soups perfect for chilly autumn evenings, hearty stews to warm up winter nights, or light and refreshing dishes to welcome spring, we have something for every palate and occasion.</Typography>
+      <RestaurantIcon sx={{ fontSize: 50 }}/>
       </div>
       <img 
         src={FarmersMarket} 
@@ -204,7 +208,8 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
     </div>
 
     <div className='info-card-container'>
-    <RecipeInfoCard 
+    <RecipeInfoCard
+    className="info-card"
     image= {Seasonal}
     alt="Produce in focus"
     title="Choose Your Season"
@@ -212,18 +217,20 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
     />
     
     {/* arrow icons to create a visual flow */}
-    <KeyboardArrowRightIcon color="secondary" sx={{ fontSize: 80 }}/>
+    <ArrowRightAltIcon color="secondary" sx={{ fontSize: 80 }}/>
 
     <RecipeInfoCard 
+    className="info-card"
     image= {Ingredients}
     alt="A selection of fresh produce on a surface"
     title="Pick your favourite ingredients"
     text="You'll get the chance to select some of your favourite ingredients that you'd love to cook with."
     />
 
-    <KeyboardArrowRightIcon color="secondary" sx={{ fontSize: 80 }}/>
+    <ArrowRightAltIcon color="secondary" sx={{ fontSize: 80 }}/>
 
-    <RecipeInfoCard 
+    <RecipeInfoCard
+    className="info-card" 
     image= {Cooking}
     alt="A couple cooking together"
     title="Scroll through delicious recipes!"
@@ -233,10 +240,10 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
     </div>
      
      
+     {/* recipe section */}
      
-     
-         <div className="recipe-body">
-      <h1>Seasonal Produce Selector</h1>
+    <div className="recipe-body">
+      <Typography variant='h2' color='secondary'>Seasonal Recipe Finder</Typography>
       <MonthSelector
         month={month}
         setMonth={setMonth}
@@ -250,7 +257,7 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
           type="button"
           onClick={handleResetForm}
         >
-          Reset Form
+          Reset
         </button>
       )}
 
