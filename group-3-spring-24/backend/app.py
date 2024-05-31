@@ -5,7 +5,7 @@ import json
 from db_utils import get_produce_for_month, get_fruits_for_month, get_legumes_for_month, get_nuts_for_month, get_herbs_for_month, get_saved_recipes, save_recipe, create_user
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+CORS(app, origins=['http://localhost:3000'])
 
 
 # Get request returns plants by month
@@ -53,13 +53,23 @@ def seasonal_herbs():
 
 # POST request to add new customer on sign-up
 @app.route ('/signup', methods=['POST'])
-def add_new_customer():
-    record = request.get_json()
-    customer_id = create_user(record)
-    record['customer_id'] = customer_id  # Add customer_id to the record
-    print(record)
-    return jsonify(record)
+# def add_new_customer():
+#     record = request.get_json()
+#     customer_id = create_user(record)
+#     record['customer_id'] = customer_id  # Add customer_id to the record
+#     print(record)
+#     return jsonify(record)
 
+def add_new_customer():
+    try:
+        record = request.get_json()
+        customer_id = create_user(record)
+        record['customer_id'] = customer_id  # Add customer_id to the record
+        print(record)
+        return jsonify(record)
+    except Exception as e:
+        print(f"Error adding new customer: {e}")
+        return jsonify({"error": str(e)}), 500
 
 # PUT request to save recipes to customer account
 @app.route('/save-recipe', methods=['PUT'])
@@ -81,24 +91,7 @@ def return_recipes_endpoint():
         return jsonify(recipes), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-    
 
-# # GET request returns plants by season
-# @app.route('/search')
-# def search_plants():
-#     month = request.args.get('month')
-#     res = get_plants_by_season(month)  # Function to search records by season
-#     return jsonify(res)
-
-
-# # Test the seasonal search function 
-# def test_get_plants_by_season():
-#     try:
-#         month = 'May'
-#         result = get_plants_by_season(month)    
-#     except Exception as e:
-#         print("Error:", e)
-# test_get_plants_by_season()
 
 
 # GET request returns recipes from Edamam API

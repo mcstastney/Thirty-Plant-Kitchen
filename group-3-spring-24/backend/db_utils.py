@@ -112,46 +112,11 @@ def get_herbs_for_month(month):
 
 
 
-# # Elisa's code to Search plants by season - duplicate of above, using different DB and %s search term
-# def get_plants_by_season(month_name):
-#     try:
-#         db_name = "thirty_kitchen_database"
-#         connection = connect_to_db(db_name)
-#         my_cursor = connection.cursor()
-#         print("Get plants function connection to DB: %s" % db_name)
-
-#         # Query to select all product within a given category
-#         query = """SELECT plant_name
-#                    FROM plants
-#                    WHERE month_name = %s
-#                    ORDER BY plant_name;"""
-#         my_cursor.execute(query, (month_name,))
-#         result = my_cursor.fetchall() # this is a list with db records where each record is a tuple
-#         my_cursor.close()
-
-#         # Convert the result to a list of dictionaries
-#         columns = [col[0] for col in my_cursor.description]
-#         result = [dict(zip(columns, row)) for row in result]
-
-#         print(result)
-#         return result
-
-#     except Exception:
-#         raise DbConnectionError("Failed to read data from DB")
-
-#     finally:
-#         if connection:
-#             connection.close()
-#             print("Get plants DB connection is closed")
-
-# get_plants_by_season("August")
-
-
 # Insert new customer on sign_up
 def create_user(record):
     try:
         #  connect to db
-        db_name = "thirty_kitchen_database"
+        db_name = "seasonal_produce"
         connection = connect_to_db(db_name)
         my_cursor = connection.cursor()
 
@@ -188,13 +153,13 @@ def create_user(record):
 #     'last_name': 'Tiger',
 #     'email_address': 'bigtony@mail.com',
 #         }
-# insert_new_customer(testrecord)
+# create_user(testrecord)
 
 
 # Save recipe to customer account
 def save_recipe(recipe):
     try:
-        db_name = "thirty_kitchen_database"
+        db_name = "seasonal_produce"
         connection = connect_to_db(db_name)
         my_cursor = connection.cursor()
 
@@ -229,7 +194,7 @@ def save_recipe(recipe):
 
 # Display saved recipes to customer's account
 def get_saved_recipes(customer_id):
-    db_name = "thirty_kitchen_database"
+    db_name = "seasonal_produce"
     connection = connect_to_db(db_name)
     my_cursor = connection.cursor()
 
