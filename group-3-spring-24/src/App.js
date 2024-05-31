@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
-import { UserProvider } from './components/UserContext';
 import './App.css';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -18,7 +17,6 @@ function App() {
     
     <ThemeProvider theme={themeOptions}>
       <CssBaseline />
-    <UserProvider>
 
     <Router>
         <Navbar />
@@ -30,7 +28,7 @@ function App() {
             <Route path="/aboutPage" element={<About />} />
         </Routes>
     </Router>
-    </UserProvider>
+
     </ThemeProvider>
   
 );
