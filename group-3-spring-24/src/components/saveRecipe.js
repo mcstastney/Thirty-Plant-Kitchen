@@ -1,29 +1,20 @@
-import React, { useState,  useContext } from 'react'; 
-
-// 'UserContext' used to share data (customerId) with other components
-import { UserContext } from './UserContext';
-
-
 // Asynchronous function takes two arguments: objects representing current user and recipe to be saved
-export const handleSaveRecipe = async (user, recipe) => {
+export const handleSaveRecipe = async (customerId, recipe) => {
 
   // If user does not exist, log error
-  if (!user || !user.customerId) {
+  if (!customerId) {
     console.error('Customer ID is missing');
     return;
   }
 
   // Create new object that formats recipe data to be sent to server
   const savedRecipe = {
-    customer_id: user.customerId,
+    customer_id: customerId,
     label: recipe.label,
     url: recipe.url,
     ingredients: recipe.ingredientLines.join(', '),
     servings: recipe.yield
   };
-
-  // Log successful save with customerId
-  console.log('Saving recipe with customer ID:', user.customerId);
 
   // 'fetch' function to send PUT request to server via '/save-recipe' endpoint with savedRecipe data
   try {
@@ -36,10 +27,13 @@ export const handleSaveRecipe = async (user, recipe) => {
     });
 
     // If request successful, convert response to JSON and log result
-    const result = await response.json();
-    console.log('Recipe saved:', result);
-    
+    if (response.ok) {
+      const result = await response.json();
+      console.log('Recipe saved:', result);
+    } else {
+      console.error('Failed to save recipe:', response.statusText);
+    }
   } catch (error) {
-    console.error('Error saving recipe:', error);
+    console.error('There was an error saving the recipe:', error);
   }
 };
