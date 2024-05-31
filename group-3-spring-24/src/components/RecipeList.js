@@ -2,9 +2,12 @@ import React from 'react';
 import '../styles/Recipe.css';
 import {handleSaveRecipe} from './saveRecipe';
 import CircularProgressWithLabel from '../components/ProgressTracker';
+<<<<<<< HEAD
 
 // 'UserContext' used to share data (customerId) with other components
 import { UserContext } from './UserContext';
+=======
+>>>>>>> 29c532c51cf48502003e0a5e2cbe0359d0cab30b
 // Import useSelector hook from react-redux to access the customerId state
 import { useSelector } from 'react-redux';
 
@@ -28,7 +31,7 @@ const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => {
         return (
         
           // Display details of each recipe inside a container
-          <div>
+          <div key={recipe.uri}>
             <h2>{recipe.label}</h2>
             <div class="recipe-image-container">
               <img src={recipe.image}  alt={recipe.label} />

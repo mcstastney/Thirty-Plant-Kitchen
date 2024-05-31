@@ -38,6 +38,10 @@ function SignUpForm() {
         },
         body: JSON.stringify(newCustomer)
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
       
       // If request successful, convert response to JSON and log result
       const result = await response.json();

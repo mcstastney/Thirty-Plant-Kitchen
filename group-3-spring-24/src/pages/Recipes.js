@@ -25,9 +25,13 @@ const Recipes = () => {
   const [inSeasonIngredients, setInSeasonIngredients] = useState([]);
   const [inSeasonFruits, setInSeasonFruits] = useState([]);
   const [inSeasonLegumes, setInSeasonLegumes] = useState([]);
+  const [inSeasonNuts, setInSeasonNuts] = useState([]);
+  const [inSeasonHerbs, setInSeasonHerbs] = useState([]);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [selectedFruits, setSelectedFruits] = useState([]);
   const [selectedLegumes, setSelectedLegumes] = useState([])
+  const [selectedNuts, setSelectedNuts] = useState([])
+  const [selectedHerbs, setSelectedHerbs] = useState([])
   const [loading, setLoading] = useState(false); // State for loading status
   const [recipes, setRecipes] = useState([]);
   const [month, setMonth] = useState(''); // State for selected month
@@ -46,16 +50,20 @@ const fetchInSeasonItems = () => {
   Promise.all([
     fetch(`http://localhost:5000/api/seasonal-produce?month=${month}`),
     fetch(`http://localhost:5000/api/seasonal-fruits?month=${month}`),
-    fetch(`http://localhost:5000/api/seasonal-legumes?month=${month}`)
+    fetch(`http://localhost:5000/api/seasonal-legumes?month=${month}`),
+    fetch(`http://localhost:5000/api/seasonal-nuts?month=${month}`),
+    fetch(`http://localhost:5000/api/seasonal-herbs?month=${month}`)
   ])
     .then(responses => Promise.all(responses.map(response => response.json()))) // Parse response as json
     .then(data => {
-      const [ingredientsData, fruitsData, legumesData] = data;
+      const [ingredientsData, fruitsData, legumesData, nutsData, herbsData] = data;
 
       // Update states with in-season veg/fruit/legumes
       setInSeasonIngredients(ingredientsData.produce);
       setInSeasonFruits(fruitsData.fruits);
       setInSeasonLegumes(legumesData.legumes);
+      setInSeasonNuts(nutsData.nuts);
+      setInSeasonHerbs(herbsData.herbs);
       setLoading(false); // Set loading state to false when fetch complete
     })
 
@@ -85,13 +93,15 @@ const toggleSelection = (setSelectedItems) => (item) => {
 const toggleIngredient = toggleSelection(setSelectedIngredients);
 const toggleFruit = toggleSelection(setSelectedFruits);
 const toggleLegumes = toggleSelection(setSelectedLegumes);
+const toggleNuts = toggleSelection(setSelectedNuts);
+const toggleHerbs = toggleSelection(setSelectedHerbs);
   
   // Function to fetch recipes based on selected ingredients
   const fetchRecipes = () => {
     setLoading(true);
 
     // Fetch recipes for each selected veg/fruit/legume
-    const queries = [...selectedIngredients, ...selectedFruits,...selectedLegumes].map(item => {
+    const queries = [...selectedIngredients, ...selectedFruits,...selectedLegumes,...selectedNuts, ... selectedHerbs].map(item => {
         return fetch(`http://127.0.0.1:5000/recipes?q=${item}`)
             
             // Handle response
@@ -301,11 +311,28 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
                 toggleItem={toggleLegumes}
               />
             </div>
+            <div className='ingredient-category'>
+              <InSeasonItems
+                title={'Nuts & Seeds'}
+                items={inSeasonNuts}
+                selectedItems={selectedNuts}
+                toggleItem={toggleNuts}
+              />
+            </div>
+            <div className='ingredient-category'>
+              <InSeasonItems
+                title={'Herbs & Spices'}
+                items={inSeasonHerbs}
+                selectedItems={selectedHerbs}
+                toggleItem={toggleHerbs}
+              />
+            </div>
+  
               
               {/* Button for generating recipes */}
               <Button
                 onClick={fetchRecipes}
-                disabled={[...selectedIngredients, ...selectedFruits, ...selectedLegumes].length === 0} // Button is disabled when there are no ingredients from any category selected
+                disabled={[...selectedIngredients, ...selectedFruits, ...selectedLegumes, ... selectedNuts, ...selectedHerbs].length === 0} // Button is disabled when there are no ingredients from any category selected
               >
                 Generate Recipes
               </Button>

@@ -99,7 +99,7 @@ VALUES
 
 CREATE TABLE IF NOT EXISTS NutsAndSeeds (
     nutseed_id INT PRIMARY KEY AUTO_INCREMENT,
-    nutseed_name_and_variety VARCHAR(200),
+    nut_seed_name VARCHAR(200),
     january BOOLEAN,
     february BOOLEAN,
     march BOOLEAN,
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS NutsAndSeeds (
     december BOOLEAN
 );
 
-INSERT INTO NutsAndSeeds (nutseed_name_and_variety, january, february, march, april, may, june, july, august, september, october, november, december)
+INSERT INTO NutsAndSeeds (nut_seed_name, january, february, march, april, may, june, july, august, september, october, november, december)
 VALUES
 ('Hazelnuts', 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1),
 ('Walnuts', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1),
@@ -124,7 +124,7 @@ VALUES
 
 CREATE TABLE HerbsAndSpices (
     herb_id INT PRIMARY KEY AUTO_INCREMENT,
-    herb_name_and_variety VARCHAR(200),
+    herb_name VARCHAR(200),
     january BOOLEAN,
     february BOOLEAN,
     march BOOLEAN,
@@ -139,7 +139,7 @@ CREATE TABLE HerbsAndSpices (
     december BOOLEAN
 );
 
-INSERT INTO HerbsAndSpices (herb_name_and_variety, january, february, march, april, may, june, july, august, september, october, november, december)
+INSERT INTO HerbsAndSpices (herb_name, january, february, march, april, may, june, july, august, september, october, november, december)
 VALUES
 ('Mint - Spearmint', 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1),
 ('Mint - Peppermint', 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1),
@@ -174,3 +174,33 @@ VALUES
 ('Oats', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 ('Rye', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 ('Spelt', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+
+CREATE TABLE IF NOT EXISTS customers (
+		customer_id INTEGER NOT NULL UNIQUE AUTO_INCREMENT,
+		first_name VARCHAR(30) NOT NULL,
+		last_name VARCHAR(30) NOT NULL,
+		email_address VARCHAR(60) NOT NULL UNIQUE,
+		CONSTRAINT pk_customer_id  PRIMARY KEY (customer_id)
+);
+
+INSERT INTO customers
+(first_name, last_name, email_address)
+VALUES 
+("Sadie", "Lock", "sadie@hotmail.com"),
+("Jimmy", "Brown", "jimmyboy@gmail.com"),
+("Charlotte", "Green", "cgreen@hotmail.com"),
+("Alfie", "Ryan", "alfralf@gmail.com");
+
+CREATE TABLE IF NOT EXISTS saved_recipes (
+    customer_id INT NOT NULL,
+    label VARCHAR(255) NOT NULL,
+    url VARCHAR(1000) NOT NULL,
+    ingredients TEXT NOT NULL,
+    servings INT NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+SELECT * FROM customers c
+LEFT JOIN saved_recipes sr ON c.customer_id = sr.customer_id
+ORDER BY c.customer_id;
