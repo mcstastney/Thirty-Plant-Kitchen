@@ -79,10 +79,14 @@
 
 /* Container for the entire recipe section */
 .recipe-body {
-  padding: 20px;
   max-width: 80%;
   margin: 3rem auto;
   text-align: center;
+}
+
+.items-box {
+  margin: 3rem auto;
+  font-size: 1.4rem;
 }
 
 /* Form containing the ingredients box and search button */
@@ -94,14 +98,6 @@
   font-size: 1.75rem;
 }
 
-/* Drop down month box */
-.month-selector {
-  max-width: 30rem;
-  font-size: 1.1rem;
-  margin: 1rem auto;
-  color: #606C38;
-  padding: 0.8rem;
-}
 
 /* Ingredients box styling */
 .ingredients-box {
@@ -109,20 +105,18 @@
   flex-wrap: wrap;
   margin-bottom: 20px;
   justify-content: center;
+  padding: 2rem;
 }
 
-/* Ingredient button styling */
-.ingredient-button {
-  margin: 5px;
-  padding: 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  cursor: pointer;
-  transition: background-color 0.3s, border-color 0.3s;
+.reset-btn {
+  margin: 2rem;
 }
 
-.generate-button {
+.search-subtitle {
+  font-size: 2rem;
+}
+
+/* .generate-button {
   margin: 5px;
   padding: 0.8rem;
   border: 1px solid #ccc;
@@ -130,7 +124,7 @@
   background-color: #0205035d;
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s;
-}
+} */
 
 /* Ingredient button styling when selected */
 .ingredient-button.selected {
@@ -143,7 +137,7 @@
   border: 1px solid #ddd;
   justify-content: center;
   border-radius: 10px;
-  padding: 15px;
+  padding: 3rem;
   margin-bottom: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }

@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-// Define your custom styles as JavaScript objects
+// custom styles as js objects
 const styles = {
   card: {
     maxWidth: 600,

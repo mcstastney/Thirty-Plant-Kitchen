@@ -1,17 +1,22 @@
-import React, { useState, useContext } from 'react';
-
+import React, { useState } from 'react';
 // 'useNavigate' hook used to redirect the user after submitting sign up form
 import { useNavigate } from 'react-router-dom';
+// Import useDispatch hook from react-redux to access and modify the state
+import { useDispatch } from 'react-redux';
+// Import the reducers from customerSlice 
+import { storeCustomerId, storeFirstName } from '../redux/customerSlice';
 
-// 'UserContext' used to share data (customerId) with other components
-import { UserContext } from './UserContext';
 
 function SignUpForm() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
+
+  // useDispatch to create a dispatch function to dispatch actions
+  const dispatch = useDispatch();
+
+  // useNavigate to navigate to MyAccount page after formm submit
   const navigate = useNavigate();
-  const { setUser } = useContext(UserContext);
 
   // Asynchronous function to handle form submission
   const handleSubmit = async (event) => {
@@ -38,12 +43,13 @@ function SignUpForm() {
       const result = await response.json();
       console.log('New customer added:', result);
 
-      // Store user information in context and log user to verify successful save
-      setUser({ firstName, customerId: result.customer_id });
-      console.log('User set in context:', { firstName, customerId: result.customer_id });
+      // Dispatch actions to update user information in redux store, log to verify successful save
+      dispatch(storeCustomerId(result.customer_id));
+      dispatch(storeFirstName(firstName)); 
+      console.log('User set in store:', { firstName, customerId: result.customer_id });
 
-      // Redirect to MyAccount page using 'navigate' function
-      navigate('/myaccount', { state: { firstName, customerId: result.customer_id } });      
+      // Redirect to Recipes page using 'useNavigate' hook
+      navigate('/Recipes');      
 
     } catch (error) {
       console.error('Error adding new customer:', error);
