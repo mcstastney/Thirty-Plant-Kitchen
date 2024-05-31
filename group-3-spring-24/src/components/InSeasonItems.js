@@ -24,11 +24,12 @@
 
 import React from 'react';
 import IngredientButton from './IngredientButton';
+import '../styles/Recipe.css';
 
 const InSeasonItems = ({ title, items, selectedItems, toggleItem }) => {
   return (
     <div className="items-box">
-      <h2>{title}</h2>
+      <h4>{title}</h4>
       {items.map((item) => (
         <IngredientButton
           key={item}

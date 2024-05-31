@@ -1,19 +1,20 @@
 
 import React, { useState, useEffect} from 'react';
 import '../styles/Recipe.css';
-import FarmersMarket from '../assets/stock-imgs/farmers-market.jpg';
 // Import components used within the recipe page
 import MonthSelector from '../components/MonthSelector';
 import InSeasonItems from '../components/InSeasonItems'; // Updated import
 import RecipeList from '../components/RecipeList';
-import { Typography } from '@mui/material';
 import RecipeInfoCard from '../components/RecipeInfoCard';
-import Button from '@mui/material/Button';
 import CircularProgressWithLabel from '../components/ProgressTracker';
 // Import images
+import FarmersMarket from '../assets/stock-imgs/farmers-market.jpg';
 import Seasonal from '../assets/stock-imgs/seasonal.jpg';
 import Ingredients from '../assets/stock-imgs/ingredients.jpg';
 import Cooking from '../assets/stock-imgs/cooking.jpg';
+// Import MUI elements
+import { Typography } from '@mui/material';
+import Button from '@mui/material/Button';
 // Import icons
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
@@ -187,12 +188,6 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
   }, [month]);
 
 
-
-  // spare copy
-  // Whether it's vibrant salads bursting with summer produce, cosy soups perfect for chilly autumn evenings, hearty stews to warm up winter nights, or light and refreshing dishes to welcome spring, we have something for every palate and occasion./*
-  // Discover the freshest flavours of the season with our curated collection of recipes.
-
-
   // jsx return
   return (
     <>
@@ -267,7 +262,7 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
       )}
 
 
-      {/* If data is loading, display loading message */}
+      {/* If data is loading, display progress % with label*/}
       {loading ? (
         <CircularProgressWithLabel />
       ) : (
@@ -276,7 +271,8 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
           {/* Check if search button is clicked and month is selected */}
           {searchClicked && month && (
             <>
-            <h3>{`These ingredients will be in season in ${month.charAt(0).toUpperCase() + month.slice(1)}.`}<br /> Select ingredients to include in your recipe search</h3>
+            <Typography variant='subtitle1' color='secondary' style={{fontSize: '1.6rem'}}>{`These ingredients will be in season in ${month.charAt(0).toUpperCase() + month.slice(1)}.`}</Typography>
+            <Typography variant='subtitle2' style={{fontSize: '1.2rem'}}>Select ingredients to include in your recipe search:</Typography>
             
             {/* Render InSeasonItems component for veg */}
             <div className='ingredient-category'>
@@ -307,13 +303,12 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
             </div>
               
               {/* Button for generating recipes */}
-              <button
-                type="button"
+              <Button
                 onClick={fetchRecipes}
                 disabled={[...selectedIngredients, ...selectedFruits, ...selectedLegumes].length === 0} // Button is disabled when there are no ingredients from any category selected
               >
                 Generate Recipes
-              </button>
+              </Button>
               <RecipeList
                 loading={loading}
                 recipes={recipes}
