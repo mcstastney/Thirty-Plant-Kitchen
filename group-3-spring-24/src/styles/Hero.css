@@ -12,33 +12,31 @@
 .hero {
   height: 100%;
   width: 100%;
-  min-height: 100vh;
-  background: linear-gradient(
-    245.59deg,
-    #dda15e 0%,
-    #d08835d5.53%,
-    #ec8612 72.52%
-  );
+  min-height: 80vh;
+  background: linear-gradient(250deg, #dda15e 0%, #d08835d5.50%, #ec8612 75%);
   position: relative;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   align-items: center;
-  gap: 2rem;
+  justify-items: center;
 }
 
 section {
-  padding: 0 19%;
+  padding: 45px 30%;
 }
 
 .hero-text {
-  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 15px;
   font-weight: 400;
   color: var(--white-shade);
   margin-bottom: 40px;
+  margin-top: -50px;
 }
 
 .hero-text h1 {
-  font-family: "Permanent Marker", cursive;
   font-size: 90px;
   line-height: 1;
   color: var(--white-shade);
@@ -53,11 +51,12 @@ section {
 }
 
 .hero-img img {
-  width: 500px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
 }
 
-.hero-text a {
+.hero-text a,
+.hero-text .signup-btn {
   display: inline-block;
   color: var(--white-shade);
   background: var(--orange-color);
@@ -68,37 +67,41 @@ section {
   font-weight: 500;
   border-radius: 30px;
   text-transform: uppercase;
-  transition: all 0.55s ease;
+  transition: all 0.5s ease;
 }
 
 .hero-text a:hover {
   background: transparent;
   border: 1px solid var(--white-shade);
-  transform: translateX(8px);
+  transform: translateX(10px);
 }
 
-.hero-text a.ctaa {
+.hero-text a.youtube {
   background: transparent;
   border: 1px solid var(--white-shade);
-  margin-left: 20px;
 }
 
-.hero-text a.ctaa i {
+.hero-text a.youtube i {
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.hero-text .signup-btn i {
   vertical-align: middle;
   margin-right: 10px;
 }
 
 .icons {
   position: absolute;
-  top: 50%;
-  padding: 0 9%;
+  top: 65%;
+  padding: 0 10%;
   transform: translateY(-50%);
 }
 
 .icons i {
   display: block;
-  margin: 26px 0;
-  font-size: 24px;
+  margin: 30px 0;
+  font-size: 25px;
   color: var(--white-shade);
   transition: all 0.5s ease;
 }
@@ -163,9 +166,6 @@ section {
     grid-template-columns: 1fr;
   }
   .icons {
-    display: none;
-  }
-  .scroll-down {
     display: none;
   }
 }
