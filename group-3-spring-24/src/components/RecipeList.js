@@ -1,13 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import '../styles/Recipe.css';
 import {handleSaveRecipe} from './saveRecipe';
-
-// 'UserContext' used to share data (customerId) with other components
-import { UserContext } from './UserContext';
+// Import useSelector hook from react-redux to access the customerId state
+import { useSelector } from 'react-redux';
 
 // Function to return list of recipes or no recipes message
 const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => {
-  const { user } = useContext(UserContext);
+
+  // Use useSelector to get the customerId from the Redux store
+  const customerId = useSelector((state) => state.user.customerId);
   
   return (
   <div className="recipe-body">
@@ -38,7 +39,7 @@ const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => {
             <button className="results-button"><a href={recipe.url} target="_blank" rel="noopener noreferrer">
                   Full Recipe
                 </a></button>
-                <button className="save-button" onClick={() => handleSaveRecipe(user, recipe)}>
+                <button className="save-button" onClick={() => handleSaveRecipe(customerId, recipe)}>
                   Save this recipe
                   </button>
           </div>
