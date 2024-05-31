@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 const styles = {
   card: {
     maxWidth: 600,
+    height: 750,
     margin: 'auto',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
     borderRadius: '15px',
@@ -19,6 +20,7 @@ const styles = {
   content: {
     textAlign: 'center',
     padding: '2rem',
+    alignItems: 'center'
   },
 };
 

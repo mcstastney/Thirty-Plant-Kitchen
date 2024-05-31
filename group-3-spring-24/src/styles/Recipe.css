@@ -7,7 +7,6 @@
   align-items: center; /* vertical alignment */
 }
 
-
 .recipe-intro-txt {
   padding: 5rem; 
   display: flex;
@@ -16,8 +15,8 @@
   text-align: center;
   max-width: 80%;
   margin: 0 auto;
+  align-items: center;
 }
-
 
 .recipe-intro-img {
   max-width: 100%; 
@@ -25,133 +24,180 @@
   object-fit: cover; 
 }
 
-
 .recipe-intro-txt > p {
   margin-top: 30px; /* add vertical spacing above body1 */
   font-size: 1.5rem;
   line-height: 1.75;
+  margin-bottom: 30px; /* add space between text and icon */
 }
 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .recipe-intro-container {
+    grid-template-columns: 1fr; /* stack columns */
+    gap: 50px;
+  }
 
-/* info card section */
+  .recipe-intro-txt {
+    padding: 2rem;
+  }
 
+  .recipe-intro-txt > p {
+    font-size: 1.25rem;
+  }
+
+  .info-card-container {
+    flex-direction: column;
+    margin: 5rem auto;
+  }
+}
+
+/* Info card section */
 .info-card-container {
   display: flex;
   align-items: center;
-  margin: 10rem auto ;
+  margin: 10rem auto;
+}
+
+.info-card {
+  margin: 1rem;
+  overflow-y: scroll;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .info-card-container {
+    flex-direction: column;
+    margin: 5rem auto;
+  }
+
+  .info-card {
+    flex: 1 1 100%; /* full width for small screens */
+    margin: 1rem 0;
+  }
 }
 
 /* Container for the entire recipe section */
 .recipe-body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  /* Form containing the ingredients box and search button */
-  .recipe-body form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  /* Ingredients box styling */
-  .ingredients-box {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-    justify-content: center;
-  }
-  
-  /* Ingredient button styling */
-  .ingredient-button {
-    margin: 5px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    cursor: pointer;
-    transition: background-color 0.3s, border-color 0.3s;
-  }
+  padding: 20px;
+  max-width: 80%;
+  margin: 3rem auto;
+  text-align: center;
+}
 
-    .generate-button {
-      margin: 5px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background-color: #0205035d;
-      cursor: pointer;
-      transition: background-color 0.3s, border-color 0.3s;
-  }
-  
-  /* Ingredient button styling when selected */
-  .ingredient-button.selected {
-    background-color: #d1e7dd;
-    border-color: #badbcc;
-  }
-  /* Individual recipe container styling */
-  .recipe-body > div {
-    border: 1px solid #ddd;
-    justify-content: center;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .results-button {
-    background-color: #BC6C25;
-    color: #FEFAE0;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-  }
-  
-  .save-button {
-    background-color: #606C38;
-    color: #FEFAE0;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-  }
+/* Form containing the ingredients box and search button */
+.recipe-body form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+  font-size: 1.75rem;
+}
 
+/* Drop down month box */
+.month-selector {
+  max-width: 30rem;
+  font-size: 1.1rem;
+  margin: 1rem auto;
+  color: #606C38;
+  padding: 0.8rem;
+}
 
-  /* Recipe image styling */
-  .recipe-body img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin: auto;
-  }
-  
-  /* Ingredients list styling */
-  .recipe-body ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  /* Individual ingredient item styling */
-  .recipe-body ul li {
-    background: #f1f1f1;
-    margin: 2px 0;
-    padding: 5px;
-    border-radius: 5px;
-  }
-  
-  /* Servings and full recipe link styling */
-  .recipe-body p, .recipe-body a {
-    margin-top: 10px;
-  }
-  
-  .ingredient-category {
-    margin-bottom: 30px;
-  }
+/* Ingredients box styling */
+.ingredients-box {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  justify-content: center;
+}
 
-button{
+/* Ingredient button styling */
+.ingredient-button {
+  margin: 5px;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.generate-button {
+  margin: 5px;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #0205035d;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Ingredient button styling when selected */
+.ingredient-button.selected {
+  background-color: #d1e7dd;
+  border-color: #badbcc;
+}
+
+/* Individual recipe container styling */
+.recipe-body > div {
+  border: 1px solid #ddd;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.results-button {
+  background-color: #BC6C25;
+  color: #FEFAE0;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.save-button {
+  background-color: #606C38;
+  color: #FEFAE0;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+/* Recipe image styling */
+.recipe-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin: auto;
+}
+
+/* Ingredients list styling */
+.recipe-body ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Individual ingredient item styling */
+.recipe-body ul li {
+  background: #f1f1f1;
+  margin: 2px 0;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+/* Servings and full recipe link styling */
+.recipe-body p, .recipe-body a {
+  margin-top: 10px;
+}
+
+.ingredient-category {
+  margin-bottom: 30px;
+}
+
+button {
   margin: 5px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -159,4 +205,22 @@ button{
   background-color: #f9f9f9;
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Responsive adjustments for buttons */
+@media (max-width: 768px) {
+  .recipe-body form {
+    font-size: 1.5rem;
+  }
+
+  .month-selector {
+    max-width: 100%;
+    font-size: 1rem;
+    padding: 0.6rem;
+  }
+
+  .ingredient-button, .generate-button, .results-button, .save-button {
+    width: 100%;
+    font-size: 1rem;
+  }
 }

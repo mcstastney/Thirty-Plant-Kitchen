@@ -1,4 +1,12 @@
-import React from 'react';
+
+
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Button from '@mui/material/Button';
 
 // Function to create drop down menu with months to allow user to search by month
 const MonthSelector = ({ month, setMonth, handleSubmit }) => {
@@ -9,26 +17,30 @@ const MonthSelector = ({ month, setMonth, handleSubmit }) => {
   ];
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="month">Select Month: </label>
-      {/*Select element for choosing month. Update month state when selection changes */}
-      <select
-        id="month"
-        value={month}
-        onChange={(e) => setMonth(e.target.value)}>
-        {/*Blank option at top of drop down menu */}
-        <option value=""></option>
-        {/*Iterate over the months array, providing option for each month. Format month to have uppercase first letter */}
-        {months.map((month, index) => (
-          <option value={month}>
-            {month.charAt(0).toUpperCase() + month.slice(1)}
-          </option>
-        ))}
-      </select>
-      <button type="submit" className="ingredient-button" disabled={!month}>
+    <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+      <FormControl sx={{ minWidth: 200 }}>
+        <InputLabel id="month-label">Select Month</InputLabel>
+        <Select
+          labelId="month-label"
+          id="month"
+          value={month}
+          onChange={(e) => setMonth(e.target.value)}
+          label="Select Month"
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          {months.map((month, index) => (
+            <MenuItem key={index} value={month}>
+              {month.charAt(0).toUpperCase() + month.slice(1)}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <Button type="submit" variant="contained"  disabled={!month}>
         Search
-      </button>
-    </form>
+      </Button>
+    </Box>
   );
 };
 
