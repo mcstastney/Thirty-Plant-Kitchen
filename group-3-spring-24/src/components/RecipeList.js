@@ -23,7 +23,7 @@ const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => {
         return (
         
           // Display details of each recipe inside a container
-          <div>
+          <div key={recipe.uri}>
             <h2>{recipe.label}</h2>
             <div class="recipe-image-container">
               <img src={recipe.image}  alt={recipe.label} />

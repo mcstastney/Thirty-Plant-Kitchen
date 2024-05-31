@@ -99,7 +99,7 @@ VALUES
 
 CREATE TABLE IF NOT EXISTS NutsAndSeeds (
     nutseed_id INT PRIMARY KEY AUTO_INCREMENT,
-    nutseed_name_and_variety VARCHAR(200),
+    nut_seed_name VARCHAR(200),
     january BOOLEAN,
     february BOOLEAN,
     march BOOLEAN,
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS NutsAndSeeds (
     december BOOLEAN
 );
 
-INSERT INTO NutsAndSeeds (nutseed_name_and_variety, january, february, march, april, may, june, july, august, september, october, november, december)
+INSERT INTO NutsAndSeeds (nut_seed_name, january, february, march, april, may, june, july, august, september, october, november, december)
 VALUES
 ('Hazelnuts', 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1),
 ('Walnuts', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1),
@@ -124,7 +124,7 @@ VALUES
 
 CREATE TABLE HerbsAndSpices (
     herb_id INT PRIMARY KEY AUTO_INCREMENT,
-    herb_name_and_variety VARCHAR(200),
+    herb_name VARCHAR(200),
     january BOOLEAN,
     february BOOLEAN,
     march BOOLEAN,
@@ -139,7 +139,7 @@ CREATE TABLE HerbsAndSpices (
     december BOOLEAN
 );
 
-INSERT INTO HerbsAndSpices (herb_name_and_variety, january, february, march, april, may, june, july, august, september, october, november, december)
+INSERT INTO HerbsAndSpices (herb_name, january, february, march, april, may, june, july, august, september, october, november, december)
 VALUES
 ('Mint - Spearmint', 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1),
 ('Mint - Peppermint', 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1),

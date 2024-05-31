@@ -33,10 +33,10 @@ def get_produce_for_month(month):
         return produce
     except Exception as e:
         raise DbConnectionError(f"Error fetching produce: {str(e)}")
-    finally:
-        if connection:
-            connection.close()
-            print("Get plants DB connection is closed")
+    # finally:
+    #     if connection:
+    #         connection.close()
+    #         print("Get plants DB connection is closed")
 
 
 def get_fruits_for_month(month):
@@ -51,10 +51,10 @@ def get_fruits_for_month(month):
         return fruit
     except Exception as e:
         raise DbConnectionError(f"Error fetching produce: {str(e)}")
-    finally:
-        if connection:
-            connection.close()
-            print("Get plants DB connection is closed")
+    # finally:
+    #     if connection:
+    #         connection.close()
+    #         print("Get plants DB connection is closed")
 
 
 def get_legumes_for_month(month):
@@ -69,10 +69,46 @@ def get_legumes_for_month(month):
         return legume
     except Exception as e:
         raise DbConnectionError(f"Error fetching produce: {str(e)}")
-    finally:
-        if connection:
-            connection.close()
-            print("Get plants DB connection is closed")
+    # finally:
+    #     if connection:
+    #         connection.close()
+    #         print("Get plants DB connection is closed")
+
+
+def get_nuts_for_month(month):
+    try:
+        connection = connect_to_db('seasonal_produce')
+        cursor = connection.cursor()
+        query = f"SELECT nut_seed_name FROM NutsAndSeeds WHERE {month} = 1"
+        cursor.execute(query)
+        nuts = [row[0] for row in cursor.fetchall()]
+        cursor.close()
+        connection.close()
+        return nuts
+    except Exception as e:
+        raise DbConnectionError(f"Error fetching produce: {str(e)}")
+    # finally:
+    #     if connection:
+    #         connection.close()
+    #         print("Get plants DB connection is closed")
+
+
+def get_herbs_for_month(month):
+    try:
+        connection = connect_to_db('seasonal_produce')
+        cursor = connection.cursor()
+        query = f"SELECT herb_name FROM HerbsAndSpices WHERE {month} = 1"
+        cursor.execute(query)
+        herbs = [row[0] for row in cursor.fetchall()]
+        cursor.close()
+        connection.close()
+        return herbs
+    except Exception as e:
+        raise DbConnectionError(f"Error fetching produce: {str(e)}")
+    # finally:
+    #     if connection:
+    #         connection.close()
+    #         print("Get plants DB connection is closed")
 
 
 
