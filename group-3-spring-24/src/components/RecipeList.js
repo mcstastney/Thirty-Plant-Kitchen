@@ -1,63 +1,69 @@
-import React from 'react';
-import '../styles/Recipe.css';
-import {handleSaveRecipe} from './saveRecipe';
-import CircularProgressWithLabel from '../components/ProgressTracker';
-<<<<<<< HEAD
+
+import React from "react";
+import "../styles/Recipe.css";
+import { handleSaveRecipe } from "./saveRecipe";
+import CircularProgressWithLabel from "../components/ProgressTracker";
 
 // 'UserContext' used to share data (customerId) with other components
-import { UserContext } from './UserContext';
-=======
->>>>>>> 29c532c51cf48502003e0a5e2cbe0359d0cab30b
+// import { UserContext } from "./UserContext";
+
+
 // Import useSelector hook from react-redux to access the customerId state
 import { useSelector } from 'react-redux';
 
 // Function to return list of recipes or no recipes message
 const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => {
-
   // Use useSelector to get the customerId from the Redux store
   const customerId = useSelector((state) => state.user.customerId);
-  
+
   return (
-  <div className="recipe-body">
-    {loading ? (
-     
-     // Display progress wheel with %
-     <CircularProgressWithLabel />
-    ) : recipes.length > 0 ? (
-     
-      // If recipes available, display each recipe
-      recipes.map((hit, index) => {
-        const recipe = hit.recipe;
-        return (
-        
-          // Display details of each recipe inside a container
-          <div key={recipe.uri}>
-            <h2>{recipe.label}</h2>
-            <div class="recipe-image-container">
-              <img src={recipe.image}  alt={recipe.label} />
-            </div>
-            <p>Ingredients:</p>
-            <ul>
-              {recipe.ingredientLines.map((ingredient, i) => (
-                <li key={i}>{ingredient}</li>
-              ))}
-            </ul>
-            <p>Servings: {recipe.yield}</p>
-            <button className="results-button"><a href={recipe.url} target="_blank" rel="noopener noreferrer">
+    <div className="recipe-body">
+      {loading ? (
+        // Display progress wheel with %
+        <CircularProgressWithLabel />
+      ) : recipes.length > 0 ? (
+        // If recipes available, display each recipe
+        recipes.map((hit, index) => {
+          const recipe = hit.recipe;
+          return (
+            // Display details of each recipe inside a container
+            <div key={recipe.uri}>
+              <h2>{recipe.label}</h2>
+              <div class="recipe-image-container">
+                <img src={recipe.image} alt={recipe.label} />
+              </div>
+              <p>Ingredients:</p>
+              <ul>
+                {recipe.ingredientLines.map((ingredient, i) => (
+                  <li key={i}>{ingredient}</li>
+                ))}
+              </ul>
+              <p>Servings: {recipe.yield}</p>
+              <button className="results-button">
+                <a href={recipe.url} target="_blank" rel="noopener noreferrer">
                   Full Recipe
-                </a></button>
-                <button className="save-button" onClick={() => handleSaveRecipe(customerId, recipe)}>
-                  Save this recipe
-                  </button>
-          </div>
-        );
-      })
-    // Display no recipes found message
-    ) : showNoRecipesMessage && (
-      <p>No recipes found for selected ingredients. Try selecting a different ingredient!</p>
-    )}
-  </div>
-);
+                </a>
+              </button>
+              <button
+                className="save-button"
+                onClick={() => handleSaveRecipe(customerId, recipe)}
+              >
+                Save this recipe
+              </button>
+            </div>
+          );
+        })
+      ) : (
+        // Display no recipes found message
+        showNoRecipesMessage && (
+          <p>
+            No recipes found for selected ingredients. Try selecting a different
+            ingredient!
+          </p>
+        )
+      )}
+    </div>
+  );
 };
 
 export default RecipeList;
