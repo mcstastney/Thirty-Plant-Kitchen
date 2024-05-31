@@ -94,14 +94,6 @@
   font-size: 1.75rem;
 }
 
-/* Drop down month box */
-.month-selector {
-  max-width: 30rem;
-  font-size: 1.1rem;
-  margin: 1rem auto;
-  color: #606C38;
-  padding: 0.8rem;
-}
 
 /* Ingredients box styling */
 .ingredients-box {
@@ -111,7 +103,7 @@
   justify-content: center;
 }
 
-/* Ingredient button styling */
+/* Ingredient button styling
 .ingredient-button {
   margin: 5px;
   padding: 0.8rem;
@@ -120,6 +112,10 @@
   background-color: #f9f9f9;
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s;
+} */
+
+.reset-btn {
+  margin: 2rem;
 }
 
 .generate-button {
