@@ -1,8 +1,15 @@
 import React from 'react';
 import '../styles/Recipe.css';
 import {handleSaveRecipe} from './saveRecipe';
+<<<<<<< HEAD
+import CircularProgressWithLabel from '../components/ProgressTracker';
+
+// 'UserContext' used to share data (customerId) with other components
+import { UserContext } from './UserContext';
+=======
 // Import useSelector hook from react-redux to access the customerId state
 import { useSelector } from 'react-redux';
+>>>>>>> edc55fea2be5576be6047500c003f16723db2947
 
 // Function to return list of recipes or no recipes message
 const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => {
@@ -14,8 +21,8 @@ const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => {
   <div className="recipe-body">
     {loading ? (
      
-     // Display message that recipes are still loading
-      <p>Loading recipes...</p>
+     // Display progress wheel with %
+     <CircularProgressWithLabel />
     ) : recipes.length > 0 ? (
      
       // If recipes available, display each recipe
