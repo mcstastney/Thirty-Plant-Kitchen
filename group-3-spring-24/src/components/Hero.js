@@ -2,32 +2,42 @@ import "../styles/Hero.css";
 import veggies from "../assets/veggies.png";
 import React, { useEffect } from "react";
 import ScrollReveal from "scrollreveal";
+import { Link } from "react-router-dom";
 
 function Hero() {
   useEffect(() => {
     const sr = ScrollReveal({
-      distance: "65px",
-      duration: 2600,
+      distance: "80px",
+      duration: 2000,
       reset: true,
     });
 
     sr.reveal(".hero-text", { delay: 200, origin: "top" });
     sr.reveal(".hero-img", { delay: 450, origin: "top" });
     sr.reveal(".icons", { delay: 500, origin: "left" });
-    sr.reveal(".scroll-down", { delay: 500, origin: "right" });
   }, []);
 
   return (
     <>
       <section className="hero">
+        <div className="hero-img">
+          <img
+            src="/30plant-kitchen-logo-trans-bg.png"
+            alt="An image of healthy foods"
+          />
+        </div>
         <div className="hero-text">
           <h1>30 Plant Kitchen</h1>
-          <a href="#">Sign up</a>
+          <Link className="signup-btn" to="/SignUp">
+            <i className="ri-arrow-right-circle-fill"></i>
+            Sign up
+          </Link>
+          <br></br>
           <a
             href="https://www.youtube.com/watch?v=oZWPI5rHidg"
-            className="ctaa"
+            className="youtube"
           >
-            <i className="ri-youtube-fill"></i> Watch Video
+            <i className="ri-youtube-fill"></i> Video
           </a>
           <p>
             Join{" "}
@@ -38,12 +48,9 @@ function Hero() {
             microbiome
             <br />
             <br />
-            <strong>30</strong> plants a week and you're on a healthy eating
-            streak
+            Consume <strong>30</strong> plants a week and you're on your way to
+            earning you're healthy eating streak
           </p>
-        </div>
-        <div className="hero-img">
-          <img src={veggies} alt="An image of healthy foods" />
         </div>
       </section>
 
