@@ -8,6 +8,8 @@ import InSeasonItems from '../components/InSeasonItems'; // Updated import
 import RecipeList from '../components/RecipeList';
 import { Typography } from '@mui/material';
 import RecipeInfoCard from '../components/RecipeInfoCard';
+import Button from '@mui/material/Button';
+import CircularProgressWithLabel from '../components/ProgressTracker';
 // Import images
 import Seasonal from '../assets/stock-imgs/seasonal.jpg';
 import Ingredients from '../assets/stock-imgs/ingredients.jpg';
@@ -252,18 +254,22 @@ const toggleLegumes = toggleSelection(setSelectedLegumes);
 
       {/* Check if search button is clicked and month is selected */}
       {searchClicked && month && (
-        <button
-          className="reset-button"
-          type="button"
+        <Button
           onClick={handleResetForm}
+          style={{
+            margin: '1rem',
+            padding: '10px',
+            borderRadius: '5px',
+          }}
         >
           Reset
-        </button>
+        </Button>
       )}
+
 
       {/* If data is loading, display loading message */}
       {loading ? (
-        <p>Loading in-season items...</p>
+        <CircularProgressWithLabel />
       ) : (
         <div>
           
