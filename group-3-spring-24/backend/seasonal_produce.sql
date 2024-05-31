@@ -174,3 +174,33 @@ VALUES
 ('Oats', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 ('Rye', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 ('Spelt', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+
+CREATE TABLE IF NOT EXISTS customers (
+		customer_id INTEGER NOT NULL UNIQUE AUTO_INCREMENT,
+		first_name VARCHAR(30) NOT NULL,
+		last_name VARCHAR(30) NOT NULL,
+		email_address VARCHAR(60) NOT NULL UNIQUE,
+		CONSTRAINT pk_customer_id  PRIMARY KEY (customer_id)
+);
+
+INSERT INTO customers
+(first_name, last_name, email_address)
+VALUES 
+("Sadie", "Lock", "sadie@hotmail.com"),
+("Jimmy", "Brown", "jimmyboy@gmail.com"),
+("Charlotte", "Green", "cgreen@hotmail.com"),
+("Alfie", "Ryan", "alfralf@gmail.com");
+
+CREATE TABLE IF NOT EXISTS saved_recipes (
+    customer_id INT NOT NULL,
+    label VARCHAR(255) NOT NULL,
+    url VARCHAR(1000) NOT NULL,
+    ingredients TEXT NOT NULL,
+    servings INT NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+SELECT * FROM customers c
+LEFT JOIN saved_recipes sr ON c.customer_id = sr.customer_id
+ORDER BY c.customer_id;

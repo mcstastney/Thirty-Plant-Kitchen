@@ -41,7 +41,6 @@ function VegCounter() {
       return <p> Adding garlic to your food might not only enhance the flavour - it counts towards your plant goal! </p>;
     }else if (count === 13) {
       return <p>A small basil leaf in your pasta sauce or with a tomoato salad is a tasty way of building towards your 30!</p>;
-      return <p>Bell peppers come in various colors and each counts as a different plant! Try red, yellow, and green for a colorful meal.</p>;
     } else if (count === 15) {
       return <p>Try adding a handful of spinach to your smoothie - you won't even taste it, but your body will thank you!</p>;
     } else if (count === 16) {
@@ -92,7 +91,7 @@ function VegCounter() {
     
       <div className="card text-center my-5" >
         <div className="card-body">
-          <h1>Plant tracker </h1>
+          <h2>Plant tracker </h2>
     
           <div className="image-container my-5">
             <div style={overLayStyle} src={buttonImage} alt="happy tummy" className="tummy" >
