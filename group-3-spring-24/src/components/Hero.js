@@ -1,5 +1,4 @@
 import "../styles/Hero.css";
-import veggies from "../assets/veggies.png";
 import React, { useEffect } from "react";
 import ScrollReveal from "scrollreveal";
 import { Link } from "react-router-dom";
@@ -23,7 +22,7 @@ function Hero() {
         <div className="hero-img">
           <img
             src="/30plant-kitchen-logo-trans-bg.png"
-            alt="An image of healthy foods"
+            alt="Healthy foods"
           />
         </div>
         <div className="hero-text">
