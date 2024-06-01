@@ -1,4 +1,5 @@
 import "../styles/Reviews.css";
+import Footer from "./Footer";
 
 function Reviews() {
   return (
@@ -140,6 +141,7 @@ function Reviews() {
           </div>
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 }
