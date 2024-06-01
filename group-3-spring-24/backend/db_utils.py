@@ -142,10 +142,10 @@ def create_user(record):
     except Exception:
         raise DbConnectionError()
 
-    finally:
-        if connection:
-            connection.close()
-            print("Insert customer DB connection is closed")
+    # finally:
+    #     if connection:
+    #         connection.close()
+    #         print("Insert customer DB connection is closed")
 
 
 # testrecord = {
