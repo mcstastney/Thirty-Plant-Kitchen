@@ -1,0 +1,25 @@
+.homepage-footer {
+  background-color: #283618;
+  color: #fefae0;
+  margin-top: 15px;
+  font-family: "Arvo", serif;
+  font-weight: bold;
+}
+
+.copyright {
+  margin-right: 5px;
+}
+
+.cooked {
+  margin-right: 5px;
+}
+
+.fa-github {
+  color: #fefae0;
+  font-size: 20px;
+  transition: transform 0.4s ease-in-out;
+}
+
+.fa-github:hover {
+  transform: rotate(360deg) scale(1.3);
+}
