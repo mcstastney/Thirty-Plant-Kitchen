@@ -24,7 +24,8 @@
 
 .first-line {
   font-weight: 500;
-  font-size: 19px;
+  font-size: 18px;
+  text-align: center;
 }
 
 .three-icons {
@@ -59,4 +60,8 @@
   padding: 10px;
   font-size: 13px;
   padding-bottom: 20px;
+}
+
+.words {
+  text-align: center;
 }
