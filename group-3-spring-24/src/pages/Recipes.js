@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../styles/Recipe.css';
 // Import components used within the recipe page
 import MonthSelector from '../components/MonthSelector';
@@ -14,7 +14,7 @@ import Ingredients from '../assets/stock-imgs/ingredients.jpg';
 import Cooking from '../assets/stock-imgs/cooking.jpg';
 // Import MUI elements
 import { Typography } from '@mui/material';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 // Import icons
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
@@ -101,7 +101,12 @@ const toggleHerbs = toggleSelection(setSelectedHerbs);
     setLoading(true);
 
     // Fetch recipes for each selected veg/fruit/legume
-    const queries = [...selectedIngredients, ...selectedFruits,...selectedLegumes,...selectedNuts, ... selectedHerbs].map(item => {
+    const queries = [
+      ...selectedIngredients,
+      ...selectedFruits, ...selectedLegumes,
+      ...selectedNuts,
+      ...selectedHerbs
+    ].map(item => {
         return fetch(`http://127.0.0.1:5000/recipes?q=${item}`)
             
             // Handle response
@@ -259,7 +264,7 @@ const toggleHerbs = toggleSelection(setSelectedHerbs);
 
       {/* Check if search button is clicked and month is selected */}
       {searchClicked && month && (
-        <Button
+        <button
           onClick={handleResetForm}
           style={{
             margin: '1rem',
@@ -268,7 +273,7 @@ const toggleHerbs = toggleSelection(setSelectedHerbs);
           }}
         >
           Reset
-        </Button>
+        </button>
       )}
 
 
@@ -330,12 +335,20 @@ const toggleHerbs = toggleSelection(setSelectedHerbs);
   
               
               {/* Button for generating recipes */}
-              <Button
+              <button
                 onClick={fetchRecipes}
-                disabled={[...selectedIngredients, ...selectedFruits, ...selectedLegumes, ... selectedNuts, ...selectedHerbs].length === 0} // Button is disabled when there are no ingredients from any category selected
+                disabled={
+                  [
+                    ...selectedIngredients,
+                    ...selectedFruits,
+                    ...selectedLegumes,
+                    ...selectedNuts,
+                    ...selectedHerbs
+                  ].length === 0
+                }
               >
                 Generate Recipes
-              </Button>
+              </button>
               <RecipeList
                 loading={loading}
                 recipes={recipes}
@@ -351,3 +364,4 @@ const toggleHerbs = toggleSelection(setSelectedHerbs);
 };
 
 export default Recipes;
+

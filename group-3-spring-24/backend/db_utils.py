@@ -186,10 +186,10 @@ def save_recipe(recipe):
         print(f"Error saving recipe: {str(e)}")
         raise DbConnectionError()
 
-    finally:
-        if connection:
-            connection.close()
-            print("Save recipe DB connection is closed")
+    # finally:
+    #     if connection:
+    #         connection.close()
+    #         print("Save recipe DB connection is closed")
 
 
 # Display saved recipes to customer's account

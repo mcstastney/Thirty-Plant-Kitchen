@@ -1,12 +1,9 @@
-
-
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import Button from '@mui/material/Button';
 
 // Function to create drop down menu with months to allow user to search by month
 const MonthSelector = ({ month, setMonth, handleSubmit }) => {
@@ -37,9 +34,9 @@ const MonthSelector = ({ month, setMonth, handleSubmit }) => {
           ))}
         </Select>
       </FormControl>
-      <Button type="submit" variant="contained"  disabled={!month}>
+      <button type="submit" variant="contained"  disabled={!month}>
         Search
-      </Button>
+      </button>
     </Box>
   );
 };
