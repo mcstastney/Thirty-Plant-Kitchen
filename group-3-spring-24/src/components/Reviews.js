@@ -8,7 +8,7 @@ function Reviews() {
       <div className="cards">
         <div className="card">
           <div className="first-line">Easy to use</div>
-          <div>
+          <div className="words">
             <strong>Rooting</strong> for this app, makes meal prep a breeze
           </div>
           <div className="three-icons">
@@ -29,7 +29,7 @@ function Reviews() {
 
         <div className="card">
           <div className="first-line">Green convert!</div>
-          <div>
+          <div className="words">
             The recipes on this site make me feel good, from my head to my{" "}
             <i>
               <strong>TOMATOES</strong>
@@ -53,7 +53,7 @@ function Reviews() {
 
         <div className="card">
           <div className="first-line">Get on it</div>
-          <div>
+          <div className="words">
             Holy <strong>GUACAMOLE</strong>! I didn't realise all the veggies I
             was missing out on in life
           </div>
@@ -75,7 +75,7 @@ function Reviews() {
 
         <div className="card">
           <div className="first-line">Oh KALE yeah</div>
-          <div>
+          <div className="words">
             This is just what someone who is beginning their health journey{" "}
             <em>
               <strong>needs</strong>
@@ -99,7 +99,7 @@ function Reviews() {
 
         <div className="card">
           <div className="first-line">I can't CHILLI out</div>
-          <div>
+          <div className="words">
             Why didn't I know about this app <strong>sooner!</strong>
           </div>
           <div className="three-icons">
@@ -119,12 +119,10 @@ function Reviews() {
         </div>
 
         <div className="card">
-          <div className="first-line">CARROT live without this</div>
-          <div>
-            It's vegetable{" "}
-            <em>
-              <strong>heaven</strong>
-            </em>
+          <div className="first-line">CARROT live without</div>
+          <div className="words">
+            It's vegetable <em>heaven.</em> The recipes are{" "}
+            <strong>UN-BEET-ABLE</strong>
           </div>
           <div className="three-icons">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
