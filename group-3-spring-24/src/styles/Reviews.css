@@ -4,13 +4,12 @@
   font-family: "Arvo", serif;
   --orange-color: #dda15e;
   --white-shade: #fefae0;
-  --green-color: #606c38;
+  --green-color: #4e504a;
   --dark-green: #283618;
   box-sizing: border-box;
 }
 
 .reviews-container {
-  margin-top: 20px;
   min-width: 100%;
   padding: 20px 20px 30px;
   background-color: var(--dark-green);
@@ -18,6 +17,7 @@
 
 .reviews {
   color: var(--white-shade);
+  text-align: center;
   margin-top: 10px;
   margin-bottom: 30px;
 }
