@@ -2,7 +2,7 @@ import "../styles/Reviews.css";
 
 function Reviews() {
   return (
-    <div className="container">
+    <div className="reviews-container">
       <h3 className="reviews">Reviews</h3>
 
       <div className="cards">
