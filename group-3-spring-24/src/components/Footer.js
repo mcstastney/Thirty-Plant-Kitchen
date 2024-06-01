@@ -9,6 +9,7 @@ function Footer() {
         </span>
         <span className="cooked">Cooked up by </span>
         <a
+          rel="noreferrer"
           href="https://github.com/mcstastney/group-3-fullstack"
           target="_blank"
         >
