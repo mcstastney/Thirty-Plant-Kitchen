@@ -32,7 +32,10 @@
   align-self: flex-end;
   margin-top: auto;
   display: flex;
-  gap: 5px;
+}
+
+.insta {
+  margin-right: 3px;
 }
 
 .three-icons svg {
