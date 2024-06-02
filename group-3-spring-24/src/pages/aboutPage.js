@@ -2,6 +2,8 @@ import React from 'react';
 import '../styles/aboutus.css';
 import elisaProfile from '../assets/elisa-square-profile.jpg'
 import victoriaProfile from '../assets/victoria-profile.jpg'
+import abbieProfile from '../assets/abbie-about-img.JPG'
+import emmaProfile from'../assets/emma-profile.jpg'
 import Card from '../components/Card.js';
 
 
@@ -24,10 +26,10 @@ const AboutUs = () => {
         <div className="team">
 
         <div className="card-container">
-            <Card name="Emma" about="I have been learning to play chess this past year!" image="https://via.placeholder.com/150" />
+            <Card name="Emma" about="I have been learning to play chess this past year!" image={emmaProfile} />
             <Card name="Elisa" about="Input some text about Elisa" image={elisaProfile} />
             <Card name="Victoria" about="Input some text about Victoria" image={victoriaProfile} />
-            <Card name="Abbie" about="Input some text about Abbie" image="https://via.placeholder.com/150?text=Abbie" />
+            <Card name="Abbie" about="Input some text about Abbie" image={abbieProfile} />
             <Card name="Sahra" about="Input some text about Sahra" image="https://via.placeholder.com/150?text=Sahra" />
             <Card name="Shafia" about="Input some text about Shafia" image="https://via.placeholder.com/150?text=Shafia" />
         </div>
