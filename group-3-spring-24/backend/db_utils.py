@@ -2,7 +2,7 @@ import mysql.connector;
 from config import USER, PASSWORD, HOST;
 import json;
 
-db_name='seasonal_produce'
+db_name='thirty_plant_kitchen'
 
 class DbConnectionError(Exception):
     pass
@@ -23,7 +23,7 @@ def connect_to_db(db_name):
 
 def get_produce_for_month(month):
     try:
-        connection = connect_to_db('seasonal_produce')
+        connection = connect_to_db('thirty_plant_kitchen')
         cursor = connection.cursor()
         query = f"SELECT vegetable_name FROM Vegetable WHERE {month} = 1"
         cursor.execute(query)
@@ -41,7 +41,7 @@ def get_produce_for_month(month):
 
 def get_fruits_for_month(month):
     try:
-        connection = connect_to_db('seasonal_produce')
+        connection = connect_to_db('thirty_plant_kitchen')
         cursor = connection.cursor()
         query = f"SELECT fruit_name FROM Fruit WHERE {month} = 1"
         cursor.execute(query)
@@ -59,7 +59,7 @@ def get_fruits_for_month(month):
 
 def get_legumes_for_month(month):
     try:
-        connection = connect_to_db('seasonal_produce')
+        connection = connect_to_db('thirty_plant_kitchen')
         cursor = connection.cursor()
         query = f"SELECT legume_name FROM Legumes WHERE {month} = 1"
         cursor.execute(query)
@@ -77,7 +77,7 @@ def get_legumes_for_month(month):
 
 def get_nuts_for_month(month):
     try:
-        connection = connect_to_db('seasonal_produce')
+        connection = connect_to_db('thirty_plant_kitchen')
         cursor = connection.cursor()
         query = f"SELECT nut_seed_name FROM NutsAndSeeds WHERE {month} = 1"
         cursor.execute(query)
@@ -95,7 +95,7 @@ def get_nuts_for_month(month):
 
 def get_herbs_for_month(month):
     try:
-        connection = connect_to_db('seasonal_produce')
+        connection = connect_to_db('thirty_plant_kitchen')
         cursor = connection.cursor()
         query = f"SELECT herb_name FROM HerbsAndSpices WHERE {month} = 1"
         cursor.execute(query)
@@ -116,7 +116,7 @@ def get_herbs_for_month(month):
 def create_user(record):
     try:
         #  connect to db
-        db_name = "seasonal_produce"
+        db_name = "thirty_plant_kitchen"
         connection = connect_to_db(db_name)
         my_cursor = connection.cursor()
 
@@ -159,7 +159,7 @@ def create_user(record):
 # Save recipe to customer account
 def save_recipe(recipe):
     try:
-        db_name = "seasonal_produce"
+        db_name = "thirty_plant_kitchen"
         connection = connect_to_db(db_name)
         my_cursor = connection.cursor()
 
@@ -194,7 +194,7 @@ def save_recipe(recipe):
 
 # Display saved recipes to customer's account
 def get_saved_recipes(customer_id):
-    db_name = "seasonal_produce"
+    db_name = "thirty_plant_kitchen"
     connection = connect_to_db(db_name)
     my_cursor = connection.cursor()
 
