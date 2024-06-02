@@ -2,6 +2,7 @@ import React from 'react';
 import { AppBar, Box, Toolbar, Button, TextField } from '@mui/material';
 import { NavLink, Link } from 'react-router-dom';
 import { styled } from '@mui/system';
+import { useSelector } from 'react-redux';
 
 
 // custom style for elements
@@ -27,6 +28,9 @@ const CustomButton = styled(Button)({
 });
 
 const Navbar = () => {
+
+    const isSignedIn = useSelector((state) => state.user.isSignedIn);
+
     return (
         <CustomAppBar position="static">
             <Toolbar sx={{ height: '100%', display: 'flex', justifyContent: 'space-between', padding: '0 20px' }}>
@@ -44,9 +48,11 @@ const Navbar = () => {
                     <CustomButton component={CustomNavLink} to="/aboutPage">
                         About
                     </CustomButton>
+                    {isSignedIn && (
                     <CustomButton component={CustomNavLink} to="/MyAccount">
                         My Account
                     </CustomButton>
+                    )}
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <TextField
