@@ -14,7 +14,7 @@ function VegCounter() {
   const [count, setCount] = useState(0);
   const getMessage = () => {
     if (count === 0) {
-      return <p>This counter will help you track the number of plants you eat in a week. Simply log each different type and watch the total grow! </p>;
+      return <p>This counter will help you track the number of plants you eat in a week - we hope the fun facts will support your motivation </p>;
     }else if (count === 1) {
       return <p>A journey of 30 plants a week starts with a single bite! </p>;
     }else if (count === 2) {
@@ -92,6 +92,9 @@ function VegCounter() {
       <div className="card text-center my-5" >
         <div className="card-body">
           <h2>Plant tracker </h2>
+          <p>This counter will help you track your progress towards your 30 plant a week goal</p>
+          <p>Log the plants you are eating via the buttons below and watch your total grow!</p>
+          <p>Simply click the appropriate button to increase the count, the remove plant button to lower the count, or the reset to return the count to zero </p>
     
           <div className="image-container my-5">
             <div style={overLayStyle} src={buttonImage} alt="happy tummy" className="tummy" >
@@ -106,7 +109,7 @@ function VegCounter() {
             <button className="btn btn-info mx-3" onClick={() => setCount(count +1)}>legumes</button>
             <button className="btn btn-info mx-3" onClick={() => setCount(count +1)}>herbs/spices</button>
             <button className="btn btn-info mx-3" onClick={() => setCount(count +1)}>wholegrains</button>
-            <button className="btn btn-danger mx-3" onClick={() => setCount(count -1)} disabled={count === 0} >decrement</button>
+            <button className="btn btn-danger mx-3" onClick={() => setCount(count -1)} disabled={count === 0} >remove plant</button>
             <button className="btn btn-warning mx-3" onClick={() => setCount(0)}>reset</button>
           </div>
         </div>

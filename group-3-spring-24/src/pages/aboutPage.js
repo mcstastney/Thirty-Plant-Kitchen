@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/aboutus.css';
 import elisaProfile from '../assets/elisa-square-profile.jpg'
+import victoriaProfile from '../assets/victoria-profile.jpg'
 
 const AboutUs = () => {
   return (
@@ -27,7 +28,7 @@ const AboutUs = () => {
           </div>
 
           <div className="member">
-            <img src="https://via.placeholder.com/150" alt="Team Member" />
+            <img src={victoriaProfile} alt="Team Member" />
             <h3>Victoria</h3>
             <p>Recipe Developer</p>
           </div>
