@@ -304,6 +304,7 @@ const toggleHerbs = toggleSelection(setSelectedHerbs);
                 items={inSeasonIngredients}
                 selectedItems={selectedIngredients}
                 toggleItem={toggleIngredient}
+                month={month}
               />
             </div>
               
@@ -314,6 +315,7 @@ const toggleHerbs = toggleSelection(setSelectedHerbs);
                 items={inSeasonFruits}
                 selectedItems={selectedFruits}
                 toggleItem={toggleFruit}
+                month={month}
               />
             </div>
             <div className='ingredient-category'>
@@ -322,6 +324,7 @@ const toggleHerbs = toggleSelection(setSelectedHerbs);
                 items={inSeasonLegumes}
                 selectedItems={selectedLegumes}
                 toggleItem={toggleLegumes}
+                month={month}
               />
             </div>
             <div className='ingredient-category'>
@@ -330,6 +333,7 @@ const toggleHerbs = toggleSelection(setSelectedHerbs);
                 items={inSeasonNuts}
                 selectedItems={selectedNuts}
                 toggleItem={toggleNuts}
+                month={month}
               />
             </div>
             <div className='ingredient-category'>
@@ -338,6 +342,7 @@ const toggleHerbs = toggleSelection(setSelectedHerbs);
                 items={inSeasonHerbs}
                 selectedItems={selectedHerbs}
                 toggleItem={toggleHerbs}
+                month={month}
               />
             </div>
   
