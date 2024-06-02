@@ -3,6 +3,8 @@ import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
 import './App.css';
 import { ThemeProvider } from '@mui/material/styles';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 import CssBaseline from '@mui/material/CssBaseline';
 import themeOptions from './theme';
 import Home from './pages/Home';
@@ -17,7 +19,7 @@ function App() {
     
     <ThemeProvider theme={themeOptions}>
       <CssBaseline />
-
+      <Provider store={store}>
     <Router>
         <Navbar />
         <Routes>
@@ -28,6 +30,7 @@ function App() {
             <Route path="/aboutPage" element={<About />} />
         </Routes>
     </Router>
+    </Provider>
 
     </ThemeProvider>
   

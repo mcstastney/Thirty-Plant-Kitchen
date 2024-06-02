@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 // Import useDispatch hook from react-redux to access and modify the state
 import { useDispatch } from 'react-redux';
 // Import the reducers from customerSlice 
-import { storeCustomerId, storeFirstName } from '../redux/customerSlice';
+import { storeCustomerId, storeFirstName, setSignInStatus } from '../redux/customerSlice';
 
 
 function SignUpForm() {
@@ -47,9 +47,11 @@ function SignUpForm() {
       const result = await response.json();
       console.log('New customer added:', result);
 
-      // Dispatch actions to update user information in redux store, log to verify successful save
+      // Dispatch actions to update user information and signin status in redux store
+      // Log to verify successful save
       dispatch(storeCustomerId(result.customer_id));
       dispatch(storeFirstName(firstName)); 
+      dispatch(setSignInStatus(true));
       console.log('User set in store:', { firstName, customerId: result.customer_id });
 
       // Redirect to Recipes page using 'useNavigate' hook
