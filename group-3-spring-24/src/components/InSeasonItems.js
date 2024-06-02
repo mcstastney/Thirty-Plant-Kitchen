@@ -7,7 +7,7 @@ const InSeasonItems = ({ title, items, selectedItems, toggleItem, month}) => {
     <div className="items-box">
       <h4>{title}</h4>
       {items.length === 0 ? (
-        <p>There are no in-season {title.toLowerCase()} for {month}.</p>
+        <p>There are no in-season {title.toLowerCase()} for {month.charAt(0).toUpperCase() + month.slice(1)}.</p>
       ) : (
       items.map((item) => (
         <IngredientButton
