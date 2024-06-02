@@ -2,6 +2,8 @@ import React from 'react';
 import '../styles/aboutus.css';
 import elisaProfile from '../assets/elisa-square-profile.jpg'
 import victoriaProfile from '../assets/victoria-profile.jpg'
+import Card from '../components/Card.js';
+
 
 const AboutUs = () => {
   return (
@@ -21,41 +23,14 @@ const AboutUs = () => {
 
         <div className="team">
 
-          <div className="member">
-            <img src="https://via.placeholder.com/150" alt="Team Member" />
-            <h3>Sahra</h3>
-            <p>Recipe Developer</p>
-          </div>
-
-          <div className="member">
-            <img src={victoriaProfile} alt="Team Member" />
-            <h3>Victoria</h3>
-            <p>Recipe Developer</p>
-          </div>
-
-          <div className="member">
-            <img src="https://via.placeholder.com/150" alt="Team Member" />
-            <h3>Shafia</h3>
-            <p>Recipe Developer</p>
-          </div>
-
-          <div className="member">
-            <img src={elisaProfile} alt="Team Member" />
-            <h3>Elisa</h3>
-            <p>Recipe Developer</p>
-          </div>
-
-          <div className="member">
-            <img src="https://via.placeholder.com/150" alt="Team Member" />
-            <h3>Abbie</h3>
-            <p>Recipe Developer</p>
-          </div>
-
-          <div className="member">
-            <img src="https://via.placeholder.com/150" alt="Team Member" />
-            <h3>Emma</h3>
-            <p>Recipe Developer</p>
-          </div>
+        <div className="card-container">
+            <Card name="Emma" about="I have been learning to play chess this past year!" image="https://via.placeholder.com/150" />
+            <Card name="Elisa" about="Input some text about Elisa" image={elisaProfile} />
+            <Card name="Victoria" about="Input some text about Victoria" image={victoriaProfile} />
+            <Card name="Abbie" about="Input some text about Abbie" image="https://via.placeholder.com/150?text=Abbie" />
+            <Card name="Sahra" about="Input some text about Sahra" image="https://via.placeholder.com/150?text=Sahra" />
+            <Card name="Shafia" about="Input some text about Shafia" image="https://via.placeholder.com/150?text=Shafia" />
+        </div>
 
         </div>
       </section>
