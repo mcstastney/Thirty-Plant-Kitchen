@@ -121,14 +121,37 @@
   padding: 0.8rem;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #0205035d;
+  background-color: #606C38;
   cursor: pointer;
-  transition: background-color 0.3s, border-color 0.3s;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  color: white; 
 }
+
+.generate-button:disabled {
+  color: #ccc; 
+  background-color: #606c389a;
+}
+
+.search-button {
+  margin: 5px;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #606C38;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  color: white; 
+}
+
+.search-button:disabled {
+  color: #ccc; 
+  background-color: #606c389a;
+}
+
 
 /* Ingredient button styling when selected */
 .ingredient-button.selected {
-  background-color: #d1e7dd;
+  background-color: #606c387c;
   border-color: #badbcc;
 }
 
