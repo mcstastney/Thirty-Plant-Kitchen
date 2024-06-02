@@ -36,7 +36,6 @@ const Recipes = () => {
   const [recipes, setRecipes] = useState([]);
   const [month, setMonth] = useState(''); // State for selected month
   const [searchClicked, setSearchClicked] = useState(false);
-  const [firstTimeSelect, setFirstTimeSelect] = useState(false);
   const [showNoRecipesMessage, setShowNoRecipesMessage] = useState(false);
 
 
@@ -185,20 +184,29 @@ const toggleHerbs = toggleSelection(setSelectedHerbs);
     fetchInSeasonItems();
   };
 
-  // Function to reload the page when the "Reset Form" button is clicked
+  // Function to reset the form back when the reset button is clicked
+  // Rather than reloading the page, we want to reset the states back to the original, as reloading the page removes the user ID
   const handleResetForm = () => {
-    window.location.reload();
+    setMonth('');
+    setSelectedIngredients([]);
+    setSelectedFruits([]);
+    setSelectedLegumes([]);
+    setSelectedNuts([]);
+    setSelectedHerbs([]);
+    setRecipes([]);
+    setSearchClicked(false);
+    setShowNoRecipesMessage(false);
   };
 
-  // Changes in selected month (afer initial selection) will trigger reload of page 
+  // Changes in selected month (afer initial selection) will trigger reset of the page
   useEffect(() => {
-    if (firstTimeSelect) {
-      setFirstTimeSelect(false);
-    } else if (searchClicked && month !== '') {
-      handleResetForm();
-
-      // Reset searchClicked to false after reload
-      setSearchClicked(false); 
+    if (month !== '') {
+      setSelectedIngredients([]);
+      setSelectedFruits([]);
+      setSelectedLegumes([]);
+      setSelectedNuts([]);
+      setSelectedHerbs([]);
+      fetchInSeasonItems();
     }
   }, [month]);
 
