@@ -349,6 +349,7 @@ const toggleHerbs = toggleSelection(setSelectedHerbs);
               
               {/* Button for generating recipes */}
               <button
+                className='generate-button'
                 onClick={fetchRecipes}
                 disabled={
                   [

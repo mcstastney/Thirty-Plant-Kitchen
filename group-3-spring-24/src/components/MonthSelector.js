@@ -4,6 +4,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import '../styles/Recipe.css';
 
 // Function to create drop down menu with months to allow user to search by month
 const MonthSelector = ({ month, setMonth, handleSubmit }) => {
@@ -34,7 +35,11 @@ const MonthSelector = ({ month, setMonth, handleSubmit }) => {
           ))}
         </Select>
       </FormControl>
-      <button type="submit" variant="contained"  disabled={!month}>
+      <button 
+      className='search-button'
+      type="submit" 
+      variant="contained"  
+      disabled={!month}>
         Search
       </button>
     </Box>
