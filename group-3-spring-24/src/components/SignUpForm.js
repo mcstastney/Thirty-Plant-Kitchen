@@ -64,8 +64,6 @@ function SignUpForm() {
 
   return (
     <>
-    <h2>Register for free!</h2>
-
     {/* Each form input field is controlled by the component's state
     values are set to corresponding state variable, onChange updates the state */}
     <form onSubmit={handleSubmit}>

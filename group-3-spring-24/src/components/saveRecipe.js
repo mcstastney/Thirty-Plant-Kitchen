@@ -30,10 +30,13 @@ export const handleSaveRecipe = async (customerId, recipe) => {
     if (response.ok) {
       const result = await response.json();
       console.log('Recipe saved:', result);
+      return { success: true };
     } else {
       console.error('Failed to save recipe:', response.statusText);
+      return { success: false };
     }
   } catch (error) {
     console.error('There was an error saving the recipe:', error);
+    return { success: false };
   }
 };

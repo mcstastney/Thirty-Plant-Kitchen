@@ -116,7 +116,7 @@
   font-size: 2rem;
 }
 
-/* .generate-button {
+.generate-button {
   margin: 5px;
   padding: 0.8rem;
   border: 1px solid #ccc;
@@ -124,7 +124,7 @@
   background-color: #0205035d;
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s;
-} */
+}
 
 /* Ingredient button styling when selected */
 .ingredient-button.selected {
@@ -142,6 +142,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Get full recipe button link */
 .results-button {
   background-color: #BC6C25;
   color: #FEFAE0;
@@ -150,6 +151,7 @@
   border-radius: 5px;
 }
 
+/* Save recipe button  */
 .save-button {
   background-color: #606C38;
   color: #FEFAE0;
@@ -157,6 +159,13 @@
   margin: 10px;
   border-radius: 5px;
 }
+
+/* View saved recipes button */
+.view-saved {
+  background-color: #283618;
+  color: #FEFAE0;
+}
+
 
 /* Recipe image styling */
 .recipe-body img {
