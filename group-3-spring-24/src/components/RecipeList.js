@@ -1,12 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/Recipe.css";
 import { handleSaveRecipe } from "./saveRecipe";
 import CircularProgressWithLabel from "../components/ProgressTracker";
-
-// 'UserContext' used to share data (customerId) with other components
-// import { UserContext } from "./UserContext";
-
-
+import { Link } from "react-router-dom";
 // Import useSelector hook from react-redux to access the customerId state
 import { useSelector } from 'react-redux';
 
@@ -14,6 +10,26 @@ import { useSelector } from 'react-redux';
 const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => {
   // Use useSelector to get the customerId from the Redux store
   const customerId = useSelector((state) => state.user.customerId);
+  const [savedRecipes, setSavedRecipes] = useState({});
+
+  // Asynchronous function to check if recipe already saved by user to savedRecipes state
+  const saveRecipe = async (customerId, recipe) => {
+    // recipe.uri is a unique identifier for each recipe
+    if (savedRecipes[recipe.uri]) {
+      return;
+    }
+
+  // Asynchronous function to call handleSaveRecipe
+  const result = await handleSaveRecipe(customerId, recipe);
+    if (result.success) {
+      // Spreads properties of previous state (...prev), preserving all existing saved recipes
+      setSavedRecipes((prev) => ({
+        ...prev,
+        // Add new property to state object with key recipe.uri and set value true
+        [recipe.uri]: true
+      }));
+    }
+  };
 
   return (
     <div className="recipe-body">
@@ -24,6 +40,8 @@ const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => {
         // If recipes available, display each recipe
         recipes.map((hit, index) => {
           const recipe = hit.recipe;
+          const isSaved = savedRecipes[recipe.uri];
+
           return (
             // Display details of each recipe inside a container
             <div key={recipe.uri}>
@@ -43,12 +61,24 @@ const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => {
                   Full Recipe
                 </a>
               </button>
+
               <button
                 className="save-button"
-                onClick={() => handleSaveRecipe(customerId, recipe)}
-              >
-                Save this recipe
+                tyle={{
+                backgroundColor: isSaved ? "#283618" : "#606C38",
+                color: "#FEFAE0"
+                }}
+                onClick={() => saveRecipe(customerId, recipe)}>
+                {isSaved ? "Recipe saved" : "Save this recipe"}
               </button>
+
+              <br></br>
+              
+            {isSaved && (
+                <button className="view-saved">
+                  <Link to="/MyAccount">View saved recipes</Link>
+                </button>
+              )}
             </div>
           );
         })
