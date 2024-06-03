@@ -5,6 +5,7 @@ import victoriaProfile from '../assets/victoria-profile.jpg'
 import abbieProfile from '../assets/abbie-about-img.JPG'
 import emmaProfile from'../assets/emma-profile.jpg'
 import Card from '../components/Card.js';
+import Footer from '../components/Footer.js';
 
 
 const AboutUs = () => {
@@ -41,7 +42,7 @@ const AboutUs = () => {
         <h2>Contact Us</h2>
         <p>If you have any questions or suggestions, feel free to reach out to us at <a href="mailto:thirtyplantkitchen@gmail.com">thirtyplantkitchen@gmail.com</a>.</p>
       </section>
-
+      <Footer/>
     </div>
   );
 };

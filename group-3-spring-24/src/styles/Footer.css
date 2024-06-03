@@ -1,9 +1,12 @@
 .homepage-footer {
   background-color: #283618;
   color: #fefae0;
-  margin-top: 15px;
   font-family: "Arvo", serif;
   font-weight: bold;
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .copyright {
