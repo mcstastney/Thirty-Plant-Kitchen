@@ -8,8 +8,11 @@ import { useSelector } from 'react-redux';
 
 // Function to return list of recipes or no recipes message
 const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => {
-  // Use useSelector to get the customerId from the Redux store
+  // Use useSelector to get the customerId and signin status from the Redux store
   const customerId = useSelector((state) => state.user.customerId);
+  const isSignedIn = useSelector((state) => state.user.isSignedIn);
+  // State of sign in message to display if user not signed in
+  const [showSignInMessage, setShowSignInMessage] = useState(false);
   const [savedRecipes, setSavedRecipes] = useState({});
 
   // Asynchronous function to check if recipe already saved by user to savedRecipes state
@@ -19,7 +22,7 @@ const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => {
       return;
     }
 
-  // Asynchronous function to call handleSaveRecipe
+  // Asynchronous function to call handleSaveRecipe and change state of recipe to saved
   const result = await handleSaveRecipe(customerId, recipe);
     if (result.success) {
       // Spreads properties of previous state (...prev), preserving all existing saved recipes
@@ -28,6 +31,15 @@ const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => {
         // Add new property to state object with key recipe.uri and set value true
         [recipe.uri]: true
       }));
+    }
+  };
+
+  // Function to show signin prompt if user saves recipe but not signed in
+  const handleSaveClick = (recipe) => {
+    if (!isSignedIn) {
+      setShowSignInMessage(true);
+    } else {
+      saveRecipe(customerId, recipe);
     }
   };
 
@@ -62,23 +74,25 @@ const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => {
                 </a>
               </button>
 
+              {/* Conditional formatting to change btn color & msg if recipe saved */}
               <button
                 className="save-button"
                 tyle={{
                 backgroundColor: isSaved ? "#283618" : "#606C38",
                 color: "#FEFAE0"
                 }}
-                onClick={() => saveRecipe(customerId, recipe)}>
+                onClick={() => handleSaveClick(recipe)}>
                 {isSaved ? "Recipe saved" : "Save this recipe"}
               </button>
 
               <br></br>
               
-            {isSaved && (
-                <button className="view-saved">
-                  <Link to="/MyAccount">View saved recipes</Link>
-                </button>
-              )}
+              {/* If recipe is saved, render a button to take user to their account */}
+              {isSaved && (
+                  <button className="view-saved">
+                    <Link to="/MyAccount">View saved recipes</Link>
+                  </button>
+                )}
             </div>
           );
         })
@@ -91,6 +105,17 @@ const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => {
           </p>
         )
       )}
+
+      {/* If user clicks save recipe and not signed in, display popup msg */}
+      {showSignInMessage && (
+              <div className="modal">
+                <div className="modal-content">
+                  <span className="close" onClick={() => setShowSignInMessage(false)}>&times;</span>
+                  <p>Please sign up to save recipes.</p>
+                  <button><Link to="/SignUp">Sign up</Link></button>
+                </div>
+              </div>
+            )}
     </div>
   );
 };
