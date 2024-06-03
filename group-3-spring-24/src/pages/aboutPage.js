@@ -10,7 +10,8 @@ import Footer from '../components/Footer.js';
 
 const AboutUs = () => {
   return (
-    <div className="container">
+    <>
+        <div className="container">
       <h1>About Us</h1>
       <p>Welcome to Thirty Plant Kitchen!</p>
       
@@ -42,8 +43,9 @@ const AboutUs = () => {
         <h2>Contact Us</h2>
         <p>If you have any questions or suggestions, feel free to reach out to us at <a href="mailto:thirtyplantkitchen@gmail.com">thirtyplantkitchen@gmail.com</a>.</p>
       </section>
-      <Footer/>
     </div>
+      <Footer/>
+    </>
   );
 };
 
