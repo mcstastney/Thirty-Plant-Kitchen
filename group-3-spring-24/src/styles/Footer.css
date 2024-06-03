@@ -3,11 +3,14 @@
   color: #fefae0;
   font-family: "Arvo", serif;
   font-weight: bold;
-  height: 10rem;
+  min-height: 10rem;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 
 .copyright {
