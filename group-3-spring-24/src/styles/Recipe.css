@@ -1,3 +1,4 @@
+
 /* Recipe intro section */
 .recipe-intro-container {
   display: grid;
@@ -36,7 +37,7 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .recipe-intro-container {
     grid-template-columns: 1fr; /* stack columns */
     gap: 50px;
@@ -53,6 +54,12 @@
   .info-card-container {
     flex-direction: column;
     margin: 5rem auto;
+    flex-wrap: wrap;
+  }
+
+  .info-card {
+    flex: 1 1 100%;
+    margin: 1rem 0;
   }
 }
 
