@@ -7,7 +7,6 @@ import InSeasonItems from '../components/InSeasonItems'; // Updated import
 import RecipeList from '../components/RecipeList';
 import RecipeInfoCard from '../components/RecipeInfoCard';
 import CircularProgressWithLabel from '../components/ProgressTracker';
-import Footer from '../components/Footer';
 // Import images
 import FarmersMarket from '../assets/stock-imgs/farmers-market.jpg';
 import Seasonal from '../assets/stock-imgs/seasonal.jpg';
@@ -374,7 +373,6 @@ const toggleHerbs = toggleSelection(setSelectedHerbs);
         </div>
       )}
     </div>
-    <Footer/>
     </>
   );
 };

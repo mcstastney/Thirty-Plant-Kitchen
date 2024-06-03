@@ -12,6 +12,7 @@ import SignUpForm from './pages/SignUp'
 import MyAccount from './pages/MyAccount';
 import Recipes from './pages/Recipes';
 import About from './pages/aboutPage';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
     <ThemeProvider theme={themeOptions}>
       <CssBaseline />
       <Provider store={store}>
+        <div className='body'>
     <Router>
         <Navbar />
         <Routes>
@@ -30,6 +32,8 @@ function App() {
             <Route path="/aboutPage" element={<About />} />
         </Routes>
     </Router>
+    </div>
+    <Footer/>
     </Provider>
 
     </ThemeProvider>

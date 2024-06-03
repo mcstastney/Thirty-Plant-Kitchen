@@ -1,5 +1,5 @@
 import SignUpForm from "../components/SignUpForm";
-import Footer from "../components/Footer";
+
 
 function Home() {
     return (
@@ -10,7 +10,6 @@ function Home() {
       <p>Plus, get exclusive access to our plant tracker and stay on top of your 30-a-week target!</p>
       <br></br>
       <SignUpForm/>
-      <Footer/>
       </>
     );
   }

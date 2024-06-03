@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../styles/Recipe.css';
 import VegCounter from '../components/VegCounter';
-import Footer from '../components/Footer';
+
 
 
 // Functional component uses 'useSelector' hook to get user info from redux store
@@ -76,7 +76,7 @@ export default function MyAccount() {
         </Link>
         
         <VegCounter/>  
-        <Footer/>
+        
       </div>
     );
   }
