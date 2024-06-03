@@ -13,7 +13,7 @@ const AboutUs = () => {
     <>
         <div className="container">
       <h1>About Us</h1>
-      <p>Welcome to Thirty Plant Kitchen!</p>
+      <p>Welcome to 30 Plant Kitchen!</p>
       
       <section className="section">
         <h2>Our Mission</h2>
@@ -31,7 +31,7 @@ const AboutUs = () => {
             <Card name="Emma" about="I have been learning to play chess this past year!" image={emmaProfile} />
             <Card name="Elisa" about="Input some text about Elisa" image={elisaProfile} />
             <Card name="Victoria" about="Input some text about Victoria" image={victoriaProfile} />
-            <Card name="Abbie" about="Input some text about Abbie" image={abbieProfile} />
+            <Card name="Abbie" about="When I'm not finding new recipes to share, I can be found in the pottery studio trying to create the perfect ramen bowl!" image={abbieProfile} />
             <Card name="Sahra" about="Input some text about Sahra" image="https://via.placeholder.com/150?text=Sahra" />
             <Card name="Shafia" about="Input some text about Shafia" image="https://via.placeholder.com/150?text=Shafia" />
         </div>
