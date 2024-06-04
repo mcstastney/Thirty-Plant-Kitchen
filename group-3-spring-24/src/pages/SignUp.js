@@ -80,6 +80,7 @@ function Home() {
         </div>
 
         <div id='signup-form'>
+          <Typography variant="h2" color={'secondary'} fontStyle={'italic'} margin={6}>Sign Me Up!</Typography>
           <SignUpForm />
         </div>
       </div>
