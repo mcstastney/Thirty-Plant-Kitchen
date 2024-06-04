@@ -110,6 +110,7 @@ const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => {
       {showSignInMessage && (
               <div className="modal">
                 <div className="modal-content">
+                {/* &times; is an HTML entity that represents the "×" character to indicate close button on modal */}
                   <span className="close" onClick={() => setShowSignInMessage(false)}>&times;</span>
                   <p>Please sign up to save recipes.</p>
                   <button><Link to="/SignUp">Sign up</Link></button>

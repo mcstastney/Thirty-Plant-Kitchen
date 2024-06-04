@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 // Import the reducers from customerSlice 
 import { storeCustomerId, storeFirstName, setSignInStatus } from '../redux/customerSlice';
-
+// Import CSS
+import "../styles/SignUp.css";
 
 function SignUpForm() {
   const [firstName, setFirstName] = useState('');
@@ -67,6 +68,7 @@ function SignUpForm() {
     {/* Each form input field is controlled by the component's state
     values are set to corresponding state variable, onChange updates the state */}
     <form onSubmit={handleSubmit}>
+      <div className='first-name'>
       <label>First name:</label>
       <input
         type="text"
@@ -74,7 +76,9 @@ function SignUpForm() {
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
       />
+      </div>
       <br></br>
+      <div className='surname'>
       <label>Surname:</label>
       <input
         type="text"
@@ -82,7 +86,9 @@ function SignUpForm() {
         value={lastName}
         onChange={(e) => setLastName(e.target.value)}
       />
+      </div>
       <br></br>
+      <div className='email-address'>
       <label>Email address:</label>
       <input
         type="email"
@@ -90,6 +96,7 @@ function SignUpForm() {
         value={emailAddress}
         onChange={(e) => setEmailAddress(e.target.value)}
       />
+      </div>
       <br></br>
 
       {/* On submitting form, 'handleSubmit' function is called  */}

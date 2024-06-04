@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS seasonal_produce;
-USE seasonal_produce;
+CREATE DATABASE IF NOT EXISTS thirty_plant_kitchen;
+USE thirty_plant_kitchen;
 
 CREATE TABLE IF NOT EXISTS Vegetable (
     vegetable_id INT PRIMARY KEY AUTO_INCREMENT,
