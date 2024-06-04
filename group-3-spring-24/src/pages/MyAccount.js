@@ -83,11 +83,22 @@ export default function MyAccount() {
         <Link to="/Recipes">
           <button type="button">Search recipes</button>
         </Link>
-        
+        <div className = 'counter'>
         <VegCounter/>  
-
+        <br></br>
+        <br></br> 
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
         <button onClick={handleLogout}>Logout</button>
         
+      </div>
       </div>
     );
   }
