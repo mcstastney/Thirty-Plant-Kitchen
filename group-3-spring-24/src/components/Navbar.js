@@ -34,10 +34,17 @@ const Navbar = () => {
     const isSignedIn = useSelector((state) => state.user.isSignedIn);
     const [emailAddress, setEmailAddress] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleLogin = async () => {
+        // Check if both email and password are provided
+        if (!emailAddress || !password) {
+            alert('Please enter your email and password');
+            return;
+        }
+
         const loginData = {
         email_address: emailAddress,
         password: password
@@ -53,11 +60,21 @@ const Navbar = () => {
         });
 
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            if (response.status === 401) {
+                // If the credentials are invalid, set the error message
+                alert('Please enter the email address and password you used to register, or create a new account.');
+                return;
+            } else {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return;
         }
 
         const result = await response.json();
         console.log('User logged in:', result);
+
+        // Clear any previous error messages
+        setError(null);
 
         // On user login, dispatch actions to update Redux store with user details and sign-in status
         dispatch(storeCustomerId(result.customer_id));
@@ -68,6 +85,7 @@ const Navbar = () => {
         navigate('/MyAccount');
         } catch (error) {
         console.error('Error logging in:', error);
+        setError('An unexpected error occurred. Please try again later.');
         }
     };
 
