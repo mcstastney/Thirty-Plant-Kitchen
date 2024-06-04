@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import '../styles/Recipe.css';
 import VegCounter from '../components/VegCounter';
 
 
@@ -74,8 +73,9 @@ export default function MyAccount() {
         <Link to="/Recipes">
           <button type="button">Search recipes</button>
         </Link>
-        
+        <div className = 'counter'>
         <VegCounter/>  
+        </div>
         
       </div>
     );
