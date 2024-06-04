@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import '../styles/Recipe.css';
 import VegCounter from '../components/VegCounter';
-
+import { logout } from '../redux/customerSlice';
 
 
 // Functional component uses 'useSelector' hook to get user info from redux store
 export default function MyAccount() {
   const customerId = useSelector((state) => state.user.customerId);
   const firstName = useSelector((state) => state.user.firstName);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // 'useState' hook to create state variable savedRecipes, initialized as empty array, and function 'setSavedRecipes' to update it
   const [savedRecipes, setSavedRecipes] = useState([]);
@@ -44,6 +47,13 @@ export default function MyAccount() {
               setLoading(false);
       }
     };
+
+    // Function to log user out and redirect to homepage
+    const handleLogout = () => {
+      dispatch(logout());
+      navigate('/');
+    };
+  
   
     return (
       <div>
@@ -75,8 +85,20 @@ export default function MyAccount() {
         </Link>
         <div className = 'counter'>
         <VegCounter/>  
-        </div>
+        <br></br>
+        <br></br> 
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <button onClick={handleLogout}>Logout</button>
         
+      </div>
       </div>
     );
   }

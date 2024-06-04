@@ -181,16 +181,18 @@ CREATE TABLE IF NOT EXISTS customers (
 		first_name VARCHAR(30) NOT NULL,
 		last_name VARCHAR(30) NOT NULL,
 		email_address VARCHAR(60) NOT NULL UNIQUE,
+        password VARCHAR(60),
 		CONSTRAINT pk_customer_id  PRIMARY KEY (customer_id)
 );
 
+
 INSERT INTO customers
-(first_name, last_name, email_address)
+(first_name, last_name, email_address, password)
 VALUES 
-("Sadie", "Lock", "sadie@hotmail.com"),
-("Jimmy", "Brown", "jimmyboy@gmail.com"),
-("Charlotte", "Green", "cgreen@hotmail.com"),
-("Alfie", "Ryan", "alfralf@gmail.com");
+("Sadie", "Lock", "sadie@hotmail.com", "Testingpassword1"),
+("Jimmy", "Brown", "jimmyboy@gmail.com", "Testingpassword2"),
+("Charlotte", "Green", "cgreen@hotmail.com", "Testingpassword3"),
+("Alfie", "Ryan", "alfralf@gmail.com", "Testingpassword4");
 
 CREATE TABLE IF NOT EXISTS saved_recipes (
     customer_id INT NOT NULL,

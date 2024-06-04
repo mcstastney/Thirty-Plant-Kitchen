@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import requests
 import json
-from db_utils import get_produce_for_month, get_fruits_for_month, get_legumes_for_month, get_nuts_for_month, get_herbs_for_month, get_saved_recipes, save_recipe, create_user
+from db_utils import get_produce_for_month, get_fruits_for_month, get_legumes_for_month, get_nuts_for_month, get_herbs_for_month, get_saved_recipes, save_recipe, create_user, login_user
 
 app = Flask(__name__)
 CORS(app, origins=['http://localhost:3000'])
@@ -16,7 +16,6 @@ def seasonal_produce():
         return jsonify({"error": "Invalid month"}), 400
     produce = get_produce_for_month(month)
     return jsonify({"produce": produce})
-
 
 @app.route('/api/seasonal-fruits', methods=['GET'])
 def seasonal_fruits():
@@ -53,13 +52,6 @@ def seasonal_herbs():
 
 # POST request to add new customer on sign-up
 @app.route ('/signup', methods=['POST'])
-# def add_new_customer():
-#     record = request.get_json()
-#     customer_id = create_user(record)
-#     record['customer_id'] = customer_id  # Add customer_id to the record
-#     print(record)
-#     return jsonify(record)
-
 def add_new_customer():
     try:
         record = request.get_json()
@@ -68,8 +60,33 @@ def add_new_customer():
         print(record)
         return jsonify(record)
     except Exception as e:
-        print(f"Error adding new customer: {e}")
+        print(f"Error adding new customer at endpoint: {e}")
         return jsonify({"error": str(e)}), 500
+    
+    
+# POST request to login customer
+@app.route('/login', methods=['POST'])
+def login_customer():
+    record = request.get_json()
+    email_address = record['email_address']
+    password = record['password']
+
+    try:
+        result = login_user(email_address, password)
+        if result:
+            response = {
+                'success': True,
+                'customer_id': result['customer_id'],
+                'first_name': result['first_name']
+            }
+        else:
+            response = {'success': False, 'message': 'Invalid email or password'}
+
+        return jsonify(response)
+
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)})
+
 
 # PUT request to save recipes to customer account
 @app.route('/save-recipe', methods=['PUT'])

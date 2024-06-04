@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AppBar, Box, Toolbar, Button, TextField } from '@mui/material';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { styled } from '@mui/system';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { storeCustomerId, storeFirstName, setSignInStatus } from '../redux/customerSlice';
 
 
 // custom style for elements
@@ -27,9 +28,48 @@ const CustomButton = styled(Button)({
     margin: '0 20px', // adjust horizontal spacing between links
 });
 
-const Navbar = () => {
 
+const Navbar = () => {
+    // Set the state of the user details
     const isSignedIn = useSelector((state) => state.user.isSignedIn);
+    const [emailAddress, setEmailAddress] = useState('');
+    const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleLogin = async () => {
+        const loginData = {
+        email_address: emailAddress,
+        password: password
+        };
+
+        try {
+        const response = await fetch('http://localhost:5000/login', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(loginData)
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log('User logged in:', result);
+
+        // On user login, dispatch actions to update Redux store with user details and sign-in status
+        dispatch(storeCustomerId(result.customer_id));
+        dispatch(storeFirstName(result.first_name));
+        dispatch(setSignInStatus(true));
+
+        // Navigate to MyAccount page after login
+        navigate('/MyAccount');
+        } catch (error) {
+        console.error('Error logging in:', error);
+        }
+    };
 
     return (
         <CustomAppBar position="static">
@@ -58,7 +98,9 @@ const Navbar = () => {
                     <TextField
                         variant="outlined"
                         size="small"
-                        placeholder="Username"
+                        placeholder="Email address"
+                        value={emailAddress}
+                        onChange={(e) => setEmailAddress(e.target.value)}
                         sx={{ marginRight: '10px', backgroundColor: 'white', borderRadius: '4px' }}
                     />
                     <TextField
@@ -66,9 +108,11 @@ const Navbar = () => {
                         size="small"
                         type="password"
                         placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         sx={{ marginRight: '10px', backgroundColor: 'white', borderRadius: '4px' }}
                     />
-                    <Button variant="contained" color="secondary">
+                    <Button variant="contained" color="secondary" onClick={handleLogin}>
                         Login
                     </Button>
                     <Button variant="outlined" color="inherit" sx={{ marginLeft: '10px' }}>

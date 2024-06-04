@@ -1,6 +1,8 @@
 import mysql.connector;
 from config import USER, PASSWORD, HOST;
 import json;
+import bcrypt;
+from mysql.connector import Error;
 
 db_name='thirty_plant_kitchen'
 
@@ -20,6 +22,7 @@ def connect_to_db(db_name):
         return connection
     except Exception as e:
         raise DbConnectionError(f"Failed to connect to database: {str(e)}")
+        
 
 def get_produce_for_month(month):
     try:
@@ -120,18 +123,23 @@ def create_user(record):
         connection = connect_to_db(db_name)
         my_cursor = connection.cursor()
 
+        # Hash the password
+        hashed_password = bcrypt.hashpw(record['password'].encode('utf-8'), bcrypt.gensalt())
+
         #  Query to insert customer (ID auto increments, so no need to add)
-        query = """INSERT INTO customers (first_name, last_name, email_address) 
-                   VALUES (%s, %s, %s)"""
+        query = """INSERT INTO customers (first_name, last_name, email_address, password) 
+                   VALUES (%s, %s, %s, %s)"""
         values = (
             record['first_name'],
             record['last_name'],
             record['email_address'],
+            hashed_password,
         )
 
         my_cursor.execute(query, values)
         connection.commit()
 
+        # Return customer_id for use in redux store
         customer_id = my_cursor.lastrowid
 
         my_cursor.close()
@@ -139,21 +147,55 @@ def create_user(record):
 
         return customer_id
 
-    except Exception:
-        raise DbConnectionError()
+    except Exception as e:
+        raise DbConnectionError(f"Error creating user: {str(e)}")
 
-    # finally:
-    #     if connection:
-    #         connection.close()
-    #         print("Insert customer DB connection is closed")
+    finally:
+        if connection:
+            connection.close()
+            print("Insert customer DB connection is closed")
 
 
 # testrecord = {
 #     'first_name': 'Tony',
 #     'last_name': 'Tiger',
 #     'email_address': 'bigtony@mail.com',
+#     'password': 'Testingpassword6',  
 #         }
 # create_user(testrecord)
+
+
+# Get user by credentials for login
+def login_user(email_address, password):
+    try:
+        # Connect to db
+        db_name = "thirty_plant_kitchen"
+        connection = connect_to_db(db_name)
+        my_cursor = connection.cursor()
+
+        # Query to fetch user by email
+        query = """SELECT customer_id, first_name, password FROM customers WHERE email_address = %s"""
+        my_cursor.execute(query, (email_address,))
+        result = my_cursor.fetchone()
+
+        if result and bcrypt.checkpw(password.encode('utf-8'), result[2].encode('utf-8')):
+            # If password matches, return user details
+            return {
+                'customer_id': result[0],
+                'first_name': result[1]
+            }
+        else:
+            # If password doesn't match or user not found
+            return None
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
+
+    finally:
+        if connection:
+            connection.close()
+            print("Login DB connection is closed")
 
 
 # Save recipe to customer account

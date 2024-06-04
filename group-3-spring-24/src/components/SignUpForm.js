@@ -13,14 +13,15 @@ import {
 import "../styles/SignUp.css";
 
 function SignUpForm() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [emailAddress, setEmailAddress] = useState("");
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [emailAddress, setEmailAddress] = useState('');
+  const [password, setPassword] = useState('');
 
   // useDispatch to create a dispatch function to dispatch actions
   const dispatch = useDispatch();
 
-  // useNavigate to navigate to MyAccount page after formm submit
+  // useNavigate to navigate to selected page after form submit
   const navigate = useNavigate();
 
   // Asynchronous function to handle form submission
@@ -32,6 +33,7 @@ function SignUpForm() {
       first_name: firstName,
       last_name: lastName,
       email_address: emailAddress,
+      password: password,
     };
 
     // 'fetch' function to send POST request to server via '/signup' endpoint with newCustomer data
@@ -73,47 +75,43 @@ function SignUpForm() {
     <>
       {/* Each form input field is controlled by the component's state
     values are set to corresponding state variable, onChange updates the state */}
-      <div className='form-container'>
-        <form className='form' onSubmit={handleSubmit}>
-          <div className='form-group'>
-            <label className='form-label'>First name:</label>
-            <input
-              className='signup-input'
-              type='text'
-              placeholder='Enter your first name'
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-          </div>
-          
-          <div className='form-group'>
-            <label className='form-label'>Surname:</label>
-            <input
-              className='signup-input'
-              type='text'
-              placeholder='Enter your surname'
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-          </div>
-          
-          <div className='form-group'>
-            <label className='form-label'>Email address:</label>
-            <input
-              className='signup-input'
-              type='email'
-              placeholder='Email Address'
-              value={emailAddress}
-              onChange={(e) => setEmailAddress(e.target.value)}
-            />
-          </div>
-          
-          <div className="btn-container">
-          {/* On submitting form, 'handleSubmit' function is called  */}
-          <button type='submit' className="signup-btn">Sign Up</button>
-          </div>
-        </form>
-      </div>
+    <form onSubmit={handleSubmit}>
+      <label>First name:</label>
+      <input
+        type="text"
+        placeholder="Enter your first name"
+        value={firstName}
+        onChange={(e) => setFirstName(e.target.value)}
+      />
+      <br></br>
+      <label>Surname:</label>
+      <input
+        type="text"
+        placeholder="Enter your surname"
+        value={lastName}
+        onChange={(e) => setLastName(e.target.value)}
+      />
+      <br></br>
+      <label>Email address:</label>
+      <input
+        type="email"
+        placeholder="Email Address"
+        value={emailAddress}
+        onChange={(e) => setEmailAddress(e.target.value)}
+      />
+      <br></br>
+      <label>Create password:</label> {/* New Password field */}
+        <input
+          type="password"
+          placeholder="Enter your password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <br></br>
+
+      {/* On submitting form, 'handleSubmit' function is called  */}
+      <button type="submit">Submit</button>
+    </form>
     </>
   );
 }
