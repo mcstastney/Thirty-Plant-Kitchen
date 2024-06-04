@@ -11,11 +11,12 @@ function SignUpForm() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
+  const [password, setPassword] = useState('');
 
   // useDispatch to create a dispatch function to dispatch actions
   const dispatch = useDispatch();
 
-  // useNavigate to navigate to MyAccount page after formm submit
+  // useNavigate to navigate to selected page after form submit
   const navigate = useNavigate();
 
   // Asynchronous function to handle form submission
@@ -27,6 +28,7 @@ function SignUpForm() {
       first_name: firstName,
       last_name: lastName,
       email_address: emailAddress,
+      password: password,
     };
 
     // 'fetch' function to send POST request to server via '/signup' endpoint with newCustomer data
@@ -91,6 +93,14 @@ function SignUpForm() {
         onChange={(e) => setEmailAddress(e.target.value)}
       />
       <br></br>
+      <label>Create password:</label> {/* New Password field */}
+        <input
+          type="password"
+          placeholder="Enter your password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <br></br>
 
       {/* On submitting form, 'handleSubmit' function is called  */}
       <button type="submit">Submit</button>
