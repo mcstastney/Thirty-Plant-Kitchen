@@ -79,13 +79,13 @@ def login_customer():
                 'customer_id': result['customer_id'],
                 'first_name': result['first_name']
             }
+            return jsonify(response)
         else:
             response = {'success': False, 'message': 'Invalid email or password'}
-
-        return jsonify(response)
+            return jsonify(response), 401
 
     except Exception as e:
-        return jsonify({'success': False, 'message': str(e)})
+        return jsonify({'success': False, 'message': str(e)}), 500
 
 
 # PUT request to save recipes to customer account

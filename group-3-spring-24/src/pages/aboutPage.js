@@ -4,7 +4,7 @@ import elisaProfile from "../assets/elisa-square-profile.jpg";
 import victoriaProfile from "../assets/victoria-profile.jpg";
 import abbieProfile from "../assets/abbie-about-img.JPG";
 import emmaProfile from "../assets/emma-profile.jpg";
-import Card from "../components/Card.js";
+import Card from "../components/TeamCard.js";
 import shafiaProfile from "../assets/shafia-profile.jpg";
 
 const AboutUs = () => {
@@ -35,9 +35,10 @@ const AboutUs = () => {
                 image={emmaProfile}
               />
               <Card
-                name="Elisa"
-                about="Input some text about Elisa"
+                name="Elisa McGarry"
+                about="Comms pro with a passion for creating digital services to empower people."
                 image={elisaProfile}
+                contact="https://www.linkedin.com/in/elisa-mcgarry/"
               />
               <Card
                 name="Victoria"

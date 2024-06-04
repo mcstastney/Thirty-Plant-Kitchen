@@ -78,7 +78,7 @@ footer {
   padding: 20px;
   text-align: center;
   width: 250px;
-  height: 300px;
+  height: auto;
   background-color: rgb(255, 255, 255);
 }
 
@@ -94,13 +94,13 @@ footer {
 .card .card-title {
   font-family: Arial, sans-serif;
   margin: 0;
-  color: rgba(134, 126, 126, 0.719);
+  color: rgba(14, 13, 13, 0.719);
   
 }
 
 .card .card-text {
   font-family: Arial, sans-serif;
-  color: rgba(134, 126, 126, 0.87);
+  color: rgba(99, 97, 97, 0.87);
   text-align: center;
 
 }
