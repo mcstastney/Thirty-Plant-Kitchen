@@ -45,7 +45,7 @@
         align-content: center;
         justify-items: center;
         align-items: center;
-        width: 80%;
+        max-width: 80%;
         margin: 5rem auto;
        
     }
@@ -88,7 +88,7 @@
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     }
 
-
+/* 
 .MuiTypography-h5 {
     margin-bottom: 12rem;
-}
+} */
