@@ -1,0 +1,94 @@
+
+
+.signup-container {
+    width: 100%;
+    position: relative;
+    text-align: center;
+}
+
+/* ------------ */
+/* HERO SECTION */
+/* ------------ */
+
+.signup-txt-container {
+    margin-bottom: 3rem;
+}
+
+.signup-title-container{
+    text-align: center;
+    top: 14%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.scroll-div{
+    padding: 3rem;
+}
+
+.hero-img-signup{
+    height: auto;
+    position: relative;
+    opacity: 0.65;
+} 
+
+
+/* ------------ */
+/* FEATURES SECTION */
+/* ------------ */
+.features-container-signup{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 10rem 8rem;
+        justify-content: center;
+        align-content: center;
+        justify-items: center;
+        align-items: center;
+        width: 80%;
+        margin: 5rem auto;
+       
+    }
+
+    .point1 {
+        grid-column: 1;
+        grid-row: 1;
+    }
+    
+    .point1-img {
+        grid-column: 2;
+        grid-row: 1;
+    }
+    
+    .point2 { 
+        grid-column: 2;
+        grid-row: 2;
+    }
+    
+    .point2-img {
+        grid-column: 1;
+        grid-row: 2;
+        max-height: 800px;
+    }
+    
+    .point3 {
+        grid-column: 1;
+        grid-row: 3;
+    }
+    
+    .point3-img {
+        grid-column: 2;
+        grid-row: 3;
+    }
+
+    .point1-img, .point2-img, .point3-img {
+        max-width: 800px;
+        max-height: auto;
+        border-radius: 15px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+
+
+.MuiTypography-h5 {
+    margin-bottom: 12rem;
+}
