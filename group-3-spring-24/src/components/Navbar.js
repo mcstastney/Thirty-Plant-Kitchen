@@ -3,7 +3,7 @@ import { AppBar, Box, Toolbar, Button, TextField } from '@mui/material';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { styled } from '@mui/system';
 import { useSelector, useDispatch } from 'react-redux';
-import { storeCustomerId, storeFirstName, setSignInStatus } from '../redux/customerSlice';
+import { storeCustomerId, storeFirstName, setSignInStatus, logout } from '../redux/customerSlice';
 
 
 // custom style for elements
@@ -112,9 +112,14 @@ const Navbar = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         sx={{ marginRight: '10px', backgroundColor: 'white', borderRadius: '4px' }}
                     />
+                    {!isSignedIn && (
                     <Button variant="contained" color="secondary" onClick={handleLogin}>
                         Login
-                    </Button>
+                    </Button>)} 
+                    {isSignedIn && (
+                    <Button variant="contained" color="secondary" onClick={() => {dispatch(logout()); navigate('/');}}>
+                        Logout
+                    </Button>)}    
                     <Button variant="outlined" color="inherit" sx={{ marginLeft: '10px' }}>
                     <Link to="/SignUp">Sign up</Link>
                     </Button>
