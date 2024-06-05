@@ -21,9 +21,10 @@ Tasks are organised and managed on [Jira](https://group-3-spring-24.atlassian.ne
 ## Set up required to run the app
 Follow the steps below in this order:
 ### SQL database set up
-Add your local SQL credentials (host/port, username, password) to the >backend>config.py file
-Open MySQL workbench on your desktop, login and click File> Open SQL Script. Navigate to the thirty__plant_kitchen database. Open and execute code to create the database. 
-You should have access to seasonal plant tables, a customer table and saved recipes table. 
+- Add your local SQL credentials (host/port, username, password) to the >backend>config.py file
+- Open MySQL workbench on your desktop, login and click File> Open SQL Script.
+- Navigate to the thirty__plant_kitchen database. Open and execute code to create the database.
+- You should have access to seasonal plant tables, a customer table and saved recipes table. 
 
 ### Python file set up
 1. CD into 'Backend' folder in the React app directory.
@@ -32,8 +33,9 @@ You should have access to seasonal plant tables, a customer table and saved reci
 ### React file set up
 1. CD into 'group-3-spring-24' folder in the React app directory. 
 2. Run these line by line in your terminal:
-npm install redux react-redux
-npm install @reduxjs/toolkit
-npm install
-npm i react-router-dom --save styled-components
-npm start
+   
+- npm install redux react-redux
+- npm install @reduxjs/toolkit
+- npm install
+- npm i react-router-dom --save styled-components
+- npm start
