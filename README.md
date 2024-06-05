@@ -20,25 +20,18 @@ Tasks are organised and managed on [Jira](https://group-3-spring-24.atlassian.ne
 
 ## Set up required to run the app
 Follow the steps below in this order:
-### SQL DB set up
-Add your local SQL password to the >backend>config.py file
-Open SQL on your desktop, login and click File> Open SQL Script. Navigate to the thirty_kitchen_database and the seasonal_produce database. Open both and execute code to create the SQL DBs
+### SQL database set up
+Add your local SQL credentials (host/port, username, password) to the >backend>config.py file
+Open MySQL workbench on your desktop, login and click File> Open SQL Script. Navigate to the thirty__plant_kitchen database. Open and execute code to create the database. 
+You should have access to seasonal plant tables, a customer table and saved recipes table. 
 
 ### Python file set up
-1.    You can ignore this step for testing – I’ve left my keys in the file. Just leaving it here so i remember to add it in the readme Add API_key and API_ID to the >backend>app.py file
-	
-2.     CD into backend folder:
-	cd location-on-your-local-drive\group-3-fullstack\group-3-spring-24\backend
-
-4.     Run these line by line in your terminal:
-	pip install flask-cors
-	pip install requests
-	pip install mysql-connector-python
-	python app.py
+1. CD into 'Backend' folder in the React app directory.
+2. Run: pip install -r requirements.txt in your terminal to install all of the relevant packages from the requirements.txt file.
 
 ### React file set up
-CD into frontend / main folder: cd location-on-your-local-drive\group-3-fullstack\group-3-spring-24
-Run these line by line:
+1. CD into 'group-3-spring-24' folder in the React app directory. 
+2. Run these line by line in your terminal:
 npm install redux react-redux
 npm install @reduxjs/toolkit
 npm install
