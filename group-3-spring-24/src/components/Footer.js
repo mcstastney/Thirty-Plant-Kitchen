@@ -4,7 +4,7 @@ function Footer() {
   return (
     <>
       <footer className="homepage-footer" role="footer">
-        <span className="copyright">
+        <span className="copyright" data-testid='copyright'> 
           <i className="fa-solid fa-copyright"  aria-label="img"></i>
         </span>
         <span className="cooked">Cooked up by </span>

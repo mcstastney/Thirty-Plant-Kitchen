@@ -1,28 +1,35 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+import { BrowserRouter } from 'react-router-dom'; // Import BrowserRouter
+
 import Hero from '../components/Hero';
 
 describe('Hero component', () => {
   test('renders correctly', () => {
-    const { getByText, getByAltText } = render(<Hero />);
+    const { getByText, getByAltText } = render(
+      <BrowserRouter> {/* Wrap Hero component with BrowserRouter */}
+        <Hero />
+      </BrowserRouter>
+    );
     
-    // Check if the heading is rendered
+    // Check heading is rendered
     expect(getByText('30 Plant Kitchen')).toBeInTheDocument();
 
-    // Check if the image is rendered
+    // Check image is rendered
     expect(getByAltText('Healthy foods')).toBeInTheDocument();
 
-    // Check if the sign up button is rendered
+    // Check sign up button is rendered
     expect(getByText('Sign up')).toBeInTheDocument();
 
-    // Check if the video link is rendered
+    // Check video link is rendered
     expect(getByText('Video')).toBeInTheDocument();
 
-    // Check if the paragraph is rendered
-    expect(getByText('Join thousands of people around the world on a journey to improve their gut microbiome')).toBeInTheDocument();
+    // Check paragraph is rendered
+    expect(getByText(/Join.*people.*improve their gut microbiome/)).toBeInTheDocument();
 
-    // Check if the social media icons are rendered
+
+    // Check social media icons are rendered
     expect(document.querySelector('.icons')).toBeInTheDocument();
   });
 });

@@ -70,14 +70,14 @@ describe('Navbar component', () => {
       </Provider>
     );
 
-    // Simulate entering invalid email and password
+    // entering invalid email and password
     fireEvent.change(getByPlaceholderText('Email address'), { target: { value: 'test@example.com' } });
     fireEvent.change(getByPlaceholderText('Password'), { target: { value: 'password' } });
 
-    // Simulate clicking the login button
+    // clicking login button
     fireEvent.click(getByText('Login'));
 
-    // Check if the error message is displayed
+    // Check if error message is displayed
     expect(getByText('Please enter the email address and password you used to register, or create a new account.')).toBeInTheDocument();
   });
 });
