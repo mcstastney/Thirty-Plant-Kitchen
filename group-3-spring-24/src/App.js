@@ -11,7 +11,7 @@ import Home from './pages/Home';
 import SignUpForm from './pages/SignUp';
 import MyAccount from './pages/MyAccount';
 import Recipes from './pages/Recipes';
-import About from './pages/aboutPage';
+import About from './pages/About';
 import Footer from './components/Footer';
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
             <Route path="/SignUp" element={<SignUpForm />} />
             <Route path="/myaccount" element={<MyAccount />} />
             <Route path="/Recipes" element={<Recipes />} />
-            <Route path="/aboutPage" element={<About />} />
+            <Route path="/About" element={<About />} />
           </Routes>
         </div>
         <Footer/>

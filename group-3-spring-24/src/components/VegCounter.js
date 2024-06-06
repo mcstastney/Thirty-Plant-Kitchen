@@ -79,9 +79,9 @@ function VegCounter() {
             return <p>Congratulations! You've reached 30 plants! Keep up the great work and continue exploring new plant-based foods!</p>;
         } else if (plantCount >= 31) {
           return <p>Check out these sources for more information on gut health: 
-          <a href="https://www.science.org.au/curious/people-medicine/gut-bacteria">Gut Bacteria</a> 
+          <a href="https://www.science.org.au/curious/people-medicine/gut-bacteria">Gut Bacteria </a> 
           and 
-          <a href="https://insight.microba.com/blog/the-important-role-of-serotonin-in-your-gut/">The Role of Serotonin in Your Gut</a>.
+          <a href="https://insight.microba.com/blog/the-important-role-of-serotonin-in-your-gut/"> The Role of Serotonin in Your Gut</a>.
           </p>;
     }
    };
