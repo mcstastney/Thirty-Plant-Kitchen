@@ -68,8 +68,7 @@ VALUES
 ('Blueberry', 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1),
 ('Redcurrant', 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1),
 ('Blackcurrant', 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1),
-('Rhubarb', 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0),
-('testcase', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+('Rhubarb', 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0);
 
 CREATE TABLE IF NOT EXISTS Legumes (
     legume_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -169,11 +168,11 @@ CREATE TABLE IF NOT EXISTS Grains (
 
 INSERT INTO Grains (grain_name, january, february, march, april, may, june, july, august, september, october, november, december)
 VALUES
-('Wheat', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-('Barley', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-('Oats', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-('Rye', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-('Spelt', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+('Wheat', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0),
+('Barley', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0),
+('Oats', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0),
+('Rye', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0),
+('Spelt', 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0);
 
 
 CREATE TABLE IF NOT EXISTS customers (

@@ -27,11 +27,13 @@ const Recipes = () => {
   const [inSeasonLegumes, setInSeasonLegumes] = useState([]);
   const [inSeasonNuts, setInSeasonNuts] = useState([]);
   const [inSeasonHerbs, setInSeasonHerbs] = useState([]);
+  const [inSeasonGrains, setInSeasonGrains] = useState([]);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [selectedFruits, setSelectedFruits] = useState([]);
   const [selectedLegumes, setSelectedLegumes] = useState([])
   const [selectedNuts, setSelectedNuts] = useState([])
   const [selectedHerbs, setSelectedHerbs] = useState([])
+  const [selectedGrains, setSelectedGrains] = useState([])
   const [loading, setLoading] = useState(false); // State for loading status
   const [recipes, setRecipes] = useState([]);
   const [month, setMonth] = useState(''); // State for selected month
@@ -51,18 +53,20 @@ const fetchInSeasonItems = () => {
     fetch(`http://localhost:5000/api/seasonal-fruits?month=${month}`),
     fetch(`http://localhost:5000/api/seasonal-legumes?month=${month}`),
     fetch(`http://localhost:5000/api/seasonal-nuts?month=${month}`),
-    fetch(`http://localhost:5000/api/seasonal-herbs?month=${month}`)
+    fetch(`http://localhost:5000/api/seasonal-herbs?month=${month}`),
+    fetch(`http://localhost:5000/api/seasonal-grains?month=${month}`)
   ])
     .then(responses => Promise.all(responses.map(response => response.json()))) // Parse response as json
     .then(data => {
-      const [ingredientsData, fruitsData, legumesData, nutsData, herbsData] = data;
+      const [ingredientsData, fruitsData, legumesData, nutsData, herbsData, grainsData] = data;
 
-      // Update states with in-season veg/fruit/legumes
+      // Update states with in-season veg/fruit/legumes etc
       setInSeasonIngredients(ingredientsData.produce);
       setInSeasonFruits(fruitsData.fruits);
       setInSeasonLegumes(legumesData.legumes);
       setInSeasonNuts(nutsData.nuts);
       setInSeasonHerbs(herbsData.herbs);
+      setInSeasonGrains(grainsData.grains);
       setLoading(false); // Set loading state to false when fetch complete
     })
 
@@ -94,6 +98,7 @@ const toggleFruit = toggleSelection(setSelectedFruits);
 const toggleLegumes = toggleSelection(setSelectedLegumes);
 const toggleNuts = toggleSelection(setSelectedNuts);
 const toggleHerbs = toggleSelection(setSelectedHerbs);
+const toggleGrains = toggleSelection(setSelectedGrains);
   
   // Function to fetch recipes based on selected ingredients
   const fetchRecipes = () => {
@@ -102,9 +107,11 @@ const toggleHerbs = toggleSelection(setSelectedHerbs);
     // Fetch recipes for each selected veg/fruit/legume
     const queries = [
       ...selectedIngredients,
-      ...selectedFruits, ...selectedLegumes,
+      ...selectedFruits, 
+      ...selectedLegumes,
       ...selectedNuts,
-      ...selectedHerbs
+      ...selectedHerbs,
+      ...selectedGrains,
     ].map(item => {
         return fetch(`http://127.0.0.1:5000/recipes?q=${item}`)
             
@@ -193,6 +200,7 @@ const toggleHerbs = toggleSelection(setSelectedHerbs);
     setSelectedLegumes([]);
     setSelectedNuts([]);
     setSelectedHerbs([]);
+    setSelectedGrains([]);
     setRecipes([]);
     setSearchClicked(false);
     setShowNoRecipesMessage(false);
@@ -206,6 +214,7 @@ const toggleHerbs = toggleSelection(setSelectedHerbs);
       setSelectedLegumes([]);
       setSelectedNuts([]);
       setSelectedHerbs([]);
+      setSelectedGrains([]);
       fetchInSeasonItems();
     }
   }, [month]);
@@ -345,6 +354,15 @@ const toggleHerbs = toggleSelection(setSelectedHerbs);
                 month={month}
               />
             </div>
+            <div className='ingredient-category'>
+              <InSeasonItems
+                title={'Grains'}
+                items={inSeasonGrains}
+                selectedItems={selectedGrains}
+                toggleItem={toggleGrains}
+                month={month}
+              />
+            </div>
   
               
               {/* Button for generating recipes */}
@@ -357,7 +375,8 @@ const toggleHerbs = toggleSelection(setSelectedHerbs);
                     ...selectedFruits,
                     ...selectedLegumes,
                     ...selectedNuts,
-                    ...selectedHerbs
+                    ...selectedHerbs,
+                    ...selectedGrains,
                   ].length === 0
                 }
               >
