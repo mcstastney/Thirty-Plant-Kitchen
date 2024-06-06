@@ -24,18 +24,19 @@ Follow the steps below in this order:
 - Add your local SQL credentials (host/port, username, password) to the >backend>config.py file
 - Open MySQL workbench on your desktop, login and click File> Open SQL Script.
 - Navigate to the thirty__plant_kitchen database. Open and execute code to create the database.
-- You should have access to seasonal plant tables, a customer table and saved recipes table. 
+- You should have access to seasonal 6 plant tables, a customer table and saved recipes table. 
 
 ### Python file set up
 1. CD into 'Backend' folder in the React app directory.
 2. Run: pip install -r requirements.txt in your terminal to install all of the relevant packages from the requirements.txt file.
+3. Run: python app.py to start the server. 
 
 ### React file set up
 1. CD into 'group-3-spring-24' folder in the React app directory. 
 2. Run these line by line in your terminal:
    
+- npm install
 - npm install redux react-redux
 - npm install @reduxjs/toolkit
-- npm install
 - npm i react-router-dom --save styled-components
 - npm start
