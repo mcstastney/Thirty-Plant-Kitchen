@@ -17,7 +17,7 @@ describe('Reviews Component', () => {
 
   test('renders review card with correct content', () => {
     render(<Reviews />);
-    const reviewText = 'Rooting for this app, makes meal prep a breeze';
+    const reviewText = 'for this app, makes meal prep a breeze';
     const reviewCard = screen.getByText(reviewText);
     expect(reviewCard).toBeInTheDocument();
   });

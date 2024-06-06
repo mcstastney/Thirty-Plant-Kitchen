@@ -1,16 +1,4 @@
-/* import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-@font-face {
-  font-family: 'sergio_trendyregular';
-  src: url('sergio_trendy-webfont.woff2') format('woff2'),
-       url('sergio_trendy-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-
-}
-
-
-
+/* original css reset pre-MUI */
 /* Reset CSS */
 *,
 *::before,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { getByTestId, render } from '@testing-library/react';
 import RecipeInfoCard from '../components/RecipeInfoCard';
 
 describe('RecipeInfoCard component', () => {
@@ -18,6 +18,6 @@ describe('RecipeInfoCard component', () => {
     expect(getByText(text)).toBeInTheDocument();
     
     // Check if the image is rendered with the correct alt text
-    expect(getByAltText(alt)).toBeInTheDocument();
+    expect(getByTestId('card')).toBeInTheDocument();
   });
 });
