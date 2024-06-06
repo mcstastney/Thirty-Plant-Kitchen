@@ -75,7 +75,7 @@ function SignUpForm() {
     <>
       {/* Each form input field is controlled by the component's state
     values are set to corresponding state variable, onChange updates the state */}
-    <form onSubmit={handleSubmit}>
+    <form data-testid="signup-form" onSubmit={handleSubmit}>
       <label>First name:</label>
       <input
         type="text"

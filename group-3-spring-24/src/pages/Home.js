@@ -6,8 +6,10 @@ import "../App.css";
 function Home() {
   return (
     <>
+     <div data-testid="homepage">
       <Hero/>
       <Reviews/>
+      </div>
     </>
   );
 }

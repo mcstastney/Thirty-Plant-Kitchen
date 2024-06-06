@@ -90,7 +90,7 @@ const Navbar = () => {
     };
 
     return (
-        <CustomAppBar position="static">
+        <CustomAppBar position="static" role='navigation'> 
             <Toolbar sx={{ height: '100%', display: 'flex', justifyContent: 'space-between', padding: '0 20px' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <img src="./30plant-kitchen-logo-trans-bg.png" alt="30 Plant Kitchen logo" style={{ height: '9rem', marginRight: '20px' }}/>
