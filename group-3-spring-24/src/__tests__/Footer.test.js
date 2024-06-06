@@ -7,11 +7,11 @@ describe('Footer component', () => {
     render(<Footer />);
     
     // test if footer is in doc
-    const footerElement = screen.getByRole('contentinfo');
+    const footerElement = screen.getByRole('footer');
     expect(footerElement).toBeInTheDocument();
 
     // test for copyright icon present
-    const copyrightIcon = screen.getByLabelText(/copyright/i);
+    const copyrightIcon = screen.getByTestId('copyright');
     expect(copyrightIcon).toBeInTheDocument();
 
     // test for expected text present

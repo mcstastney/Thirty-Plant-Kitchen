@@ -12,7 +12,7 @@ describe('VegCounter', () => {
   beforeEach(() => {
     store = mockStore({
       plantCounter: {
-        plantCount: 0, // Initialize plant count to 0 for testing
+        plantCount: 0, // initialise to 0 for tests
       },
     });
   });
@@ -25,9 +25,9 @@ describe('VegCounter', () => {
     );
 
     expect(getByText('Plant tracker')).toBeInTheDocument();
-    expect(getByText('0')).toBeInTheDocument(); // Ensure initial plant count is rendered
+    expect(getByText('0')).toBeInTheDocument(); // initial plant count is rendered
 
-    // Ensure buttons are rendered
+    // buttons are rendered
     expect(getByRole('button', { name: /vegetable/i })).toBeInTheDocument();
     expect(getByRole('button', { name: /fruit/i })).toBeInTheDocument();
     expect(getByRole('button', { name: /nuts\/seed/i })).toBeInTheDocument();
@@ -47,8 +47,8 @@ describe('VegCounter', () => {
 
     fireEvent.click(getByRole('button', { name: /vegetable/i }));
 
-    expect(getByText('1')).toBeInTheDocument(); // Ensure plant count is incremented
+    expect(getByText('1')).toBeInTheDocument(); //check increments as expected
   });
 
-  // Add more tests for other button clicks, message display, etc.
+  // aim to add more tests for other button clicks, message display, etc.
 });
