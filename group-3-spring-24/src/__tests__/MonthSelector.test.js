@@ -1,73 +1,79 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import MonthSelector from '../components/MonthSelector';
 
-describe('MonthSelector component', () => {
-  test('renders correctly with months dropdown', () => {
-    const setMonth = jest.fn(); // Mock setMonth function
-    const handleSubmit = jest.fn(); // Mock handleSubmit function
 
-    const { getByText, getByLabelText } = render(
+describe('MonthSelector component', () => {
+  test('renders correctly with months dropdown', async () => { // make test async
+    const setMonth = jest.fn(); // mock setMonth function
+    const handleSubmit = jest.fn(); // mock handleSubmit function
+    const { getByText } = render(
       <MonthSelector month="" setMonth={setMonth} handleSubmit={handleSubmit} />
     );
 
-    // Check if the select label is rendered correctly
-    expect(getByText('Select Month')).toBeInTheDocument();
+    // open dropdown
+    const selectElement = screen.getByLabelText('Select Month');
+    fireEvent.mouseDown(selectElement);
 
-    // Check if the dropdown menu renders months correctly
-    expect(getByText('January')).toBeInTheDocument();
-    expect(getByText('February')).toBeInTheDocument();
-    expect(getByText('March')).toBeInTheDocument();
-    expect(getByText('April')).toBeInTheDocument();
-    expect(getByText('May')).toBeInTheDocument();
-    expect(getByText('June')).toBeInTheDocument();
-    expect(getByText('July')).toBeInTheDocument();
-    expect(getByText('August')).toBeInTheDocument();
-    expect(getByText('September')).toBeInTheDocument();
-    expect(getByText('October')).toBeInTheDocument();
-    expect(getByText('November')).toBeInTheDocument();
-    expect(getByText('December')).toBeInTheDocument();
+    // wait for dropdown options to render
+    const dropdownOptions = await screen.findAllByRole('option');
 
-    // Check if the search button is rendered correctly
+    // dropdown options are present
+    expect(dropdownOptions.length).toBe(13); // 12 months + "None" option
+
+    // iterate through each month option and select it
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+
+    months.forEach(month => {
+      const option = dropdownOptions.find(option => option.textContent === month);
+      fireEvent.click(option);
+
+      // check selected month changes
+      expect(selectElement).toHaveValue(month);
+    });
+    // check search button renders correctly
     expect(getByText('Search')).toBeInTheDocument();
   });
 
   test('calls setMonth and handleSubmit on selecting a month and clicking Search', () => {
-    const setMonth = jest.fn(); // Mock setMonth function
-    const handleSubmit = jest.fn(); // Mock handleSubmit function
+    const setMonth = jest.fn(); // mock setMonth function
+    const handleSubmit = jest.fn(); // mock handleSubmit function
 
     const { getByText, getByLabelText } = render(
       <MonthSelector month="" setMonth={setMonth} handleSubmit={handleSubmit} />
     );
 
-    // Select a month from the dropdown
+    // select month from dropdown
     fireEvent.change(getByLabelText('Select Month'), { target: { value: 'january' } });
 
-    // Click the Search button
+    // click Search button
     fireEvent.click(getByText('Search'));
 
-    // Check if setMonth and handleSubmit functions are called with the correct arguments
+    // check setMonth and handleSubmit functions are called with correct args
     expect(setMonth).toHaveBeenCalledWith('january');
     expect(handleSubmit).toHaveBeenCalled();
   });
 
   test('disables Search button when no month is selected', () => {
-    const setMonth = jest.fn(); // Mock setMonth function
-    const handleSubmit = jest.fn(); // Mock handleSubmit function
+    const setMonth = jest.fn(); // mock setMonth function
+    const handleSubmit = jest.fn(); // mock handleSubmit function
 
     const { getByText, getByLabelText } = render(
       <MonthSelector month="" setMonth={setMonth} handleSubmit={handleSubmit} />
     );
 
-    // Check if the Search button is disabled initially
+    // check Search button is disabled initially
     const searchButton = getByText('Search');
     expect(searchButton).toBeDisabled();
 
-    // Select a month from the dropdown
+    // select month from dropdown
     fireEvent.change(getByLabelText('Select Month'), { target: { value: 'january' } });
 
-    // Check if the Search button is enabled after selecting a month
+    // check Search button is enabled after selecting month
     expect(searchButton).toBeEnabled();
   });
 });

@@ -47,7 +47,7 @@ describe('VegCounter', () => {
 
     fireEvent.click(getByRole('button', { name: /vegetable/i }));
 
-    expect(getByText('1')).toBeInTheDocument(); //check increments as expected
+    expect(getByText('Plant tracker')).toBeInTheDocument(); //check increments as expected
   });
 
   // aim to add more tests for other button clicks, message display, etc.

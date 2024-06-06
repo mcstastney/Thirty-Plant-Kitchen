@@ -3,7 +3,7 @@ import "../styles/Reviews.css";
 
 function Reviews() {
   return (
-    <div className="reviews-container">
+    <div className="reviews-container" data-testid='reviews-container'>
       <h3 className="reviews">Reviews</h3>
 
       <div className="cards">

@@ -15,6 +15,7 @@ const MonthSelector = ({ month, setMonth, handleSubmit }) => {
   ];
 
   return (
+        <div data-testid="select-month">
     <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
       <FormControl sx={{ minWidth: 200 }}>
         <InputLabel id="month-label">Select Month</InputLabel>
@@ -24,7 +25,7 @@ const MonthSelector = ({ month, setMonth, handleSubmit }) => {
           value={month}
           onChange={(e) => setMonth(e.target.value)}
           label="Select Month"
-        >
+          >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
@@ -43,6 +44,7 @@ const MonthSelector = ({ month, setMonth, handleSubmit }) => {
         Search
       </button>
     </Box>
+        </div>
   );
 };
 

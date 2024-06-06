@@ -23,9 +23,12 @@ const renderWithProviders = (ui, { reduxState } = {}) => {
   );
 };
 
+// this section is throwing errors, need to console.log to debug later
+// issue appears to come from undefined CustomerId, could be redux store related but seems to be set up correctly in the customer slice
+// 3 tests skipped
 describe('RecipeList', () => {
   test('renders loading state', () => {
-    renderWithProviders(<RecipeList loading={true} recipes={[]} showNoRecipesMessage={false} />);
+    renderWithProviders(<RecipeList loading={true} recipes={[]} showNoRecipesMessage={false} />); 
     expect(screen.getByText('Loading...')).toBeInTheDocument();
   });
 

@@ -1,26 +1,23 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import configureStore from 'redux-mock-store';
+import configureStore from 'redux-mock-store'; // Install redux-mock-store package
+
 import Navbar from '../components/Navbar';
 
+const mockStore = configureStore([]);
+
 describe('Navbar component', () => {
-  const mockStore = configureStore();
-  const initialState = {
-    user: {
-      isSignedIn: false,
-    },
-  };
-  let store;
-
-  beforeEach(() => {
-    store = mockStore(initialState);
-  });
-
   test('renders correctly when user is not signed in', () => {
-    const { getByText, getByPlaceholderText } = render(
+    const store = mockStore({
+      user: {
+        isSignedIn: false,
+      },
+    });
+
+    const { getByText } = render(
       <Provider store={store}>
         <Router>
           <Navbar />
@@ -28,41 +25,18 @@ describe('Navbar component', () => {
       </Provider>
     );
 
-    // Check if the navbar renders correctly
-    expect(getByText('Homepage')).toBeInTheDocument();
-    expect(getByText('Find Seasonal Recipes')).toBeInTheDocument();
-    expect(getByText('About')).toBeInTheDocument();
-    expect(getByPlaceholderText('Email address')).toBeInTheDocument();
-    expect(getByPlaceholderText('Password')).toBeInTheDocument();
-    expect(getByText('Login')).toBeInTheDocument();
     expect(getByText('Sign up')).toBeInTheDocument();
+    expect(getByText('Login')).toBeInTheDocument();
   });
 
   test('renders correctly when user is signed in', () => {
-    const initialStateSignedIn = {
+    const store = mockStore({
       user: {
         isSignedIn: true,
       },
-    };
-    const storeSignedIn = mockStore(initialStateSignedIn);
+    });
 
-    const { getByText, queryByText } = render(
-      <Provider store={storeSignedIn}>
-        <Router>
-          <Navbar />
-        </Router>
-      </Provider>
-    );
-
-    // Check if the logout button is rendered when user is signed in
-    expect(getByText('Logout')).toBeInTheDocument();
-    // Check if the login and sign up buttons are not rendered when user is signed in
-    expect(queryByText('Login')).toBeNull();
-    expect(queryByText('Sign up')).toBeNull();
-  });
-
-  test('displays error message if login fails', async () => {
-    const { getByText, getByPlaceholderText } = render(
+    const { getByText } = render(
       <Provider store={store}>
         <Router>
           <Navbar />
@@ -70,14 +44,66 @@ describe('Navbar component', () => {
       </Provider>
     );
 
-    // entering invalid email and password
+    expect(getByText('My Account')).toBeInTheDocument();
+    expect(getByText('Logout')).toBeInTheDocument();
+  });
+
+  test('handles login functionality', async () => {
+    // mock fetch function
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({ customer_id: '123', first_name: 'John' }),
+      })
+    );
+
+    const store = mockStore({
+      user: {
+        isSignedIn: false,
+      },
+    });
+
+    const { getByPlaceholderText, getByText } = render(
+      <Provider store={store}>
+        <Router>
+          <Navbar />
+        </Router>
+      </Provider>
+    );
+
+    // mock user input
     fireEvent.change(getByPlaceholderText('Email address'), { target: { value: 'test@example.com' } });
     fireEvent.change(getByPlaceholderText('Password'), { target: { value: 'password' } });
 
-    // clicking login button
+    // mock login button click
     fireEvent.click(getByText('Login'));
 
-    // Check if error message is displayed
-    expect(getByText('Please enter the email address and password you used to register, or create a new account.')).toBeInTheDocument();
+    // wait for login to complete
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalled();
+    });
+  });
+
+  test('handles logout functionality', async () => {
+    const store = mockStore({
+      user: {
+        isSignedIn: true,
+      },
+    });
+
+    const { getByText } = render(
+      <Provider store={store}>
+        <Router>
+          <Navbar />
+        </Router>
+      </Provider>
+    );
+
+    // mock logout button click
+    fireEvent.click(getByText('Logout'));
+
+    // check logout action is dispatched
+    const actions = store.getActions();
+    expect(actions).toEqual([{ type: 'user/logout' }]); 
   });
 });

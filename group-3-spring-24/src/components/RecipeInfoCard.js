@@ -34,6 +34,7 @@ export default function RecipeInfoCard({image, alt, title, text}) {
         image={image}
         title={alt}
       />
+      <div data-testid='card'>
       <CardContent sx={styles.content}>
         <Typography gutterBottom variant="h4" component="div">
           {title}
@@ -42,6 +43,7 @@ export default function RecipeInfoCard({image, alt, title, text}) {
           {text}
         </Typography>
       </CardContent>
+    </div>
     </Card>
   );
 }

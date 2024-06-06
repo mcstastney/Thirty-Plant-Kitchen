@@ -28,7 +28,6 @@ describe('Hero component', () => {
     // Check paragraph is rendered
     expect(getByText(/Join.*people.*improve their gut microbiome/)).toBeInTheDocument();
 
-
     // Check social media icons are rendered
     expect(document.querySelector('.icons')).toBeInTheDocument();
   });

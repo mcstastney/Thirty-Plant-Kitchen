@@ -3,16 +3,27 @@ import { render, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import SignUpForm from '../components/SignUpForm'; 
 import { Provider } from 'react-redux';
-import { store } from '../redux/store'; 
+import configureStore from 'redux-mock-store'; // Import redux-mock-store
+import fetchMock from 'jest-fetch-mock'; // Import jest-fetch-mock
+
+const mockStore = configureStore([]); // Create a mock Redux store
 
 describe('SignUpForm', () => {
+  beforeEach(() => {
+    fetchMock.resetMocks(); // Reset mock fetch calls before each test
+  });
+
   test('submits form with correct data', async () => {
+    const store = mockStore({}); // Create a mock store
     const mockFirstName = 'John';
     const mockLastName = 'Doe';
     const mockEmailAddress = 'john.doe@example.com';
     const mockPassword = 'password';
 
-    // Render the SignUpForm component wrapped in a Provider with the store and Router
+    // Mock API response
+    fetchMock.mockResponse(JSON.stringify({ customer_id: '123' }));
+
+    // Render the SignUpForm component wrapped in a Provider with the mock store and Router
     const { getByPlaceholderText, getByText, getByTestId } = render(
       <Provider store={store}>
         <Router>
