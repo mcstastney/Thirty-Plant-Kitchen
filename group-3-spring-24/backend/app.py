@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import requests
 import json
-from db_utils import get_produce_for_month, get_fruits_for_month, get_legumes_for_month, get_nuts_for_month, get_herbs_for_month, get_saved_recipes, save_recipe, create_user, login_user
+from db_utils import get_produce_for_month, get_fruits_for_month, get_legumes_for_month, get_nuts_for_month, get_herbs_for_month, get_saved_recipes, save_recipe, create_user, login_user, get_grains_for_month
 
 app = Flask(__name__)
 CORS(app, origins=['http://localhost:3000'])
@@ -48,6 +48,14 @@ def seasonal_herbs():
         return jsonify({"error": "Invalid month"}), 400
     herbs = get_herbs_for_month(month)
     return jsonify({"herbs": herbs})
+
+@app.route('/api/seasonal-grains', methods=['GET'])
+def seasonal_grains():
+    month = request.args.get('month', '').lower()
+    if month not in ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']:
+        return jsonify({"error": "Invalid month"}), 400
+    grains = get_grains_for_month(month)
+    return jsonify({"grains": grains})
 
 
 # POST request to add new customer on sign-up

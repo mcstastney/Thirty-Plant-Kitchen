@@ -36,10 +36,10 @@ def get_produce_for_month(month):
         return produce
     except Exception as e:
         raise DbConnectionError(f"Error fetching produce: {str(e)}")
-    # finally:
-    #     if connection:
-    #         connection.close()
-    #         print("Get plants DB connection is closed")
+    finally:
+        if connection:
+            connection.close()
+            print("Get plants DB connection is closed")
 
 
 def get_fruits_for_month(month):
@@ -54,10 +54,10 @@ def get_fruits_for_month(month):
         return fruit
     except Exception as e:
         raise DbConnectionError(f"Error fetching produce: {str(e)}")
-    # finally:
-    #     if connection:
-    #         connection.close()
-    #         print("Get plants DB connection is closed")
+    finally:
+        if connection:
+            connection.close()
+            print("Get plants DB connection is closed")
 
 
 def get_legumes_for_month(month):
@@ -72,10 +72,10 @@ def get_legumes_for_month(month):
         return legume
     except Exception as e:
         raise DbConnectionError(f"Error fetching produce: {str(e)}")
-    # finally:
-    #     if connection:
-    #         connection.close()
-    #         print("Get plants DB connection is closed")
+    finally:
+        if connection:
+            connection.close()
+            print("Get plants DB connection is closed")
 
 
 def get_nuts_for_month(month):
@@ -90,10 +90,10 @@ def get_nuts_for_month(month):
         return nuts
     except Exception as e:
         raise DbConnectionError(f"Error fetching produce: {str(e)}")
-    # finally:
-    #     if connection:
-    #         connection.close()
-    #         print("Get plants DB connection is closed")
+    finally:
+        if connection:
+            connection.close()
+            print("Get plants DB connection is closed")
 
 
 def get_herbs_for_month(month):
@@ -108,10 +108,27 @@ def get_herbs_for_month(month):
         return herbs
     except Exception as e:
         raise DbConnectionError(f"Error fetching produce: {str(e)}")
-    # finally:
-    #     if connection:
-    #         connection.close()
-    #         print("Get plants DB connection is closed")
+    finally:
+        if connection:
+            connection.close()
+            print("Get plants DB connection is closed")
+
+def get_grains_for_month(month):
+    try:
+        connection = connect_to_db('thirty_plant_kitchen')
+        cursor = connection.cursor()
+        query = f"SELECT grain_name FROM Grains WHERE {month} = 1"
+        cursor.execute(query)
+        grains = [row[0] for row in cursor.fetchall()]
+        cursor.close()
+        connection.close()
+        return grains
+    except Exception as e:
+        raise DbConnectionError(f"Error fetching produce: {str(e)}")
+    finally:
+        if connection:
+            connection.close()
+            print("Get plants DB connection is closed")
 
 
 
@@ -228,10 +245,10 @@ def save_recipe(recipe):
         print(f"Error saving recipe: {str(e)}")
         raise DbConnectionError()
 
-    # finally:
-    #     if connection:
-    #         connection.close()
-    #         print("Save recipe DB connection is closed")
+    finally:
+        if connection:
+            connection.close()
+            print("Save recipe DB connection is closed")
 
 
 # Display saved recipes to customer's account
