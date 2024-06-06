@@ -214,7 +214,7 @@ const toggleHerbs = toggleSelection(setSelectedHerbs);
   // jsx return
   return (
     <>
-    <div className='recipe-intro-container'>
+    <div data-testid="recipes-page" className='recipe-intro-container'>
       <div className='recipe-intro-txt'>
       <Typography variant='h2' color={'secondary'}>What's in season?</Typography>
       <Typography variant='body1'>Whether it's vibrant salads bursting with summer produce, cosy soups perfect for chilly autumn evenings, hearty stews to warm up winter nights, or light and refreshing dishes to welcome spring, we have something for every palate and occasion.</Typography>

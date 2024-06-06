@@ -56,7 +56,7 @@ export default function MyAccount() {
   
   
     return (
-      <div>
+      <div data-testid="my-account-page">
         <h1>Welcome to your account, {firstName}!</h1>
         <p>Thank you for registering with Thirty Plant Kitchen.</p>
         <button onClick={fetchSavedRecipes}>

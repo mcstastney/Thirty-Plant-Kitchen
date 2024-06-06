@@ -3,11 +3,11 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import { BrowserRouter as Router } from 'react-router-dom';
-import RecipeList from './RecipeList';
+import RecipeList from '../components/RecipeList';
 import CircularProgressWithLabel from '../components/ProgressTracker';
-import { handleSaveRecipe } from './saveRecipe';
+import { handleSaveRecipe } from '../components/saveRecipe';
 
-jest.mock('./saveRecipe');
+jest.mock('../components/saveRecipe');
 jest.mock('../components/ProgressTracker', () => () => <div>Loading...</div>);
 
 const mockStore = configureStore([]);
