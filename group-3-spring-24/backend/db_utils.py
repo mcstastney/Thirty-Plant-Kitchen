@@ -6,12 +6,14 @@ from mysql.connector import Error;
 
 db_name='thirty_plant_kitchen'
 
+# Custom exception for database connection errors
 class DbConnectionError(Exception):
     pass
 
-# Helper code to establish database connection
+# Helper function to establish database connection
 def connect_to_db(db_name):
     try:
+        # Attempt to connect to the DB using provided credentials
         connection = mysql.connector.connect(
             host=HOST,
             user=USER,
@@ -20,117 +22,30 @@ def connect_to_db(db_name):
         )
         print("Connection to database successful")
         return connection
+    
     except Exception as e:
+        # Raise custom exception if connection fails
         raise DbConnectionError(f"Failed to connect to database: {str(e)}")    
-connect_to_db(db_name)
 
-def get_produce_for_month(month):
+# Function to retrieve produce for a specific month
+def get_produce_for_month(month, table_name, column_name):
     try:
+        # Connect to db
         connection = connect_to_db('thirty_plant_kitchen')
         cursor = connection.cursor()
-        query = f"SELECT vegetable_name FROM Vegetable WHERE {month} = 1"
+        # Select the produce which are in season in the given month
+        query = f"SELECT {column_name} FROM {table_name} WHERE {month} = 1"
         cursor.execute(query)
         produce = [row[0] for row in cursor.fetchall()]
         cursor.close()
-        connection.close()
         return produce
     except Exception as e:
         raise DbConnectionError(f"Error fetching produce: {str(e)}")
+    
     finally:
         if connection:
             connection.close()
             print("Get plants DB connection is closed")
-
-
-def get_fruits_for_month(month):
-    try:
-        connection = connect_to_db('thirty_plant_kitchen')
-        cursor = connection.cursor()
-        query = f"SELECT fruit_name FROM Fruit WHERE {month} = 1"
-        cursor.execute(query)
-        fruit = [row[0] for row in cursor.fetchall()]
-        cursor.close()
-        connection.close()
-        return fruit
-    except Exception as e:
-        raise DbConnectionError(f"Error fetching produce: {str(e)}")
-    finally:
-        if connection:
-            connection.close()
-            print("Get plants DB connection is closed")
-
-
-def get_legumes_for_month(month):
-    try:
-        connection = connect_to_db('thirty_plant_kitchen')
-        cursor = connection.cursor()
-        query = f"SELECT legume_name FROM Legumes WHERE {month} = 1"
-        cursor.execute(query)
-        legume = [row[0] for row in cursor.fetchall()]
-        cursor.close()
-        connection.close()
-        return legume
-    except Exception as e:
-        raise DbConnectionError(f"Error fetching produce: {str(e)}")
-    finally:
-        if connection:
-            connection.close()
-            print("Get plants DB connection is closed")
-
-
-def get_nuts_for_month(month):
-    try:
-        connection = connect_to_db('thirty_plant_kitchen')
-        cursor = connection.cursor()
-        query = f"SELECT nut_seed_name FROM NutsAndSeeds WHERE {month} = 1"
-        cursor.execute(query)
-        nuts = [row[0] for row in cursor.fetchall()]
-        cursor.close()
-        connection.close()
-        return nuts
-    except Exception as e:
-        raise DbConnectionError(f"Error fetching produce: {str(e)}")
-    finally:
-        if connection:
-            connection.close()
-            print("Get plants DB connection is closed")
-
-
-def get_herbs_for_month(month):
-    try:
-        connection = connect_to_db('thirty_plant_kitchen')
-        cursor = connection.cursor()
-        query = f"SELECT herb_name FROM HerbsAndSpices WHERE {month} = 1"
-        cursor.execute(query)
-        herbs = [row[0] for row in cursor.fetchall()]
-        cursor.close()
-        connection.close()
-        return herbs
-    except Exception as e:
-        raise DbConnectionError(f"Error fetching produce: {str(e)}")
-    finally:
-        if connection:
-            connection.close()
-            print("Get plants DB connection is closed")
-
-def get_grains_for_month(month):
-    try:
-        connection = connect_to_db('thirty_plant_kitchen')
-        cursor = connection.cursor()
-        query = f"SELECT grain_name FROM Grains WHERE {month} = 1"
-        cursor.execute(query)
-        grains = [row[0] for row in cursor.fetchall()]
-        cursor.close()
-        connection.close()
-        return grains
-    except Exception as e:
-        raise DbConnectionError(f"Error fetching produce: {str(e)}")
-    finally:
-        if connection:
-            connection.close()
-            print("Get plants DB connection is closed")
-
-
 
 # Insert new customer on sign_up
 def create_user(record):
@@ -139,10 +54,8 @@ def create_user(record):
         db_name = "thirty_plant_kitchen"
         connection = connect_to_db(db_name)
         my_cursor = connection.cursor()
-
         # Hash the password
         hashed_password = bcrypt.hashpw(record['password'].encode('utf-8'), bcrypt.gensalt())
-
         #  Query to insert customer (ID auto increments, so no need to add)
         query = """INSERT INTO customers (first_name, last_name, email_address, password) 
                    VALUES (%s, %s, %s, %s)"""
@@ -152,34 +65,21 @@ def create_user(record):
             record['email_address'],
             hashed_password,
         )
-
         my_cursor.execute(query, values)
         connection.commit()
-
         # Return customer_id for use in redux store
         customer_id = my_cursor.lastrowid
-
         my_cursor.close()
         print(f"{record['email_address']} added to database with customer_id {customer_id}")
-
         return customer_id
-
+    
     except Exception as e:
         raise DbConnectionError(f"Error creating user: {str(e)}")
-
+    
     finally:
         if connection:
             connection.close()
             print("Insert customer DB connection is closed")
-
-
-# testrecord = {
-#     'first_name': 'Tony',
-#     'last_name': 'Tiger',
-#     'email_address': 'bigtony@mail.com',
-#     'password': 'Testingpassword6',  
-#         }
-# create_user(testrecord)
 
 
 # Get user by credentials for login
@@ -201,6 +101,7 @@ def login_user(email_address, password):
                 'customer_id': result[0],
                 'first_name': result[1]
             }
+        
         else:
             # If password doesn't match or user not found
             return None

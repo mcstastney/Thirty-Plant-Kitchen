@@ -2,61 +2,68 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import requests
 import json
-from db_utils import get_produce_for_month, get_fruits_for_month, get_legumes_for_month, get_nuts_for_month, get_herbs_for_month, get_saved_recipes, save_recipe, create_user, login_user, get_grains_for_month
+from db_utils import get_produce_for_month, get_saved_recipes, save_recipe, create_user, login_user
 
 app = Flask(__name__)
 CORS(app, origins=['http://localhost:3000'])
 
 
-# Get request returns plants by month
+# GET request to get seasonal vegetables
 @app.route('/api/seasonal-produce', methods=['GET'])
 def seasonal_produce():
+    # Extract month from request
     month = request.args.get('month', '').lower()
+    # Checkk if provided month is valid
     if month not in ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']:
         return jsonify({"error": "Invalid month"}), 400
-    produce = get_produce_for_month(month)
+    # Get seasonal vegetables for the given month
+    produce = get_produce_for_month(month,'Vegetables', 'vegetable_name')
     return jsonify({"produce": produce})
 
+# GET request to get seasonal fruits
 @app.route('/api/seasonal-fruits', methods=['GET'])
 def seasonal_fruits():
     month = request.args.get('month', '').lower()
     if month not in ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']:
         return jsonify({"error": "Invalid month"}), 400
-    fruits = get_fruits_for_month(month)
+    fruits = get_produce_for_month(month,'Fruits', 'fruit_name')
     return jsonify({"fruits": fruits})
 
+# GET request to get seasonal legumes
 @app.route('/api/seasonal-legumes', methods=['GET'])
 def seasonal_legumes():
     month = request.args.get('month', '').lower()
     if month not in ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']:
         return jsonify({"error": "Invalid month"}), 400
-    legumes = get_legumes_for_month(month)
+    legumes = get_produce_for_month(month,'Legumes', 'legume_name')
     return jsonify({"legumes": legumes})
 
+# GET request to get seasonal nuts
 @app.route('/api/seasonal-nuts', methods=['GET'])
 def seasonal_nuts():
     month = request.args.get('month', '').lower()
     if month not in ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']:
         return jsonify({"error": "Invalid month"}), 400
-    nuts = get_nuts_for_month(month)
+    nuts = get_produce_for_month(month,'NutsAndSeeds', 'nut_seed_name')
     return jsonify({"nuts": nuts})
 
+# GET request to get seasonal herbs
 @app.route('/api/seasonal-herbs', methods=['GET'])
 def seasonal_herbs():
     month = request.args.get('month', '').lower()
     if month not in ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']:
         return jsonify({"error": "Invalid month"}), 400
-    herbs = get_herbs_for_month(month)
+    herbs = get_produce_for_month(month,'HerbsAndSpices', 'herb_name')
     return jsonify({"herbs": herbs})
 
+# GET request to get seasonal grains
 @app.route('/api/seasonal-grains', methods=['GET'])
 def seasonal_grains():
     month = request.args.get('month', '').lower()
     if month not in ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']:
         return jsonify({"error": "Invalid month"}), 400
-    grains = get_grains_for_month(month)
+    grains = get_produce_for_month(month,'Grains', 'grain_name')
     return jsonify({"grains": grains})
-
 
 # POST request to add new customer on sign-up
 @app.route ('/signup', methods=['POST'])
@@ -64,7 +71,8 @@ def add_new_customer():
     try:
         record = request.get_json()
         customer_id = create_user(record)
-        record['customer_id'] = customer_id  # Add customer_id to the record
+        # Add customer_id to the record
+        record['customer_id'] = customer_id  
         print(record)
         return jsonify(record)
     except Exception as e:
@@ -118,12 +126,12 @@ def return_recipes_endpoint():
         return jsonify({'error': str(e)}), 500
 
 
-
 # GET request returns recipes from Edamam API
 @app.route('/recipes', methods=['GET'])
 def get_recipes():
     type = "public"
-    q = request.args.get('q', 'carrot')  # Default to 'carrot' if no query parameter is provided
+    # Default to 'carrot' if no query parameter is provided
+    q = request.args.get('q', 'carrot')  
     app_id = "de86b12f" 
     app_key = "102cc4a389aae2a2a2a6b136d4a7a0cc" 
     mealType = request.args.get('mealType', 'Dinner')

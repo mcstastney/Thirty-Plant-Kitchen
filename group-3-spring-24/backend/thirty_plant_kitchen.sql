@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS thirty_plant_kitchen;
 USE thirty_plant_kitchen;
 
-CREATE TABLE IF NOT EXISTS Vegetable (
+CREATE TABLE IF NOT EXISTS Vegetables (
     vegetable_id INT PRIMARY KEY AUTO_INCREMENT,
     vegetable_name VARCHAR(100),
     january BOOLEAN,
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS Vegetable (
     december BOOLEAN
 );
 
-CREATE TABLE IF NOT EXISTS Fruit (
+CREATE TABLE IF NOT EXISTS Fruits (
     fruit_id INT PRIMARY KEY AUTO_INCREMENT,
     fruit_name VARCHAR(200),
     january BOOLEAN,
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS Fruit (
     december BOOLEAN
 );
 
-INSERT INTO Vegetable (vegetable_name, january, february, march, april, may, june, july, august, september, october, november, december)
+INSERT INTO Vegetables (vegetable_name, january, february, march, april, may, june, july, august, september, october, november, december)
 VALUES
 ('Brussels Sprouts', 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1),
 ('Kale', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
@@ -55,7 +55,7 @@ VALUES
 ('Peppers', 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1),
 ('Tomatoes', 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1);
 
-INSERT INTO Fruit (fruit_name, january, february, march, april, may, june, july, august, september, october, november, december)
+INSERT INTO Fruits (fruit_name, january, february, march, april, may, june, july, august, september, october, november, december)
 VALUES
 ('Apple', 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1),
 ('Pear', 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1),
