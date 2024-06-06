@@ -77,7 +77,7 @@ const RecipeList = ({ loading, recipes, showNoRecipesMessage }) => {
               {/* Conditional formatting to change btn color & msg if recipe saved */}
               <button
                 className="save-button"
-                tyle={{
+                style={{
                 backgroundColor: isSaved ? "#283618" : "#606C38",
                 color: "#FEFAE0"
                 }}
