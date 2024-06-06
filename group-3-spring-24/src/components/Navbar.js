@@ -103,7 +103,7 @@ const Navbar = () => {
                     <CustomButton component={CustomNavLink} to="/Recipes">
                         Find Seasonal Recipes
                     </CustomButton>
-                    <CustomButton component={CustomNavLink} to="/aboutPage">
+                    <CustomButton component={CustomNavLink} to="/About">
                         About
                     </CustomButton>
                     {isSignedIn && (

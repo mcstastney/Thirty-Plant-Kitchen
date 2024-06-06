@@ -21,8 +21,8 @@ def connect_to_db(db_name):
         print("Connection to database successful")
         return connection
     except Exception as e:
-        raise DbConnectionError(f"Failed to connect to database: {str(e)}")
-        
+        raise DbConnectionError(f"Failed to connect to database: {str(e)}")    
+connect_to_db(db_name)
 
 def get_produce_for_month(month):
     try:
