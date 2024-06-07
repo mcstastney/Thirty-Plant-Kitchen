@@ -12,7 +12,7 @@ const AboutUs = () => {
     <>
       <div className="container">
         <h1>About Us</h1>
-        <p>Welcome to 30 Plant Kitchen!</p>
+        <p>We are Thirty Plant Kitchen!</p>
 
         <section className="section">
           <h2>Our Mission</h2>
