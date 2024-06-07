@@ -1,0 +1,188 @@
+
+#MyAccount {
+    font-family: "Arvo", serif;
+    padding: 0px;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center; 
+  }
+  
+  #MyAccount h3 {
+    color: #606C38;
+    font-size: 2em;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+  }
+  
+  
+  #MyAccount p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  
+  #MyAccount button {
+    background-color: #606C38;
+    color: #FEFAE0;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+  }
+  
+  #MyAccount button:hover {
+    background-color: #283618;
+  }
+  
+  #MyAccount .account-intro-container {
+    background: linear-gradient(250deg, #dda15e 0%, #d08835d5.50%, #ec8612 75%);
+    height: 500px;
+    overflow: hidden; 
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+
+  #MyAccount .account-intro-container h2 {
+    display: flex;
+    position: relative; 
+    flex-direction: column;
+    align-items: center;
+    font-size: 3em;
+    font-weight: 400;
+    color: var(--white-shade);
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 20px;
+    z-index: 2;
+  }
+
+  #MyAccount .intro-img {
+    position: relative; 
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 180%; 
+    margin-bottom: 10px;
+    margin-top: 0px;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  #MyAccount .inspo-btn {
+    background-color: #dda15e;
+    color: #FEFAE0;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+  }
+  
+  #MyAccount .inspo-btn:hover {
+    background-color: #be6d10;
+  }
+  
+
+  #MyAccount a {
+    text-decoration: none;
+    color: #be6d10;
+  }
+  
+  #MyAccount a:hover {
+    text-decoration: underline;
+  }
+  
+  #MyAccount .counter {
+    margin-top: 20px;
+  }
+  
+  #MyAccount .reset-counter {
+    background-color: grey;
+  }
+
+  #MyAccount .remove-plant {
+    background-color: rgb(209, 58, 12);
+  }
+
+  #MyAccount .recipe-card {
+    background-color: #fefae0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  #MyAccount .recipe-card h3 {
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  #MyAccount .recipe-card ul {
+    padding-left: 20px;
+    color: #666;
+  }
+  
+  #MyAccount .recipe-card p {
+    color: #666;
+  }
+  
+  #MyAccount .recipe-card button {
+    margin-top: 10px;
+  }
+  
+  #MyAccount .recipe-card a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  #MyAccount .recipe-card a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 600px) {
+    #MyAccount {
+      padding: 10px;
+    }
+  
+    #MyAccount h1 {
+      font-size: 1.5em;
+    }
+  
+    #MyAccount button {
+      padding: 8px 16px;
+      font-size: 0.9em;
+    }
+
+  }
+
+  #MyAccount .cards-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items at the top */
+  }
+
+  #MyAccount .faves-card {
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 40px 10px 10px 10px;
+    max-width: 50%;
+    height: auto;
+    display: inline-block;
+    text-align: center;
+  }
+
+  #MyAccount .counter-card {
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 40px 10px 10px 10px;
+    max-width: 50%;
+    height: auto;
+    display: inline-block;
+    text-align: center;
+  }

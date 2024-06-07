@@ -4,9 +4,9 @@ function Card(props) {
     return (
         <div className="card" data-testid='team-card'> 
             <img className="card-image" src={props.image} alt="profile" />
-            <h2 className="card-title">{props.name}</h2>
+            <h3 className="card-title">{props.name}</h3>
             <p className="card-text"><b>About: </b>{props.about}</p>
-            <a href={props.contact}><b>Contact me</b></a>
+            <a className="link-text" href={props.contact} target="_blank"><b>Contact me</b></a>
         </div>
     );
 }

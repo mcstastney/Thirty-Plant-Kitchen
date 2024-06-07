@@ -18,17 +18,17 @@ function VegCounter() {
 
   const getMessage = () => {
         if (plantCount === 0) {
-          return <p>This counter will help you track the number of plants you eat in a week - we hope the fun facts will support your motivation </p>;
+          return <p><b>Use the counter to track the number of plants you eat in a week. We hope the fun facts will support your motivation!</b></p>;
         }else if (plantCount === 1) {
           return <p>A journey of 30 plants a week starts with a single bite! </p>;
         }else if (plantCount === 2) {
-          return <p> Trillions of microorganisms live in every humans gut - these organisms are helpful to human health as they help break down food, manufacture vitamins and support the immune system (source Australian Academy of Science)</p>;
+          return <p>Trillions of microorganisms live in every humans gut - these organisms are helpful to human health as they help break down food, manufacture vitamins and support the immune system (source Australian Academy of Science)</p>;
         }else if (plantCount === 3) {
           return <p>Approximately 90% of the bodies serotonin (which plays an important role in mood) is made by the gut bacteria that you are supporting with your healthy diet! (Source Microba)</p>;
         }else if (plantCount === 4) {
           return <p>Healthy gut bacteria is thought to support good mental and physical health!(source Australian Academy of Science)</p>;
         }else if (plantCount === 5) {
-          return <p>your gut bacteria will thrive on all the fibre from the plants!</p>;
+          return <p>Your gut bacteria will thrive on all the fibre from the plants!</p>;
         }else if (plantCount === 6) {
           return <p>Coffee counts as 1 - another reason to enjoy a good cup of coffee! </p>;
         }else if (plantCount === 7) {
@@ -42,9 +42,11 @@ function VegCounter() {
         }else if (plantCount === 11) {
           return <p>Different coloured fruits and vegetables can contain slightly different nutrients - so red grapes and green grapes count as 2!</p>;
         }else if (plantCount === 12) {
-          return <p> Adding garlic to your food might not only enhance the flavour - it counts towards your plant goal! </p>;
+          return <p>Adding garlic to your food might not only enhance the flavour - it counts towards your plant goal! </p>;
         }else if (plantCount === 13) {
           return <p>A small basil leaf in your pasta sauce or with a tomoato salad is a tasty way of building towards your 30!</p>;
+        }else if (plantCount === 14) {
+          return <p>Bell peppers come in various colors and each counts as a different plant! Try red, yellow, and green for a colorful meal.</p>;
         } else if (plantCount === 15) {
           return <p>Try adding a handful of spinach to your smoothie - you won't even taste it, but your body will thank you!</p>;
         } else if (plantCount === 16) {
@@ -76,10 +78,10 @@ function VegCounter() {
         } else if (plantCount === 29) {
           return <p>Don't forget about root vegetables like carrots, beets, and parsnips. They add color and nutrition to your meals.</p>;
         } else if (plantCount === 30) {
-            return <p>Congratulations! You've reached 30 plants! Keep up the great work and continue exploring new plant-based foods!</p>;
+            return <p>Congratulations! You've reached 30 plants. Keep up the great work and continue exploring new plant-based foods!</p>;
         } else if (plantCount >= 31) {
-          return <p>Check out these sources for more information on gut health: 
-          <a href="https://www.science.org.au/curious/people-medicine/gut-bacteria">Gut Bacteria </a> 
+          return <p>Check out these sources for more information on gut health:
+          <a href="https://www.science.org.au/curious/people-medicine/gut-bacteria"> Gut Bacteria </a> 
           and 
           <a href="https://insight.microba.com/blog/the-important-role-of-serotonin-in-your-gut/"> The Role of Serotonin in Your Gut</a>.
           </p>;
@@ -87,16 +89,16 @@ function VegCounter() {
    };
 
   return (
-    <div className="container my-5 app-container">
-      <div className="card text-center my-5" >
-        <div className="card-body">
-          <h2>Plant tracker</h2>
+          <>
+          <h3>Plant tracker</h3>
           <div className="image-container my-5">
             <div style={overLayStyle} src={buttonImage} alt="happy tummy" className="tummy" >
               <div className="counter-overlay">
                 <h2 id="CountNumber">{plantCount}</h2>
               </div>
             </div>
+
+            <p>{getMessage()}</p>
             
             <button className="btn btn-info mx-3" id="vegetables" onClick={() => dispatch(incrementPlant())}>Vegetable</button>
             <button className="btn btn-info mx-3" onClick={() => dispatch(incrementPlant())}>Fruit</button>
@@ -104,13 +106,10 @@ function VegCounter() {
             <button className="btn btn-info mx-3" onClick={() => dispatch(incrementPlant())}>Legumes</button>
             <button className="btn btn-info mx-3" onClick={() => dispatch(incrementPlant())}>Herbs/Spices</button>
             <button className="btn btn-info mx-3" onClick={() => dispatch(incrementPlant())}>Wholegrains</button>
-            <button className="btn btn-danger mx-3" onClick={() => dispatch(decrementPlant())} disabled={plantCount === 0} >remove plant</button>
-            <button className="btn btn-warning mx-3" onClick={() => dispatch(resetPlants())}>reset</button>
+            <button className="remove-plant" onClick={() => dispatch(decrementPlant())} disabled={plantCount === 0} >Remove plant</button>
+            <button className="reset-counter" onClick={() => dispatch(resetPlants())}>Reset counter</button>
           </div>
-        </div>
-        <p>{getMessage()}</p>
-      </div>
-    </div>
+        </>
   );
 }
 

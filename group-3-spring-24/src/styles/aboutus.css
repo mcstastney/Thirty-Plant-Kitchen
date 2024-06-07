@@ -21,14 +21,29 @@ footer {
 
 .container {
   padding: 20px;
-  max-width: 1000px;
+  max-width: 100%;
   margin: 0 auto;
   text-align: center;
+  color: var(--white-shade);
   background: linear-gradient(250deg, #dda15e 0%, #d08835d5.50%, #ec8612 75%);
 }
 
+.container h1 {
+  font-size: 90px;
+  line-height: 1;
+  color: var(--white-shade);
+  margin: 0 0 35px;
+}
+
+.container h2 {
+  font-size: 50px;
+  line-height: 1;
+  color: var(--white-shade);
+  margin: 0 0 25px;
+}
+
 .section {
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 .team {
@@ -58,17 +73,15 @@ footer {
   margin: 0;
 }
 
-
 .card-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr); 
-  gap: 80px; 
+  gap: 50px; 
   justify-content: center;
   width: 100%;
   margin: 0 auto;
-  padding:60px;
+  padding: 10px;
 }
-
 
 .card {
   align-items: center; 
@@ -82,7 +95,6 @@ footer {
   background-color: rgb(255, 255, 255);
 }
 
-
 .card .card-image {
   width: 150px; 
   height: 150px; 
@@ -93,6 +105,7 @@ footer {
 
 .card .card-title {
   font-family: Arial, sans-serif;
+  font-size: 20px;
   margin: 0;
   color: rgba(14, 13, 13, 0.719);
   
@@ -104,3 +117,11 @@ footer {
   text-align: center;
 
 }
+
+.card .link-text {
+  font-family: Arial, sans-serif;
+  color: rgba(99, 97, 97, 0.87);
+  text-align: center;
+
+}
+
