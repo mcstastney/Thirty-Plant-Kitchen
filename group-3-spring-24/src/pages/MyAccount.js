@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import '../styles/Recipe.css';
+import './MyAccount.css'
 import VegCounter from '../components/VegCounter';
 import { logout } from '../redux/customerSlice';
-
 
 // Functional component uses 'useSelector' hook to get user info from redux store
 export default function MyAccount() {
@@ -15,16 +14,13 @@ export default function MyAccount() {
 
   // 'useState' hook to create state variable savedRecipes, initialized as empty array, and function 'setSavedRecipes' to update it
   const [savedRecipes, setSavedRecipes] = useState([]);
-
   // State to track loading status
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
 
-  // Asynchronous function to fetch saved recipes for the user
+    // Asynchronous function to fetch saved recipes for the user
   const fetchSavedRecipes = async () => {
-
-    // Set loading to true before making the API call
-    setLoading(true); 
-
+     // Set loading to true before making the API call
+    setLoading(true);
     // If user does not exist, log error
     if (!customerId) {
       console.error('Customer ID is missing');
@@ -32,74 +28,73 @@ export default function MyAccount() {
       return;
     }
 
-      // 'fetch' function to send GET request to server via '/view-saved-recipes' endpoint with customerId
-      try {
-        const response = await fetch(`http://localhost:5000/view-saved-recipes?customer_id=${customerId}`);
-  
-        // If request successful, convert response to JSON and log result
-        const data = await response.json();
-        setSavedRecipes(data);
-        console.log('Recipes returned:', data, 'for customerId:', customerId);
-        
-      } catch (error) {
-        console.error('Error fetching saved recipes:', error);
-      } finally {
-              setLoading(false);
-      }
-    };
+     // 'fetch' function to send GET request to server via '/view-saved-recipes' endpoint with customerId
+    try {
+      const response = await fetch(`http://localhost:5000/view-saved-recipes?customer_id=${customerId}`);
+      const data = await response.json();
+      setSavedRecipes(data);
+      console.log('Recipes returned:', data, 'for customerId:', customerId);
+    } catch (error) {
+      console.error('Error fetching saved recipes:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    // Function to log user out and redirect to homepage
-    const handleLogout = () => {
-      dispatch(logout());
-      navigate('/');
-    };
-  
-  
-    return (
-      <div data-testid="my-account-page">
-        <h1>Welcome to your account, {firstName}!</h1>
-        <p>Thank you for registering with Thirty Plant Kitchen.</p>
-        <button onClick={fetchSavedRecipes}>
-          View your recipes
-        </button>
+   // Function to log user out and redirect to homepage
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/');
+  };
 
-        {savedRecipes.length > 0 && savedRecipes.map((recipe, index) => (
-            <div key={index}>
-              <h3>{recipe.label}</h3>
-              <p>Ingredients:</p>
-              <ul>
-                {recipe.ingredients.map((ingredient, i) => (
-                  <li key={i}>{ingredient}</li>
-                ))}
-              </ul>
-              <p>Servings: {recipe.servings}</p>
-              <button><a href={recipe.url} target="_blank" rel="noopener noreferrer">Full Recipe</a></button>
-            </div>
-          ))}
+  return (
+    <div id="MyAccount" data-testid="my-account-page">
+      <h1>Welcome to your account, {firstName}!</h1>
+      <p>Thank you for registering with Thirty Plant Kitchen.</p>
+      <button onClick={fetchSavedRecipes}>View your recipes</button>
+
+      {savedRecipes.length > 0 && savedRecipes.map((recipe, index) => (
+        <div className="recipe-card" key={index}>
+          <h3>{recipe.label}</h3>
+          <p>Ingredients:</p>
+          <ul>
+            {recipe.ingredients.map((ingredient, i) => (
+              <li key={i}>{ingredient}</li>
+            ))}
+          </ul>
+          <p>Servings: {recipe.servings}</p>
+          <button>
+            <a href={recipe.url} target="_blank" rel="noopener noreferrer">Full Recipe</a>
+          </button>
+        </div>
+      ))}
+
+      <br />
+      <h2>Looking for inspiration?</h2>
+      <p>Search our library for seasonal recipes.</p>
+      <Link to="/Recipes">
+        <button type="button">Search recipes</button>
+      </Link>
+      <div className="counter">
+        <VegCounter />
+        <div className="orange-background">
           
-        <br></br>
-        <h2>Looking for inspiration?</h2>
-        <p>Search our library for seasonal recipes.</p>
-        <Link to="/Recipes">
-          <button type="button">Search recipes</button>
-        </Link>
-        <div className = 'counter'>
-        <VegCounter/>  
-        <br></br>
-        <br></br> 
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
         <button onClick={handleLogout}>Logout</button>
-        
       </div>
-      </div>
-    );
-  }
+    </div>
+  );
+}
+
   
