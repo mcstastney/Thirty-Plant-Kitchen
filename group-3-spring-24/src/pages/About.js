@@ -33,6 +33,7 @@ const AboutUs = () => {
                 name="Emma"
                 about="I have been learning to play chess this past year!"
                 image={emmaProfile}
+                contact="https://github.com/emmamcguire31"
               />
               <Card
                 name="Elisa McGarry"
@@ -42,7 +43,7 @@ const AboutUs = () => {
               />
               <Card
                 name="Victoria"
-                about="Input some text about Victoria"
+                about="Victoria is one of our recipe developers with a passion for gut health"
                 image={victoriaProfile}
                 contact="https://www.linkedin.com/in/victoria-bristow-7b381bb5/"
               />
@@ -50,16 +51,19 @@ const AboutUs = () => {
                 name="Abbie"
                 about="When I'm not finding new recipes to share, I can be found in the pottery studio trying to create the perfect ramen bowl!"
                 image={abbieProfile}
+                contact="https://github.com/AbbieKJ"
               />
               <Card
                 name="Sahra"
-                about="Input some text about Sahra"
+                about="Sahra is one of our recipe developers with a passion for gut health"
                 image="https://via.placeholder.com/150?text=Sahra"
+                contact="https://github.com/sahraa17"
               />
               <Card
                 name="Shafia"
                 about="I like staying active by going to the gym and playing sports"
                 image={shafiaProfile}
+                contact="https://github.com/sfk30"
               />
             </div>
           </div>

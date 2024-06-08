@@ -12,7 +12,6 @@ const CustomAppBar = styled(AppBar)({ //AppBar is MUI's version of navbar- mobil
     backgroundColor: '#283618', 
 });
 
-
 const CustomNavLink = styled(NavLink)(({ theme }) => ({
     color: 'white',
     textDecoration: 'none',
@@ -61,13 +60,12 @@ const Navbar = () => {
 
         if (!response.ok) {
             if (response.status === 401) {
-                // If the credentials are invalid, set the error message
+                // If the credentials are invalid, display the error message
                 alert('Please enter the email address and password you used to register, or create a new account.');
                 return;
             } else {
                 throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return;
+            }       
         }
 
         const result = await response.json();
@@ -112,6 +110,8 @@ const Navbar = () => {
                     </CustomButton>
                     )}
                 </Box>
+
+                {/* Fields for login with events to set state of username and password */}
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <TextField
                         variant="outlined"
@@ -130,6 +130,8 @@ const Navbar = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         sx={{ marginRight: '10px', backgroundColor: 'white', borderRadius: '4px' }}
                     />
+
+                    {/* Conditions to change login/logout wording on button */}
                     {!isSignedIn && (
                     <Button variant="contained" color="secondary" onClick={handleLogin}>
                         Login
@@ -138,6 +140,7 @@ const Navbar = () => {
                     <Button variant="contained" color="secondary" onClick={() => {dispatch(logout()); navigate('/');}}>
                         Logout
                     </Button>)}    
+                    
                     <Button variant="outlined" color="inherit" sx={{ marginLeft: '10px' }}>
                     <Link to="/SignUp">Sign up</Link>
                     </Button>

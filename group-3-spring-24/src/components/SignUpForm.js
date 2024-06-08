@@ -12,13 +12,14 @@ import {
 // Import CSS
 import "../styles/SignUp.css";
 
+// Set the state of customer credentials
 function SignUpForm() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [emailAddress, setEmailAddress] = useState('');
   const [password, setPassword] = useState('');
 
-  // useDispatch to create a dispatch function to dispatch actions
+  // useDispatch to create a function to dispatch actions
   const dispatch = useDispatch();
 
   // useNavigate to navigate to selected page after form submit
@@ -73,7 +74,7 @@ function SignUpForm() {
 
   return (
     <>
-      {/* Each form input field is controlled by the component's state
+      {/* Each form input field is controlled by the component's state,
     values are set to corresponding state variable, onChange updates the state */}
     <form data-testid="signup-form" onSubmit={handleSubmit}>
       <label>First name:</label>
@@ -100,7 +101,7 @@ function SignUpForm() {
         onChange={(e) => setEmailAddress(e.target.value)}
       />
       <br></br>
-      <label>Create password:</label> {/* New Password field */}
+      <label>Create password:</label> 
         <input
           type="password"
           placeholder="Enter your password"

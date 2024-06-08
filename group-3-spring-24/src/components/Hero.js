@@ -27,29 +27,28 @@ function Hero() {
         </div>
         <div className="hero-text">
           <h1>30 Plant Kitchen</h1>
-          <Link className="signup-btn" to="/SignUp">
-            <i className="ri-arrow-right-circle-fill"></i>
-            Sign up
-          </Link>
-          <br></br>
-          <a
-            href="https://www.youtube.com/watch?v=oZWPI5rHidg"
-            className="youtube"
-          >
-            <i className="ri-youtube-fill"></i> Video
-          </a>
           <p>
             Join{" "}
             <strong>
               <em>thousands</em>
             </strong>{" "}
             of people around the world on a journey to improve their gut
-            microbiome
-            <br />
-            <br />
-            Consume <strong>30</strong> plants a week and you're on your way to
+            microbiome</p>
+          <Link className="signup-btn" to="/SignUp">
+            <i className="ri-arrow-right-circle-fill"></i>
+            Sign up
+          </Link>
+          <p>Consume <strong>30</strong> plants a week and you're on your way to
             earning you're healthy eating streak
           </p>
+          <br></br>
+          <a
+            href="https://www.youtube.com/watch?v=oZWPI5rHidg" target="_blank"
+            className="youtube"
+          >
+            <i className="ri-youtube-fill"></i> 30 plants video
+          </a>
+
         </div>
       </section>
 

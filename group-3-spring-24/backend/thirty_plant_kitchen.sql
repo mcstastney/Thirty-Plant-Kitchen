@@ -201,7 +201,3 @@ CREATE TABLE IF NOT EXISTS saved_recipes (
     servings INT NOT NULL,
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 );
-
-SELECT * FROM customers c
-LEFT JOIN saved_recipes sr ON c.customer_id = sr.customer_id
-ORDER BY c.customer_id;

@@ -6,7 +6,7 @@ import './index.css';
 import App from './App';
 import { BrowserRouter as Router } from "react-router-dom";
 
-
+// Wrap the app in the Router and Provider to make navigation and store available
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>

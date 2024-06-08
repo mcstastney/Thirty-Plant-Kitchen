@@ -14,7 +14,6 @@ import Ingredients from '../assets/stock-imgs/ingredients.jpg';
 import Cooking from '../assets/stock-imgs/cooking.jpg';
 // Import MUI elements
 import { Typography } from '@mui/material';
-// import Button from '@mui/material/Button';
 // Import icons
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import RestaurantIcon from '@mui/icons-material/Restaurant';

@@ -15,7 +15,8 @@ export default function MyAccount() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // 'useState' hook to create state variable savedRecipes, initialized as empty array, and function 'setSavedRecipes' to update it
+  // 'useState' hook to create state variable savedRecipes, initialized as empty array, 
+  // and function 'setSavedRecipes' to update it
   const [savedRecipes, setSavedRecipes] = useState([]);
   // State to track loading status
   const [loading, setLoading] = useState(false);
@@ -65,16 +66,18 @@ export default function MyAccount() {
     <div id="MyAccount">
       
       <div className='account-intro-container'>
+
+      {/* Display the user's firstname from state */}
       <h2>Welcome to the club, {firstName}!</h2>
       <img src={FarmersMarket} alt='Couple cooking' className='intro-img'/>
       </div>
               
-      
-
       <div className="cards-container">
       <div className="faves-card">
         <h3>Save your faves!</h3>
         <p>As a member of the Thirty Plant Kitchen club, you can save up to 100 recipes to your account.</p>
+        
+        {/* Conditional function to toggle save/hide recipes button */}
         <button onClick={handleToggleRecipes}>
           {showRecipes ? 'Hide your recipes' : 'View your recipes'}
         </button>
@@ -83,6 +86,7 @@ export default function MyAccount() {
           <button className="inspo-btn" type="button">Search recipes</button>
         </Link>
 
+        {/* Conditional function to show recipes if there are any saved */}
         {showRecipes && savedRecipes.length > 0 && savedRecipes.map((recipe, index) => (
           <div className="recipe-card" key={index}>
             <h3>{recipe.label}</h3>
