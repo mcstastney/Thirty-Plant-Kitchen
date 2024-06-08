@@ -2,7 +2,6 @@ import mysql.connector;
 from config import USER, PASSWORD, HOST;
 import json;
 import bcrypt;
-from mysql.connector import Error;
 
 db_name='thirty_plant_kitchen'
 
