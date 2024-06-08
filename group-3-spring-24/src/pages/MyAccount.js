@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import '../styles/MyAccount.css';
 import '../styles/Recipe.css';
 import VegCounter from '../components/VegCounter';
-import { logout } from '../redux/customerSlice';
 import FarmersMarket from '../assets/stock-imgs/cooking.jpg';
 
 
@@ -12,8 +11,6 @@ import FarmersMarket from '../assets/stock-imgs/cooking.jpg';
 export default function MyAccount() {
   const customerId = useSelector((state) => state.user.customerId);
   const firstName = useSelector((state) => state.user.firstName);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   // 'useState' hook to create state variable savedRecipes, initialized as empty array, 
   // and function 'setSavedRecipes' to update it
@@ -45,12 +42,6 @@ export default function MyAccount() {
     } finally {
       setLoading(false);
     }
-  };
-
-   // Function to log user out and redirect to homepage
-  const handleLogout = () => {
-    dispatch(logout());
-    navigate('/');
   };
 
   // Function to toggle the visibility of saved recipes

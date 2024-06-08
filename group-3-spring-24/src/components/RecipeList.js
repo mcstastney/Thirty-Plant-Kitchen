@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../styles/Recipe.css";
-import { handleSaveRecipe } from "./SaveRecipe";
+import { handleSaveRecipe } from "./SaveRecipes";
 import CircularProgressWithLabel from "../components/ProgressTracker";
 import { Link } from "react-router-dom";
 // Import useSelector hook from react-redux to access the customerId state

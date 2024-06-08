@@ -43,7 +43,7 @@ function Hero() {
           </p>
           <br></br>
           <a
-            href="https://www.youtube.com/watch?v=oZWPI5rHidg" target="_blank"
+            href="https://www.youtube.com/watch?v=oZWPI5rHidg" target="_blank" rel="noreferrer"
             className="youtube"
           >
             <i className="ri-youtube-fill"></i> 30 plants video

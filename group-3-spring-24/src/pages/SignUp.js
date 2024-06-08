@@ -16,7 +16,7 @@ function Home() {
       <div className='signup-container'>
         <img
           src={SignupHero}
-          alt='Table with various food dishes scattered around the edges of image'
+          alt='Table with various food dishes scattered around the edges'
           className='hero-img-signup'
         />
         <div className='signup-txt-container'>
