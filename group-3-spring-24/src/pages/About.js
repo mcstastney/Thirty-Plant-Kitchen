@@ -27,6 +27,7 @@ const AboutUs = () => {
         <section className="section">
           <h2>Our Team</h2>
 
+          {/* Utilise props to infill group member cards */}
           <div className="team">
             <div className="card-container">
               <Card

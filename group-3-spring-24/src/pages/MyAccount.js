@@ -5,6 +5,7 @@ import '../styles/MyAccount.css';
 import '../styles/Recipe.css';
 import VegCounter from '../components/VegCounter';
 import FarmersMarket from '../assets/stock-imgs/cooking.jpg';
+import CircularProgressWithLabel from '../components/ProgressTracker';
 
 
 // Functional component uses 'useSelector' hook to get user info from redux store
@@ -67,7 +68,7 @@ export default function MyAccount() {
       <div className="faves-card">
         <h3>Save your faves!</h3>
         <p>As a member of the Thirty Plant Kitchen club, you can save up to 100 recipes to your account.</p>
-        
+
         {/* Conditional function to toggle save/hide recipes button */}
         <button onClick={handleToggleRecipes}>
           {showRecipes ? 'Hide your recipes' : 'View your recipes'}
@@ -77,8 +78,12 @@ export default function MyAccount() {
           <button className="inspo-btn" type="button">Search recipes</button>
         </Link>
 
+        {loading && <CircularProgressWithLabel />}
         {/* Conditional function to show recipes if there are any saved */}
-        {showRecipes && savedRecipes.length > 0 && savedRecipes.map((recipe, index) => (
+        {showRecipes && (
+            <>
+              {savedRecipes.length > 0 ? (
+                savedRecipes.map((recipe, index) => (
           <div className="recipe-card" key={index}>
             <h3>{recipe.label}</h3>
             <h4>Ingredients:</h4>
@@ -92,7 +97,12 @@ export default function MyAccount() {
               <a href={recipe.url} target="_blank" rel="noopener noreferrer">Full Recipe</a>
             </button>
           </div>
-        ))}
+              ))
+            ) : (
+              <p>You have not saved any recipes yet.</p>
+            )}
+          </>
+        )}
       </div>
 
       <div className="counter-card">
